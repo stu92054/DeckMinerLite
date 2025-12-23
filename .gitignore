@@ -1,0 +1,52 @@
+# Build outputs
+bin/
+obj/
+publish/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.cache
+
+# Rider
+.idea/
+
+# .NET
+*.dll
+*.exe
+*.pdb
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Logs
+log/
+*.log
+
+# Temporary files
+temp/
+*.tmp
+
+# Output files
+output/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# User-specific files
+*.swp
+*~
+.vscode/
+
+# NuGet
+packages/
+*.nupkg
+*.snupkg
+.nuget/
+
+# Test results
+TestResults/
+*.trx
+*.coverage

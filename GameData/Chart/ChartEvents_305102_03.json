@@ -1,0 +1,2845 @@
+{
+"Events": [
+{
+"Time": 0.0,
+"Name": "LiveStart"
+},
+{
+"Time": 3.600746,
+"Name": "Hold"
+},
+{
+"Time": 3.824627,
+"Name": "Hold"
+},
+{
+"Time": 3.824627,
+"Name": "Single"
+},
+{
+"Time": 3.936567,
+"Name": "Single"
+},
+{
+"Time": 4.160448,
+"Name": "Single"
+},
+{
+"Time": 4.384328,
+"Name": "Single"
+},
+{
+"Time": 4.608209,
+"Name": "Single"
+},
+{
+"Time": 4.720149,
+"Name": "Hold"
+},
+{
+"Time": 4.94403,
+"Name": "Hold"
+},
+{
+"Time": 4.94403,
+"Name": "Single"
+},
+{
+"Time": 5.05597,
+"Name": "Single"
+},
+{
+"Time": 5.167911,
+"Name": "Single"
+},
+{
+"Time": 5.391791,
+"Name": "Hold"
+},
+{
+"Time": 5.615672,
+"Name": "Hold"
+},
+{
+"Time": 5.727612,
+"Name": "Single"
+},
+{
+"Time": 5.727612,
+"Name": "Single"
+},
+{
+"Time": 5.951492,
+"Name": "Single"
+},
+{
+"Time": 5.951492,
+"Name": "Single"
+},
+{
+"Time": 6.175373,
+"Name": "Single"
+},
+{
+"Time": 6.175373,
+"Name": "Single"
+},
+{
+"Time": 6.399254,
+"Name": "Single"
+},
+{
+"Time": 6.399254,
+"Name": "Single"
+},
+{
+"Time": 6.511194,
+"Name": "Hold"
+},
+{
+"Time": 6.735075,
+"Name": "Hold"
+},
+{
+"Time": 6.735075,
+"Name": "Single"
+},
+{
+"Time": 7.070896,
+"Name": "Single"
+},
+{
+"Time": 7.182836,
+"Name": "Single"
+},
+{
+"Time": 7.294776,
+"Name": "Single"
+},
+{
+"Time": 7.406716,
+"Name": "Single"
+},
+{
+"Time": 7.518657,
+"Name": "Flick"
+},
+{
+"Time": 7.742537,
+"Name": "Flick"
+},
+{
+"Time": 7.742537,
+"Name": "Single"
+},
+{
+"Time": 7.966418,
+"Name": "Single"
+},
+{
+"Time": 7.966418,
+"Name": "Flick"
+},
+{
+"Time": 8.190298,
+"Name": "Hold"
+},
+{
+"Time": 8.190298,
+"Name": "Hold"
+},
+{
+"Time": 8.414179,
+"Name": "HoldMid"
+},
+{
+"Time": 8.414179,
+"Name": "HoldMid"
+},
+{
+"Time": 8.638059,
+"Name": "HoldMid"
+},
+{
+"Time": 8.638059,
+"Name": "HoldMid"
+},
+{
+"Time": 8.86194,
+"Name": "HoldMid"
+},
+{
+"Time": 8.86194,
+"Name": "HoldMid"
+},
+{
+"Time": 9.08582,
+"Name": "HoldMid"
+},
+{
+"Time": 9.08582,
+"Name": "HoldMid"
+},
+{
+"Time": 9.309701,
+"Name": "HoldMid"
+},
+{
+"Time": 9.309701,
+"Name": "HoldMid"
+},
+{
+"Time": 9.533582,
+"Name": "HoldMid"
+},
+{
+"Time": 9.533582,
+"Name": "HoldMid"
+},
+{
+"Time": 9.757462,
+"Name": "HoldMid"
+},
+{
+"Time": 9.757462,
+"Name": "HoldMid"
+},
+{
+"Time": 9.981343,
+"Name": "HoldMid"
+},
+{
+"Time": 9.981343,
+"Name": "HoldMid"
+},
+{
+"Time": 10.09328,
+"Name": "Hold"
+},
+{
+"Time": 10.09328,
+"Name": "Hold"
+},
+{
+"Time": 10.31716,
+"Name": "Trace"
+},
+{
+"Time": 10.4291,
+"Name": "Trace"
+},
+{
+"Time": 10.54105,
+"Name": "Trace"
+},
+{
+"Time": 10.65298,
+"Name": "Trace"
+},
+{
+"Time": 10.76493,
+"Name": "Flick"
+},
+{
+"Time": 10.87687,
+"Name": "Single"
+},
+{
+"Time": 10.98881,
+"Name": "Single"
+},
+{
+"Time": 11.10075,
+"Name": "Single"
+},
+{
+"Time": 11.21269,
+"Name": "Trace"
+},
+{
+"Time": 11.32463,
+"Name": "Single"
+},
+{
+"Time": 11.54851,
+"Name": "Single"
+},
+{
+"Time": 11.54851,
+"Name": "Single"
+},
+{
+"Time": 11.77239,
+"Name": "Single"
+},
+{
+"Time": 11.88433,
+"Name": "Hold"
+},
+{
+"Time": 12.10821,
+"Name": "Hold"
+},
+{
+"Time": 12.10821,
+"Name": "Trace"
+},
+{
+"Time": 12.22015,
+"Name": "Single"
+},
+{
+"Time": 12.33209,
+"Name": "Hold"
+},
+{
+"Time": 12.55597,
+"Name": "Hold"
+},
+{
+"Time": 12.55597,
+"Name": "Single"
+},
+{
+"Time": 12.66791,
+"Name": "Single"
+},
+{
+"Time": 12.77985,
+"Name": "Single"
+},
+{
+"Time": 12.89179,
+"Name": "Single"
+},
+{
+"Time": 13.00373,
+"Name": "Trace"
+},
+{
+"Time": 13.11567,
+"Name": "Single"
+},
+{
+"Time": 13.33955,
+"Name": "Single"
+},
+{
+"Time": 13.33955,
+"Name": "Single"
+},
+{
+"Time": 13.56343,
+"Name": "Single"
+},
+{
+"Time": 13.67537,
+"Name": "Hold"
+},
+{
+"Time": 13.89925,
+"Name": "Hold"
+},
+{
+"Time": 13.89925,
+"Name": "Trace"
+},
+{
+"Time": 14.01119,
+"Name": "Single"
+},
+{
+"Time": 14.12313,
+"Name": "Single"
+},
+{
+"Time": 14.34702,
+"Name": "Single"
+},
+{
+"Time": 14.45895,
+"Name": "Single"
+},
+{
+"Time": 14.5709,
+"Name": "Single"
+},
+{
+"Time": 14.68284,
+"Name": "Single"
+},
+{
+"Time": 14.79478,
+"Name": "Trace"
+},
+{
+"Time": 14.90672,
+"Name": "Single"
+},
+{
+"Time": 15.1306,
+"Name": "Single"
+},
+{
+"Time": 15.1306,
+"Name": "Single"
+},
+{
+"Time": 15.35448,
+"Name": "Single"
+},
+{
+"Time": 15.46642,
+"Name": "Hold"
+},
+{
+"Time": 15.6903,
+"Name": "Hold"
+},
+{
+"Time": 15.6903,
+"Name": "Trace"
+},
+{
+"Time": 15.80224,
+"Name": "Single"
+},
+{
+"Time": 15.91418,
+"Name": "Single"
+},
+{
+"Time": 16.02612,
+"Name": "Single"
+},
+{
+"Time": 16.36194,
+"Name": "Single"
+},
+{
+"Time": 16.36194,
+"Name": "Hold"
+},
+{
+"Time": 16.58582,
+"Name": "Hold"
+},
+{
+"Time": 16.58582,
+"Name": "Trace"
+},
+{
+"Time": 16.8097,
+"Name": "Hold"
+},
+{
+"Time": 16.8097,
+"Name": "Single"
+},
+{
+"Time": 17.03358,
+"Name": "Hold"
+},
+{
+"Time": 17.03358,
+"Name": "Single"
+},
+{
+"Time": 17.25746,
+"Name": "Hold"
+},
+{
+"Time": 17.3694,
+"Name": "Trace"
+},
+{
+"Time": 17.48134,
+"Name": "HoldMid"
+},
+{
+"Time": 17.48134,
+"Name": "Trace"
+},
+{
+"Time": 17.59328,
+"Name": "Trace"
+},
+{
+"Time": 17.70522,
+"Name": "HoldMid"
+},
+{
+"Time": 17.70522,
+"Name": "Trace"
+},
+{
+"Time": 17.81716,
+"Name": "Trace"
+},
+{
+"Time": 17.9291,
+"Name": "Hold"
+},
+{
+"Time": 17.9291,
+"Name": "Flick"
+},
+{
+"Time": 18.04104,
+"Name": "Single"
+},
+{
+"Time": 18.15298,
+"Name": "Single"
+},
+{
+"Time": 18.26493,
+"Name": "Single"
+},
+{
+"Time": 18.37687,
+"Name": "Trace"
+},
+{
+"Time": 18.48881,
+"Name": "Single"
+},
+{
+"Time": 18.71269,
+"Name": "Single"
+},
+{
+"Time": 18.71269,
+"Name": "Single"
+},
+{
+"Time": 18.93657,
+"Name": "Single"
+},
+{
+"Time": 19.04851,
+"Name": "Single"
+},
+{
+"Time": 19.16045,
+"Name": "Single"
+},
+{
+"Time": 19.27239,
+"Name": "Trace"
+},
+{
+"Time": 19.38433,
+"Name": "Single"
+},
+{
+"Time": 19.49627,
+"Name": "Single"
+},
+{
+"Time": 19.60821,
+"Name": "Single"
+},
+{
+"Time": 19.72015,
+"Name": "Hold"
+},
+{
+"Time": 19.94403,
+"Name": "Hold"
+},
+{
+"Time": 19.94403,
+"Name": "Single"
+},
+{
+"Time": 20.05597,
+"Name": "Single"
+},
+{
+"Time": 20.16791,
+"Name": "Trace"
+},
+{
+"Time": 20.27985,
+"Name": "Single"
+},
+{
+"Time": 20.50373,
+"Name": "Single"
+},
+{
+"Time": 20.50373,
+"Name": "Single"
+},
+{
+"Time": 20.72761,
+"Name": "Single"
+},
+{
+"Time": 20.83955,
+"Name": "Hold"
+},
+{
+"Time": 21.06343,
+"Name": "Hold"
+},
+{
+"Time": 21.06343,
+"Name": "Trace"
+},
+{
+"Time": 21.17537,
+"Name": "Single"
+},
+{
+"Time": 21.28731,
+"Name": "Hold"
+},
+{
+"Time": 21.51119,
+"Name": "Hold"
+},
+{
+"Time": 21.51119,
+"Name": "Hold"
+},
+{
+"Time": 21.73507,
+"Name": "HoldMid"
+},
+{
+"Time": 21.73507,
+"Name": "Single"
+},
+{
+"Time": 21.95895,
+"Name": "HoldMid"
+},
+{
+"Time": 21.95896,
+"Name": "Trace"
+},
+{
+"Time": 22.18283,
+"Name": "HoldMid"
+},
+{
+"Time": 22.18284,
+"Name": "Single"
+},
+{
+"Time": 22.29478,
+"Name": "Single"
+},
+{
+"Time": 22.40671,
+"Name": "HoldMid"
+},
+{
+"Time": 22.51866,
+"Name": "Single"
+},
+{
+"Time": 22.63059,
+"Name": "HoldMid"
+},
+{
+"Time": 22.74254,
+"Name": "Single"
+},
+{
+"Time": 22.85447,
+"Name": "HoldMid"
+},
+{
+"Time": 22.85448,
+"Name": "Trace"
+},
+{
+"Time": 23.07836,
+"Name": "Hold"
+},
+{
+"Time": 23.07836,
+"Name": "Single"
+},
+{
+"Time": 23.30224,
+"Name": "Single"
+},
+{
+"Time": 23.30224,
+"Name": "Single"
+},
+{
+"Time": 23.41418,
+"Name": "Single"
+},
+{
+"Time": 23.41418,
+"Name": "Single"
+},
+{
+"Time": 23.52612,
+"Name": "Single"
+},
+{
+"Time": 23.52612,
+"Name": "Single"
+},
+{
+"Time": 23.63806,
+"Name": "Single"
+},
+{
+"Time": 23.63806,
+"Name": "Single"
+},
+{
+"Time": 23.86194,
+"Name": "Flick"
+},
+{
+"Time": 23.86194,
+"Name": "Flick"
+},
+{
+"Time": 24.08582,
+"Name": "Hold"
+},
+{
+"Time": 24.08582,
+"Name": "Hold"
+},
+{
+"Time": 24.3097,
+"Name": "HoldMid"
+},
+{
+"Time": 24.3097,
+"Name": "HoldMid"
+},
+{
+"Time": 24.53358,
+"Name": "HoldMid"
+},
+{
+"Time": 24.53358,
+"Name": "HoldMid"
+},
+{
+"Time": 24.64552,
+"Name": "Hold"
+},
+{
+"Time": 24.64552,
+"Name": "Hold"
+},
+{
+"Time": 24.8694,
+"Name": "Single"
+},
+{
+"Time": 25.09328,
+"Name": "Hold"
+},
+{
+"Time": 25.31716,
+"Name": "HoldMid"
+},
+{
+"Time": 25.54104,
+"Name": "Hold"
+},
+{
+"Time": 25.76493,
+"Name": "Single"
+},
+{
+"Time": 25.98881,
+"Name": "Hold"
+},
+{
+"Time": 26.21269,
+"Name": "HoldMid"
+},
+{
+"Time": 26.43657,
+"Name": "Hold"
+},
+{
+"Time": 26.66045,
+"Name": "Single"
+},
+{
+"Time": 26.88433,
+"Name": "Hold"
+},
+{
+"Time": 27.10821,
+"Name": "HoldMid"
+},
+{
+"Time": 27.33209,
+"Name": "Hold"
+},
+{
+"Time": 27.55597,
+"Name": "Single"
+},
+{
+"Time": 27.77985,
+"Name": "Hold"
+},
+{
+"Time": 28.00373,
+"Name": "HoldMid"
+},
+{
+"Time": 28.22761,
+"Name": "Hold"
+},
+{
+"Time": 28.45149,
+"Name": "Single"
+},
+{
+"Time": 28.67537,
+"Name": "Hold"
+},
+{
+"Time": 28.89925,
+"Name": "HoldMid"
+},
+{
+"Time": 29.12313,
+"Name": "Hold"
+},
+{
+"Time": 29.12313,
+"Name": "Single"
+},
+{
+"Time": 29.23507,
+"Name": "Single"
+},
+{
+"Time": 29.34702,
+"Name": "Single"
+},
+{
+"Time": 29.45896,
+"Name": "Single"
+},
+{
+"Time": 29.5709,
+"Name": "Single"
+},
+{
+"Time": 29.68284,
+"Name": "Single"
+},
+{
+"Time": 29.79478,
+"Name": "Hold"
+},
+{
+"Time": 30.01866,
+"Name": "Hold"
+},
+{
+"Time": 30.24254,
+"Name": "Hold"
+},
+{
+"Time": 30.46642,
+"Name": "HoldMid"
+},
+{
+"Time": 30.6903,
+"Name": "Hold"
+},
+{
+"Time": 30.91418,
+"Name": "Single"
+},
+{
+"Time": 31.02612,
+"Name": "Single"
+},
+{
+"Time": 31.13806,
+"Name": "Single"
+},
+{
+"Time": 31.25,
+"Name": "Single"
+},
+{
+"Time": 31.36194,
+"Name": "Single"
+},
+{
+"Time": 31.47388,
+"Name": "Single"
+},
+{
+"Time": 31.58582,
+"Name": "Single"
+},
+{
+"Time": 32.03358,
+"Name": "Single"
+},
+{
+"Time": 32.25746,
+"Name": "Hold"
+},
+{
+"Time": 32.48134,
+"Name": "HoldMid"
+},
+{
+"Time": 32.70522,
+"Name": "Hold"
+},
+{
+"Time": 32.9291,
+"Name": "Single"
+},
+{
+"Time": 33.15298,
+"Name": "Hold"
+},
+{
+"Time": 33.37686,
+"Name": "HoldMid"
+},
+{
+"Time": 33.60075,
+"Name": "Hold"
+},
+{
+"Time": 33.82463,
+"Name": "Single"
+},
+{
+"Time": 34.04851,
+"Name": "Hold"
+},
+{
+"Time": 34.27239,
+"Name": "HoldMid"
+},
+{
+"Time": 34.49627,
+"Name": "Hold"
+},
+{
+"Time": 34.72015,
+"Name": "Single"
+},
+{
+"Time": 34.94403,
+"Name": "Single"
+},
+{
+"Time": 35.05597,
+"Name": "Single"
+},
+{
+"Time": 35.16791,
+"Name": "Single"
+},
+{
+"Time": 35.39179,
+"Name": "Single"
+},
+{
+"Time": 35.50373,
+"Name": "Single"
+},
+{
+"Time": 35.61567,
+"Name": "Single"
+},
+{
+"Time": 35.83955,
+"Name": "Single"
+},
+{
+"Time": 36.06343,
+"Name": "Single"
+},
+{
+"Time": 36.17537,
+"Name": "Hold"
+},
+{
+"Time": 36.39925,
+"Name": "HoldMid"
+},
+{
+"Time": 36.51119,
+"Name": "Hold"
+},
+{
+"Time": 36.51119,
+"Name": "Flick"
+},
+{
+"Time": 36.62313,
+"Name": "Flick"
+},
+{
+"Time": 36.73507,
+"Name": "Single"
+},
+{
+"Time": 36.95895,
+"Name": "Single"
+},
+{
+"Time": 37.0709,
+"Name": "Hold"
+},
+{
+"Time": 37.29478,
+"Name": "HoldMid"
+},
+{
+"Time": 37.40672,
+"Name": "Hold"
+},
+{
+"Time": 37.40672,
+"Name": "Flick"
+},
+{
+"Time": 37.6306,
+"Name": "Flick"
+},
+{
+"Time": 37.6306,
+"Name": "Single"
+},
+{
+"Time": 37.85448,
+"Name": "Single"
+},
+{
+"Time": 37.85448,
+"Name": "Single"
+},
+{
+"Time": 37.96642,
+"Name": "Single"
+},
+{
+"Time": 37.96642,
+"Name": "Single"
+},
+{
+"Time": 38.1903,
+"Name": "Single"
+},
+{
+"Time": 38.1903,
+"Name": "Single"
+},
+{
+"Time": 38.41418,
+"Name": "Hold"
+},
+{
+"Time": 38.63806,
+"Name": "Hold"
+},
+{
+"Time": 38.63806,
+"Name": "Single"
+},
+{
+"Time": 38.75,
+"Name": "Single"
+},
+{
+"Time": 38.86194,
+"Name": "Single"
+},
+{
+"Time": 38.97388,
+"Name": "Single"
+},
+{
+"Time": 39.08582,
+"Name": "Single"
+},
+{
+"Time": 39.19776,
+"Name": "Hold"
+},
+{
+"Time": 39.42164,
+"Name": "Hold"
+},
+{
+"Time": 39.42164,
+"Name": "Single"
+},
+{
+"Time": 39.53358,
+"Name": "Single"
+},
+{
+"Time": 39.64552,
+"Name": "Single"
+},
+{
+"Time": 39.75746,
+"Name": "Single"
+},
+{
+"Time": 39.98134,
+"Name": "Single"
+},
+{
+"Time": 39.98134,
+"Name": "Single"
+},
+{
+"Time": 40.20522,
+"Name": "Single"
+},
+{
+"Time": 40.20522,
+"Name": "Single"
+},
+{
+"Time": 40.4291,
+"Name": "Single"
+},
+{
+"Time": 40.54105,
+"Name": "Hold"
+},
+{
+"Time": 40.76493,
+"Name": "Hold"
+},
+{
+"Time": 40.76493,
+"Name": "Single"
+},
+{
+"Time": 40.87687,
+"Name": "Single"
+},
+{
+"Time": 40.98881,
+"Name": "Hold"
+},
+{
+"Time": 41.21269,
+"Name": "Hold"
+},
+{
+"Time": 41.21269,
+"Name": "Single"
+},
+{
+"Time": 41.32463,
+"Name": "Single"
+},
+{
+"Time": 41.43657,
+"Name": "Single"
+},
+{
+"Time": 41.54851,
+"Name": "Single"
+},
+{
+"Time": 41.77239,
+"Name": "Single"
+},
+{
+"Time": 41.77239,
+"Name": "Single"
+},
+{
+"Time": 41.99627,
+"Name": "Single"
+},
+{
+"Time": 41.99627,
+"Name": "Single"
+},
+{
+"Time": 42.22015,
+"Name": "Single"
+},
+{
+"Time": 42.33209,
+"Name": "Hold"
+},
+{
+"Time": 42.55597,
+"Name": "Hold"
+},
+{
+"Time": 42.55597,
+"Name": "Single"
+},
+{
+"Time": 42.66791,
+"Name": "Single"
+},
+{
+"Time": 42.77985,
+"Name": "Hold"
+},
+{
+"Time": 43.00373,
+"Name": "Hold"
+},
+{
+"Time": 43.00373,
+"Name": "Single"
+},
+{
+"Time": 43.11567,
+"Name": "Single"
+},
+{
+"Time": 43.22761,
+"Name": "Single"
+},
+{
+"Time": 43.33955,
+"Name": "Single"
+},
+{
+"Time": 43.56343,
+"Name": "Single"
+},
+{
+"Time": 43.56343,
+"Name": "Single"
+},
+{
+"Time": 43.78731,
+"Name": "Single"
+},
+{
+"Time": 43.78731,
+"Name": "Single"
+},
+{
+"Time": 44.01119,
+"Name": "Single"
+},
+{
+"Time": 44.12313,
+"Name": "Hold"
+},
+{
+"Time": 44.34702,
+"Name": "Hold"
+},
+{
+"Time": 44.34702,
+"Name": "Single"
+},
+{
+"Time": 44.45895,
+"Name": "Single"
+},
+{
+"Time": 44.5709,
+"Name": "Single"
+},
+{
+"Time": 44.68283,
+"Name": "Single"
+},
+{
+"Time": 44.79478,
+"Name": "Single"
+},
+{
+"Time": 44.79478,
+"Name": "Single"
+},
+{
+"Time": 45.01866,
+"Name": "Single"
+},
+{
+"Time": 45.01866,
+"Name": "Single"
+},
+{
+"Time": 45.24254,
+"Name": "Flick"
+},
+{
+"Time": 45.46642,
+"Name": "Hold"
+},
+{
+"Time": 45.6903,
+"Name": "Hold"
+},
+{
+"Time": 45.91418,
+"Name": "Single"
+},
+{
+"Time": 46.02612,
+"Name": "Single"
+},
+{
+"Time": 46.13806,
+"Name": "Single"
+},
+{
+"Time": 46.25,
+"Name": "Single"
+},
+{
+"Time": 46.36194,
+"Name": "Single"
+},
+{
+"Time": 46.47388,
+"Name": "Single"
+},
+{
+"Time": 46.58582,
+"Name": "Flick"
+},
+{
+"Time": 47.03358,
+"Name": "Hold"
+},
+{
+"Time": 47.03358,
+"Name": "Flick"
+},
+{
+"Time": 47.25746,
+"Name": "HoldMid"
+},
+{
+"Time": 47.48134,
+"Name": "HoldMid"
+},
+{
+"Time": 47.48134,
+"Name": "Single"
+},
+{
+"Time": 47.70522,
+"Name": "HoldMid"
+},
+{
+"Time": 47.70522,
+"Name": "Single"
+},
+{
+"Time": 47.9291,
+"Name": "Hold"
+},
+{
+"Time": 47.9291,
+"Name": "Flick"
+},
+{
+"Time": 48.15298,
+"Name": "Single"
+},
+{
+"Time": 48.37687,
+"Name": "Single"
+},
+{
+"Time": 48.60075,
+"Name": "Single"
+},
+{
+"Time": 48.71269,
+"Name": "Single"
+},
+{
+"Time": 48.82463,
+"Name": "Flick"
+},
+{
+"Time": 48.93657,
+"Name": "Single"
+},
+{
+"Time": 49.16045,
+"Name": "Hold"
+},
+{
+"Time": 49.38433,
+"Name": "HoldMid"
+},
+{
+"Time": 49.49627,
+"Name": "Hold"
+},
+{
+"Time": 49.49627,
+"Name": "Hold"
+},
+{
+"Time": 49.72015,
+"Name": "Hold"
+},
+{
+"Time": 49.72015,
+"Name": "Flick"
+},
+{
+"Time": 49.94403,
+"Name": "Single"
+},
+{
+"Time": 50.16791,
+"Name": "Hold"
+},
+{
+"Time": 50.16791,
+"Name": "Flick"
+},
+{
+"Time": 50.39179,
+"Name": "HoldMid"
+},
+{
+"Time": 50.61567,
+"Name": "Hold"
+},
+{
+"Time": 50.61567,
+"Name": "Trace"
+},
+{
+"Time": 50.83955,
+"Name": "Single"
+},
+{
+"Time": 50.83955,
+"Name": "Single"
+},
+{
+"Time": 51.06343,
+"Name": "Trace"
+},
+{
+"Time": 51.06343,
+"Name": "Hold"
+},
+{
+"Time": 51.28732,
+"Name": "HoldMid"
+},
+{
+"Time": 51.51119,
+"Name": "Hold"
+},
+{
+"Time": 51.51119,
+"Name": "Trace"
+},
+{
+"Time": 51.73507,
+"Name": "Single"
+},
+{
+"Time": 51.73507,
+"Name": "Single"
+},
+{
+"Time": 51.95895,
+"Name": "Hold"
+},
+{
+"Time": 51.95895,
+"Name": "Trace"
+},
+{
+"Time": 52.18283,
+"Name": "HoldMid"
+},
+{
+"Time": 52.40672,
+"Name": "Hold"
+},
+{
+"Time": 52.40672,
+"Name": "Trace"
+},
+{
+"Time": 52.6306,
+"Name": "Single"
+},
+{
+"Time": 52.6306,
+"Name": "Single"
+},
+{
+"Time": 52.85448,
+"Name": "Trace"
+},
+{
+"Time": 52.85448,
+"Name": "Hold"
+},
+{
+"Time": 53.07836,
+"Name": "HoldMid"
+},
+{
+"Time": 53.30224,
+"Name": "Hold"
+},
+{
+"Time": 53.30224,
+"Name": "Trace"
+},
+{
+"Time": 53.75,
+"Name": "Flick"
+},
+{
+"Time": 53.86194,
+"Name": "Single"
+},
+{
+"Time": 53.97388,
+"Name": "Flick"
+},
+{
+"Time": 54.08582,
+"Name": "Single"
+},
+{
+"Time": 54.19776,
+"Name": "Single"
+},
+{
+"Time": 54.42164,
+"Name": "Single"
+},
+{
+"Time": 55.09328,
+"Name": "Flick"
+},
+{
+"Time": 55.20522,
+"Name": "Flick"
+},
+{
+"Time": 55.4291,
+"Name": "Hold"
+},
+{
+"Time": 55.4291,
+"Name": "Hold"
+},
+{
+"Time": 55.65298,
+"Name": "Hold"
+},
+{
+"Time": 55.65298,
+"Name": "Hold"
+},
+{
+"Time": 55.76493,
+"Name": "Flick"
+},
+{
+"Time": 55.76493,
+"Name": "Flick"
+},
+{
+"Time": 55.98881,
+"Name": "Single"
+},
+{
+"Time": 56.10075,
+"Name": "Single"
+},
+{
+"Time": 56.32463,
+"Name": "Flick"
+},
+{
+"Time": 56.32463,
+"Name": "Hold"
+},
+{
+"Time": 56.54851,
+"Name": "Hold"
+},
+{
+"Time": 56.77239,
+"Name": "Single"
+},
+{
+"Time": 56.88433,
+"Name": "Single"
+},
+{
+"Time": 57.22015,
+"Name": "Single"
+},
+{
+"Time": 57.22015,
+"Name": "Hold"
+},
+{
+"Time": 57.44403,
+"Name": "HoldMid"
+},
+{
+"Time": 57.55597,
+"Name": "Hold"
+},
+{
+"Time": 57.55597,
+"Name": "Flick"
+},
+{
+"Time": 57.66791,
+"Name": "Single"
+},
+{
+"Time": 57.77985,
+"Name": "Hold"
+},
+{
+"Time": 58.00373,
+"Name": "Hold"
+},
+{
+"Time": 58.00373,
+"Name": "Flick"
+},
+{
+"Time": 58.11567,
+"Name": "Single"
+},
+{
+"Time": 58.22761,
+"Name": "Hold"
+},
+{
+"Time": 58.45149,
+"Name": "Hold"
+},
+{
+"Time": 58.45149,
+"Name": "Flick"
+},
+{
+"Time": 58.56343,
+"Name": "Single"
+},
+{
+"Time": 58.67537,
+"Name": "Hold"
+},
+{
+"Time": 58.89925,
+"Name": "Hold"
+},
+{
+"Time": 58.89925,
+"Name": "Flick"
+},
+{
+"Time": 59.12313,
+"Name": "Single"
+},
+{
+"Time": 59.12313,
+"Name": "Single"
+},
+{
+"Time": 59.23507,
+"Name": "Single"
+},
+{
+"Time": 59.23507,
+"Name": "Single"
+},
+{
+"Time": 59.34702,
+"Name": "Single"
+},
+{
+"Time": 59.34702,
+"Name": "Single"
+},
+{
+"Time": 59.45895,
+"Name": "Single"
+},
+{
+"Time": 59.45895,
+"Name": "Single"
+},
+{
+"Time": 59.68283,
+"Name": "Flick"
+},
+{
+"Time": 59.68283,
+"Name": "Flick"
+},
+{
+"Time": 59.90672,
+"Name": "Single"
+},
+{
+"Time": 59.90672,
+"Name": "Single"
+},
+{
+"Time": 60.01866,
+"Name": "Flick"
+},
+{
+"Time": 60.01866,
+"Name": "Flick"
+},
+{
+"Time": 60.896,
+"Name": "FeverStart"
+},
+{
+"Time": 60.91418,
+"Name": "Flick"
+},
+{
+"Time": 60.91418,
+"Name": "Hold"
+},
+{
+"Time": 61.13806,
+"Name": "HoldMid"
+},
+{
+"Time": 61.25,
+"Name": "Hold"
+},
+{
+"Time": 61.25,
+"Name": "Single"
+},
+{
+"Time": 61.36194,
+"Name": "Flick"
+},
+{
+"Time": 61.47388,
+"Name": "Single"
+},
+{
+"Time": 61.69776,
+"Name": "Single"
+},
+{
+"Time": 61.8097,
+"Name": "Single"
+},
+{
+"Time": 61.8097,
+"Name": "Trace"
+},
+{
+"Time": 62.03358,
+"Name": "Single"
+},
+{
+"Time": 62.03358,
+"Name": "Single"
+},
+{
+"Time": 62.14552,
+"Name": "Single"
+},
+{
+"Time": 62.25746,
+"Name": "Flick"
+},
+{
+"Time": 62.3694,
+"Name": "Single"
+},
+{
+"Time": 62.59328,
+"Name": "Hold"
+},
+{
+"Time": 62.70522,
+"Name": "Trace"
+},
+{
+"Time": 62.81717,
+"Name": "HoldMid"
+},
+{
+"Time": 62.9291,
+"Name": "Hold"
+},
+{
+"Time": 62.9291,
+"Name": "Single"
+},
+{
+"Time": 63.15298,
+"Name": "Hold"
+},
+{
+"Time": 63.15298,
+"Name": "Flick"
+},
+{
+"Time": 63.37687,
+"Name": "Hold"
+},
+{
+"Time": 63.37687,
+"Name": "Single"
+},
+{
+"Time": 63.48881,
+"Name": "Single"
+},
+{
+"Time": 63.60075,
+"Name": "Trace"
+},
+{
+"Time": 63.71269,
+"Name": "Single"
+},
+{
+"Time": 63.82463,
+"Name": "Single"
+},
+{
+"Time": 64.04851,
+"Name": "Hold"
+},
+{
+"Time": 64.04851,
+"Name": "Flick"
+},
+{
+"Time": 64.27238,
+"Name": "HoldMid"
+},
+{
+"Time": 64.49627,
+"Name": "Hold"
+},
+{
+"Time": 64.49627,
+"Name": "Flick"
+},
+{
+"Time": 64.72015,
+"Name": "Single"
+},
+{
+"Time": 64.83209,
+"Name": "Flick"
+},
+{
+"Time": 65.05597,
+"Name": "Single"
+},
+{
+"Time": 65.16791,
+"Name": "Flick"
+},
+{
+"Time": 65.39179,
+"Name": "Single"
+},
+{
+"Time": 65.50373,
+"Name": "Flick"
+},
+{
+"Time": 65.72762,
+"Name": "Single"
+},
+{
+"Time": 65.83955,
+"Name": "Flick"
+},
+{
+"Time": 66.06343,
+"Name": "Single"
+},
+{
+"Time": 66.06343,
+"Name": "Single"
+},
+{
+"Time": 66.39925,
+"Name": "Hold"
+},
+{
+"Time": 66.39925,
+"Name": "Flick"
+},
+{
+"Time": 66.62313,
+"Name": "Hold"
+},
+{
+"Time": 66.73508,
+"Name": "Flick"
+},
+{
+"Time": 66.73508,
+"Name": "Hold"
+},
+{
+"Time": 66.95895,
+"Name": "Hold"
+},
+{
+"Time": 67.07089,
+"Name": "Hold"
+},
+{
+"Time": 67.07089,
+"Name": "Flick"
+},
+{
+"Time": 67.29478,
+"Name": "Hold"
+},
+{
+"Time": 67.40672,
+"Name": "Flick"
+},
+{
+"Time": 67.40672,
+"Name": "Hold"
+},
+{
+"Time": 67.6306,
+"Name": "Hold"
+},
+{
+"Time": 67.6306,
+"Name": "Single"
+},
+{
+"Time": 67.74254,
+"Name": "Single"
+},
+{
+"Time": 67.96642,
+"Name": "Hold"
+},
+{
+"Time": 68.07836,
+"Name": "Flick"
+},
+{
+"Time": 68.19029,
+"Name": "HoldMid"
+},
+{
+"Time": 68.41418,
+"Name": "Hold"
+},
+{
+"Time": 68.41418,
+"Name": "Single"
+},
+{
+"Time": 68.52612,
+"Name": "Flick"
+},
+{
+"Time": 68.63806,
+"Name": "Single"
+},
+{
+"Time": 68.86194,
+"Name": "Single"
+},
+{
+"Time": 68.97388,
+"Name": "Trace"
+},
+{
+"Time": 68.97388,
+"Name": "Single"
+},
+{
+"Time": 69.19776,
+"Name": "Single"
+},
+{
+"Time": 69.19776,
+"Name": "Single"
+},
+{
+"Time": 69.3097,
+"Name": "Single"
+},
+{
+"Time": 69.42164,
+"Name": "Flick"
+},
+{
+"Time": 69.53358,
+"Name": "Single"
+},
+{
+"Time": 69.75746,
+"Name": "Hold"
+},
+{
+"Time": 69.8694,
+"Name": "Trace"
+},
+{
+"Time": 69.98134,
+"Name": "HoldMid"
+},
+{
+"Time": 70.09328,
+"Name": "Hold"
+},
+{
+"Time": 70.31716,
+"Name": "Flick"
+},
+{
+"Time": 70.31716,
+"Name": "Hold"
+},
+{
+"Time": 70.54105,
+"Name": "Hold"
+},
+{
+"Time": 70.54105,
+"Name": "Single"
+},
+{
+"Time": 70.65298,
+"Name": "Single"
+},
+{
+"Time": 70.76492,
+"Name": "Trace"
+},
+{
+"Time": 70.87687,
+"Name": "Single"
+},
+{
+"Time": 70.98881,
+"Name": "Single"
+},
+{
+"Time": 71.21268,
+"Name": "Hold"
+},
+{
+"Time": 71.21268,
+"Name": "Flick"
+},
+{
+"Time": 71.43656,
+"Name": "HoldMid"
+},
+{
+"Time": 71.54851,
+"Name": "Hold"
+},
+{
+"Time": 71.66045,
+"Name": "Hold"
+},
+{
+"Time": 71.88433,
+"Name": "Hold"
+},
+{
+"Time": 71.88433,
+"Name": "Single"
+},
+{
+"Time": 71.99627,
+"Name": "Single"
+},
+{
+"Time": 72.10821,
+"Name": "Flick"
+},
+{
+"Time": 72.22015,
+"Name": "Single"
+},
+{
+"Time": 72.33209,
+"Name": "Single"
+},
+{
+"Time": 72.44403,
+"Name": "Single"
+},
+{
+"Time": 72.55597,
+"Name": "Single"
+},
+{
+"Time": 72.66791,
+"Name": "Single"
+},
+{
+"Time": 72.77985,
+"Name": "Single"
+},
+{
+"Time": 72.89179,
+"Name": "Single"
+},
+{
+"Time": 73.00373,
+"Name": "Single"
+},
+{
+"Time": 73.11567,
+"Name": "Single"
+},
+{
+"Time": 73.22762,
+"Name": "Single"
+},
+{
+"Time": 73.45149,
+"Name": "Flick"
+},
+{
+"Time": 73.45149,
+"Name": "Single"
+},
+{
+"Time": 73.89925,
+"Name": "Flick"
+},
+{
+"Time": 73.89925,
+"Name": "Single"
+},
+{
+"Time": 74.34702,
+"Name": "Flick"
+},
+{
+"Time": 74.34702,
+"Name": "Single"
+},
+{
+"Time": 74.57089,
+"Name": "Single"
+},
+{
+"Time": 74.68284,
+"Name": "Single"
+},
+{
+"Time": 74.79478,
+"Name": "Flick"
+},
+{
+"Time": 75.24254,
+"Name": "Hold"
+},
+{
+"Time": 75.46642,
+"Name": "Hold"
+},
+{
+"Time": 75.57836,
+"Name": "Single"
+},
+{
+"Time": 75.6903,
+"Name": "Trace"
+},
+{
+"Time": 75.91418,
+"Name": "Single"
+},
+{
+"Time": 76.13806,
+"Name": "Trace"
+},
+{
+"Time": 76.36194,
+"Name": "Single"
+},
+{
+"Time": 76.58582,
+"Name": "Single"
+},
+{
+"Time": 76.58582,
+"Name": "Trace"
+},
+{
+"Time": 76.8097,
+"Name": "Single"
+},
+{
+"Time": 76.8097,
+"Name": "Single"
+},
+{
+"Time": 77.03358,
+"Name": "Hold"
+},
+{
+"Time": 77.25746,
+"Name": "Hold"
+},
+{
+"Time": 77.3694,
+"Name": "Single"
+},
+{
+"Time": 77.48135,
+"Name": "Trace"
+},
+{
+"Time": 77.70522,
+"Name": "Single"
+},
+{
+"Time": 77.92911,
+"Name": "Trace"
+},
+{
+"Time": 77.92911,
+"Name": "Hold"
+},
+{
+"Time": 78.15298,
+"Name": "HoldMid"
+},
+{
+"Time": 78.26492,
+"Name": "Hold"
+},
+{
+"Time": 78.37687,
+"Name": "Trace"
+},
+{
+"Time": 78.43284,
+"Name": "Trace"
+},
+{
+"Time": 78.48881,
+"Name": "Trace"
+},
+{
+"Time": 78.54478,
+"Name": "Trace"
+},
+{
+"Time": 78.60075,
+"Name": "Trace"
+},
+{
+"Time": 78.82462,
+"Name": "Flick"
+},
+{
+"Time": 79.04851,
+"Name": "Single"
+},
+{
+"Time": 79.16045,
+"Name": "Single"
+},
+{
+"Time": 79.49627,
+"Name": "Flick"
+},
+{
+"Time": 79.72015,
+"Name": "Trace"
+},
+{
+"Time": 79.77612,
+"Name": "Trace"
+},
+{
+"Time": 79.83209,
+"Name": "Trace"
+},
+{
+"Time": 79.88806,
+"Name": "Trace"
+},
+{
+"Time": 79.94403,
+"Name": "Trace"
+},
+{
+"Time": 80.16791,
+"Name": "Flick"
+},
+{
+"Time": 80.39179,
+"Name": "Single"
+},
+{
+"Time": 80.50373,
+"Name": "Single"
+},
+{
+"Time": 80.83955,
+"Name": "Flick"
+},
+{
+"Time": 81.06343,
+"Name": "Trace"
+},
+{
+"Time": 81.1194,
+"Name": "Trace"
+},
+{
+"Time": 81.17538,
+"Name": "Trace"
+},
+{
+"Time": 81.23135,
+"Name": "Trace"
+},
+{
+"Time": 81.28732,
+"Name": "Trace"
+},
+{
+"Time": 81.51119,
+"Name": "Hold"
+},
+{
+"Time": 81.73507,
+"Name": "HoldMid"
+},
+{
+"Time": 81.95895,
+"Name": "Hold"
+},
+{
+"Time": 82.388,
+"Name": "FeverEnd"
+},
+{
+"Time": 82.40672,
+"Name": "Flick"
+},
+{
+"Time": 82.51865,
+"Name": "Single"
+},
+{
+"Time": 82.6306,
+"Name": "Single"
+},
+{
+"Time": 82.74254,
+"Name": "Single"
+},
+{
+"Time": 82.85448,
+"Name": "Trace"
+},
+{
+"Time": 82.96642,
+"Name": "Single"
+},
+{
+"Time": 83.1903,
+"Name": "Single"
+},
+{
+"Time": 83.1903,
+"Name": "Single"
+},
+{
+"Time": 83.41418,
+"Name": "Single"
+},
+{
+"Time": 83.52612,
+"Name": "Hold"
+},
+{
+"Time": 83.75,
+"Name": "Hold"
+},
+{
+"Time": 83.75,
+"Name": "Trace"
+},
+{
+"Time": 83.86194,
+"Name": "Single"
+},
+{
+"Time": 83.97388,
+"Name": "Hold"
+},
+{
+"Time": 84.19776,
+"Name": "Hold"
+},
+{
+"Time": 84.19776,
+"Name": "Single"
+},
+{
+"Time": 84.3097,
+"Name": "Single"
+},
+{
+"Time": 84.42164,
+"Name": "Single"
+},
+{
+"Time": 84.53358,
+"Name": "Single"
+},
+{
+"Time": 84.64552,
+"Name": "Trace"
+},
+{
+"Time": 84.75746,
+"Name": "Single"
+},
+{
+"Time": 84.98135,
+"Name": "Single"
+},
+{
+"Time": 84.98135,
+"Name": "Single"
+},
+{
+"Time": 85.20522,
+"Name": "Single"
+},
+{
+"Time": 85.31716,
+"Name": "Hold"
+},
+{
+"Time": 85.54105,
+"Name": "Hold"
+},
+{
+"Time": 85.54105,
+"Name": "Trace"
+},
+{
+"Time": 85.65298,
+"Name": "Single"
+},
+{
+"Time": 85.76492,
+"Name": "Single"
+},
+{
+"Time": 85.98881,
+"Name": "Single"
+},
+{
+"Time": 86.10075,
+"Name": "Single"
+},
+{
+"Time": 86.21268,
+"Name": "Single"
+},
+{
+"Time": 86.32462,
+"Name": "Single"
+},
+{
+"Time": 86.43657,
+"Name": "Trace"
+},
+{
+"Time": 86.54851,
+"Name": "Single"
+},
+{
+"Time": 86.77238,
+"Name": "Single"
+},
+{
+"Time": 86.77238,
+"Name": "Single"
+},
+{
+"Time": 86.99627,
+"Name": "Single"
+},
+{
+"Time": 87.10821,
+"Name": "Hold"
+},
+{
+"Time": 87.33209,
+"Name": "Hold"
+},
+{
+"Time": 87.33209,
+"Name": "Trace"
+},
+{
+"Time": 87.44403,
+"Name": "Single"
+},
+{
+"Time": 87.55597,
+"Name": "Single"
+},
+{
+"Time": 87.66791,
+"Name": "Single"
+},
+{
+"Time": 88.00373,
+"Name": "Single"
+},
+{
+"Time": 88.00373,
+"Name": "Hold"
+},
+{
+"Time": 88.22762,
+"Name": "Hold"
+},
+{
+"Time": 88.22762,
+"Name": "Trace"
+},
+{
+"Time": 88.45149,
+"Name": "Hold"
+},
+{
+"Time": 88.45149,
+"Name": "Single"
+},
+{
+"Time": 88.67538,
+"Name": "Hold"
+},
+{
+"Time": 88.67538,
+"Name": "Hold"
+},
+{
+"Time": 88.89925,
+"Name": "HoldMid"
+},
+{
+"Time": 88.89925,
+"Name": "Single"
+},
+{
+"Time": 89.12313,
+"Name": "Hold"
+},
+{
+"Time": 89.12313,
+"Name": "Hold"
+},
+{
+"Time": 89.34701,
+"Name": "HoldMid"
+},
+{
+"Time": 89.57089,
+"Name": "Hold"
+},
+{
+"Time": 89.57089,
+"Name": "Flick"
+},
+{
+"Time": 89.79478,
+"Name": "Hold"
+},
+{
+"Time": 90.01865,
+"Name": "Hold"
+},
+{
+"Time": 90.01865,
+"Name": "Trace"
+},
+{
+"Time": 90.1306,
+"Name": "Single"
+},
+{
+"Time": 90.24254,
+"Name": "Single"
+},
+{
+"Time": 90.35448,
+"Name": "Single"
+},
+{
+"Time": 90.57836,
+"Name": "Single"
+},
+{
+"Time": 90.57836,
+"Name": "Single"
+},
+{
+"Time": 90.80224,
+"Name": "Single"
+},
+{
+"Time": 90.91418,
+"Name": "Trace"
+},
+{
+"Time": 91.02612,
+"Name": "Single"
+},
+{
+"Time": 91.13806,
+"Name": "Single"
+},
+{
+"Time": 91.36194,
+"Name": "Single"
+},
+{
+"Time": 91.47388,
+"Name": "Single"
+},
+{
+"Time": 91.58582,
+"Name": "Single"
+},
+{
+"Time": 91.8097,
+"Name": "Single"
+},
+{
+"Time": 91.8097,
+"Name": "Trace"
+},
+{
+"Time": 92.03358,
+"Name": "Single"
+},
+{
+"Time": 92.14552,
+"Name": "Single"
+},
+{
+"Time": 92.3694,
+"Name": "Single"
+},
+{
+"Time": 92.48135,
+"Name": "Hold"
+},
+{
+"Time": 92.70522,
+"Name": "Hold"
+},
+{
+"Time": 92.70522,
+"Name": "Trace"
+},
+{
+"Time": 92.92911,
+"Name": "Single"
+},
+{
+"Time": 92.92911,
+"Name": "Single"
+},
+{
+"Time": 93.15298,
+"Name": "Hold"
+},
+{
+"Time": 93.15298,
+"Name": "Single"
+},
+{
+"Time": 93.37687,
+"Name": "Hold"
+},
+{
+"Time": 93.37687,
+"Name": "Single"
+},
+{
+"Time": 93.48881,
+"Name": "Single"
+},
+{
+"Time": 93.60075,
+"Name": "Trace"
+},
+{
+"Time": 93.71268,
+"Name": "Single"
+},
+{
+"Time": 93.82462,
+"Name": "Single"
+},
+{
+"Time": 93.93657,
+"Name": "Single"
+},
+{
+"Time": 94.16045,
+"Name": "Single"
+},
+{
+"Time": 94.27238,
+"Name": "Single"
+},
+{
+"Time": 94.49627,
+"Name": "Flick"
+},
+{
+"Time": 94.49627,
+"Name": "Hold"
+},
+{
+"Time": 94.72015,
+"Name": "Hold"
+},
+{
+"Time": 94.94403,
+"Name": "Single"
+},
+{
+"Time": 94.94403,
+"Name": "Single"
+},
+{
+"Time": 95.05597,
+"Name": "Single"
+},
+{
+"Time": 95.05597,
+"Name": "Single"
+},
+{
+"Time": 95.16791,
+"Name": "Single"
+},
+{
+"Time": 95.16791,
+"Name": "Single"
+},
+{
+"Time": 95.27985,
+"Name": "Single"
+},
+{
+"Time": 95.27985,
+"Name": "Single"
+},
+{
+"Time": 95.50373,
+"Name": "Flick"
+},
+{
+"Time": 95.50373,
+"Name": "Flick"
+},
+{
+"Time": 95.72762,
+"Name": "Hold"
+},
+{
+"Time": 95.72762,
+"Name": "Flick"
+},
+{
+"Time": 95.95149,
+"Name": "Hold"
+},
+{
+"Time": 95.95149,
+"Name": "Single"
+},
+{
+"Time": 96.06343,
+"Name": "Single"
+},
+{
+"Time": 96.17538,
+"Name": "Single"
+},
+{
+"Time": 96.28732,
+"Name": "Single"
+},
+{
+"Time": 96.39925,
+"Name": "Single"
+},
+{
+"Time": 96.51119,
+"Name": "Single"
+},
+{
+"Time": 96.62313,
+"Name": "Single"
+},
+{
+"Time": 97.18284,
+"Name": "Flick"
+},
+{
+"Time": 100.299,
+"Name": "LiveEnd"
+}
+],
+"AllNoteSize": 706
+}
