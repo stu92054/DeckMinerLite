@@ -46,12 +46,12 @@ namespace DeckMiner.Models
         {
             Queue.Clear();
             Queue.AddRange(Cards.Where(card => !card.IsExcept));
-            
+
             // 卡组全部除外时的特殊处理
             if (Queue.Count == 0)
             {
                 // 确保队列至少有一个占位符或特殊逻辑
-                Queue.Add(null); 
+                Queue.Add(null);
             }
             TopCard = Queue.First();
         }
@@ -65,7 +65,9 @@ namespace DeckMiner.Models
             {
                 Queue.RemoveAt(index);
                 if (Queue.Count == 0)
-                    Reset(); 
+                    Reset();
+                else
+                    TopCard = Queue.First();
             }
         }
 

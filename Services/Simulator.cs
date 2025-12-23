@@ -69,6 +69,8 @@ namespace DeckMiner.Services
 
     public class Simulator
     {
+        public static bool DebugMode = false;
+
         // 花火吟延遲 MISS 時間 (單位：秒)
         // 參考：src/core/Simulator_core.py:33-39
         private static readonly Dictionary<LiveEventType, double> MISS_TIMING = new()
@@ -131,6 +133,9 @@ namespace DeckMiner.Services
                     SkillResolver.ApplyCenterAttribute(Player, effect, target);
                 }
             }
+            
+            if (DebugMode) Console.WriteLine($"[Simulator] Initial afkMental: {afkMental}");
+
             d.AppealCalc(Music.MusicType);
             Player.HpCalc();
             Player.BaseScoreCalc(Chart.AllNoteSize);
@@ -173,6 +178,7 @@ namespace DeckMiner.Services
             {
                 if (cardNow != null && Player.Ap >= cardNow.Cost)
                 {
+                    if (DebugMode) Console.WriteLine($"[Skill] {cardNow.FullName} at {timestamp:F3}s (AP: {Player.Ap:F2}, Combo: {Player.Combo})");
                     Player.Ap -= cardNow.Cost;
 
                     // 記錄打出前有多少卡片被除外
@@ -188,7 +194,12 @@ namespace DeckMiner.Services
                         // 有卡片被除外，重新計算血線
                         RecalculateAfkMental();
                     }
-
+                    if (DebugMode)
+                    {
+                        Console.WriteLine("当前属性:");
+                        Console.WriteLine($"  AP: {Player.Ap:F5}  Combo: {Player.Combo}\tAP Gain Rate: {Player.ApRate:F2}x\t{Player.Mental}");
+                        Console.WriteLine($"  Score: {Player.Score}\t{Player.Voltage}\t分加成: [{string.Join(", ", Player.NextScoreGainRate)}]\t电加成: [{string.Join(", ", Player.NextVoltageGainRate)}]\t");
+                    }
                     Player.CDAvailable = false;
                     double nextCd = timestamp + Player.Cooldown;
                     extraEvents.Enqueue(
@@ -226,8 +237,10 @@ namespace DeckMiner.Services
                     case LiveEventType.HoldMid:
                     case LiveEventType.Flick:
                     case LiveEventType.Trace:
+                        if (DebugMode) Console.WriteLine($"[Event] {currentEvent.Type} at {currentEvent.Time:F3}s (Combo: {Player.Combo})");
                         if (afkMental != 0 && Player.Mental.Rate > afkMental)
                         {
+                            if (DebugMode) Console.WriteLine($"[Simulator] Intentional MISS at {currentEvent.Time:F3}s. HP Rate: {Player.Mental.Rate:F2}% > {afkMental}%");
                             // 計算 MISS 傷害
                             int missDamage = (currentEvent.Type == LiveEventType.Trace ||
                                              currentEvent.Type == LiveEventType.HoldMid)
@@ -347,11 +360,30 @@ namespace DeckMiner.Services
                         // 檢查自己的隊長技能
                         if (CenterCard != null)
                         {
+                            if (DebugMode && currentEvent.Type == LiveEventType.LiveStart)
+                            {
+                                Console.WriteLine($"[LiveStart] Checking Center Skill for Card {CenterCard.CardId}");
+                            }
                             foreach (var (condition, effect) in CenterCard.GetCenterSkill())
                             {
+                                if (DebugMode && currentEvent.Type == LiveEventType.LiveStart)
+                                {
+                                    Console.WriteLine($"  Condition: {condition}, Effect: {effect}");
+                                }
                                 if (SkillResolver.CheckCenterSkillCondition(Player, condition, currentEvent.Type))
                                 {
+                                    if (DebugMode && currentEvent.Type == LiveEventType.LiveStart)
+                                    {
+                                        Console.WriteLine($"  -> Condition Met! Applying Effect {effect}");
+                                    }
                                     SkillResolver.ApplyCenterSkillEffect(Player, effect);
+                                }
+                                else
+                                {
+                                    if (DebugMode && currentEvent.Type == LiveEventType.LiveStart)
+                                    {
+                                        Console.WriteLine($"  -> Condition Not Met.");
+                                    }
                                 }
                             }
                         }
@@ -378,6 +410,13 @@ namespace DeckMiner.Services
             }
 
             // Console.WriteLine($"{Player}");
+            if (DebugMode)
+            {
+                Console.WriteLine(Player.ToString());
+                Console.WriteLine($"Final Score: {Player.Score}");
+                Console.WriteLine($"打出記錄: [{string.Join(", ", d.CardLog.Select(name => $"'{name}'"))}]");
+                Console.WriteLine($"打出次數: {d.CardLog.Count}");
+            }
             return Player.Score;
         }
     }

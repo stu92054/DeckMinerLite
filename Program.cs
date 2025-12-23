@@ -13,6 +13,45 @@ using System.Runtime.InteropServices; // DataManager 所在的命名空间
 // 注意：如果 Card 类中的 _initStatus 方法依赖 CardDataManager.CardDatabase，
 // 那么必须确保 CardDataManager 在 Deck 初始化之前被初始化。
 
+/// <summary>
+/// 輔助類別：同時寫入多個 TextWriter
+/// </summary>
+class MultiTextWriter : TextWriter
+{
+    private readonly TextWriter[] _writers;
+
+    public MultiTextWriter(params TextWriter[] writers)
+    {
+        _writers = writers;
+    }
+
+    public override System.Text.Encoding Encoding => System.Text.Encoding.UTF8;
+
+    public override void Write(char value)
+    {
+        foreach (var writer in _writers)
+            writer.Write(value);
+    }
+
+    public override void Write(string? value)
+    {
+        foreach (var writer in _writers)
+            writer.Write(value);
+    }
+
+    public override void WriteLine(string? value)
+    {
+        foreach (var writer in _writers)
+            writer.WriteLine(value);
+    }
+
+    public override void Flush()
+    {
+        foreach (var writer in _writers)
+            writer.Flush();
+    }
+}
+
 class Program
 {
 
@@ -42,6 +81,73 @@ class Program
 
         CardDataManager.Initialize(cardDb);
         SkillDataManager.Initialize(skillDb, centerAttrDb, centerSkillDb);
+
+        // === Debug Mode ===
+        if (args.Contains("--debug"))
+        {
+            // 設定 Console 輸出為 UTF-8
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+
+            int debugIndex = Array.IndexOf(args, "--debug");
+            if (debugIndex + 6 < args.Length)
+            {
+                List<int> debugDeck = new List<int>();
+                for (int i = 1; i <= 6; i++)
+                {
+                    if (int.TryParse(args[debugIndex + i], out int cardId))
+                        debugDeck.Add(cardId);
+                }
+
+                if (debugDeck.Count == 6)
+                {
+                    // 同時輸出到檔案（UTF-8 編碼）
+                    string debugLogPath = Path.Combine(AppContext.BaseDirectory, "csharp_debug_log.txt");
+                    using var fileWriter = new StreamWriter(debugLogPath, false, System.Text.Encoding.UTF8);
+                    var originalOut = Console.Out;
+
+                    // 建立同時寫入 Console 和檔案的 TextWriter
+                    var multiWriter = new MultiTextWriter(originalOut, fileWriter);
+                    Console.SetOut(multiWriter);
+
+                    Console.WriteLine($"\n--- Debug Mode ---");
+                    Console.WriteLine($"Deck: {string.Join(", ", debugDeck)}");
+
+                    Simulator.DebugMode = true;
+                    string musicId = "405128";
+                    string tier = "04";
+                    int masterLv = 50;
+
+                    Simulator sim = new Simulator(musicId, tier, masterLv);
+
+                    // Find center (assume first valid center or just try all)
+                    int centerChar = musicDb[musicId].CenterCharacterId;
+                    var potentialCenters = debugDeck.Where(id => id / 1000 == centerChar).ToList();
+
+                    if (potentialCenters.Count == 0)
+                    {
+                         Console.WriteLine("No valid center card found in deck.");
+                         Console.SetOut(originalOut);
+                         return;
+                    }
+
+                    foreach(var centerId in potentialCenters)
+                    {
+                        Console.WriteLine($"\nTesting Center: {centerId}");
+
+                        // 每次測試新 center 時重新創建 Deck 物件 (與 Python 邏輯一致)
+                        var deckInfo = CardConfig.ConvertDeckToSimulatorFormat(debugDeck);
+                        Deck deck = new Deck(deckInfo);
+
+                        long score = sim.Run(deck, centerId);
+                        Console.WriteLine($"Score: {score}");
+                    }
+
+                    Console.SetOut(originalOut);
+                    Console.WriteLine($"\nDebug log saved to: {debugLogPath}");
+                    return;
+                }
+            }
+        }
 
         // ------------------------------------------------------------------
         // 步骤 2: 读取模拟任务（支持 YAML 或 JSONC）
@@ -152,8 +258,12 @@ class Program
             foreach (int card in cardIdsSet)
                 if (card / 1000 == centerChar)
                 {
-                    var rarity = card / 100 % 10; 
-                    if (rarity == 7 || rarity == 8)
+                    // TODO: 暫時將 UR(5)/LR(7)/BR(8)/DR(9) 都加入 primaryCenter
+                    // 原邏輯: 只有 LR(7) 和 BR(8) 才加入 primaryCenter
+                    // 問題: 地平系列等強力 UR 卡也應該可作為中心卡
+                    // 未來需要: 根據卡片實際能力值或特定卡片 ID 白名單來精確判斷
+                    var rarity = card / 100 % 10;
+                    if (rarity == 5 || rarity == 7 || rarity == 8 || rarity == 9)
                         primaryCenter.Add(card);
                     else
                         otherCenter.Add(card);

@@ -193,7 +193,7 @@ namespace DeckMiner.Services
                     break;
                 
                 case CenterAttributeEffectType.VoltageGainRateChange:
-                    doubleChange = valueData / 10000.0 * changeSign;
+                    doubleChange = valueData / 10000.0 * changeSign;  // 暫時改回 10000 測試
                     playerAttrs.VoltageGainRate += doubleChange;
                     break;
 
@@ -256,39 +256,73 @@ namespace DeckMiner.Services
         /// </summary>
         public static bool CheckSkillCondition(LiveStatus playerAttrs, string conditionId, Card card = null)
         {
-            if (conditionId == "0") return true;
+            if (conditionId == "0") 
+            {
+                if (Simulator.DebugMode) Console.WriteLine("  条件: 无条件 -> 满足");
+                return true;
+            }
 
             var (conditionType, op, value) = ParseSkillConditionId(conditionId);
+            bool result = false;
+            string logMsg = "";
 
             switch (conditionType)
             {
                 case SkillConditionType.FeverTime:
-                    return playerAttrs.Voltage.IsFever;
+                    result = playerAttrs.Voltage.IsFever;
+                    logMsg = $"条件: Fever Time -> {(result ? "满足" : "不满足")}";
+                    break;
                 case SkillConditionType.VoltageLevel:
                     int currentLevel = playerAttrs.Voltage.Level;
-                    if (op == SkillComparisonOperator.ABOVE_OR_EQUAL) return currentLevel >= value;
-                    if (op == SkillComparisonOperator.BELOW_OR_EQUAL) return currentLevel <= value;
-                    return false;
+                    if (op == SkillComparisonOperator.ABOVE_OR_EQUAL) result = currentLevel >= value;
+                    else if (op == SkillComparisonOperator.BELOW_OR_EQUAL) result = currentLevel <= value;
+                    logMsg = $"条件: Voltage等级 {OpToString(op)} {value} (当前: {currentLevel}) -> {(result ? "满足" : "不满足")}";
+                    break;
                 case SkillConditionType.MentalRate:
                     double requiredRate = value / 100.0;
                     double currentRate = playerAttrs.Mental.Rate;
-                    if (op == SkillComparisonOperator.ABOVE_OR_EQUAL) return currentRate >= requiredRate;
-                    if (op == SkillComparisonOperator.BELOW_OR_EQUAL) return currentRate <= requiredRate;
-                    return false;
+                    if (op == SkillComparisonOperator.ABOVE_OR_EQUAL) result = currentRate >= requiredRate;
+                    else if (op == SkillComparisonOperator.BELOW_OR_EQUAL) result = currentRate <= requiredRate;
+                    logMsg = $"条件: HP {OpToString(op)} {value/100.0:P2} (当前: {currentRate:P2}) -> {(result ? "满足" : "不满足")}";
+                    break;
                 case SkillConditionType.UsedAllSkillCount:
                     int allCount = playerAttrs.Deck.UsedAllSkillCalc(); // 假设此方法已实现
-                    if (op == SkillComparisonOperator.ABOVE_OR_EQUAL) return allCount >= value;
-                    if (op == SkillComparisonOperator.BELOW_OR_EQUAL) return allCount <= value;
-                    return false;
+                    if (op == SkillComparisonOperator.ABOVE_OR_EQUAL) result = allCount >= value;
+                    else if (op == SkillComparisonOperator.BELOW_OR_EQUAL) result = allCount <= value;
+                    logMsg = $"条件: 合计技能次数 {OpToString(op)} {value} (当前: {allCount}) -> {(result ? "满足" : "不满足")}";
+                    break;
                 case SkillConditionType.UsedSkillCount:
-                    if (card == null) return false; // 缺少 card 参数，无法检查单卡次数
-                    int cardCount = card.ActiveCount; // 假设 Card.ActiveCount 属性已实现
-                    if (op == SkillComparisonOperator.ABOVE_OR_EQUAL) return cardCount >= value;
-                    if (op == SkillComparisonOperator.BELOW_OR_EQUAL) return cardCount <= value;
-                    return false;
+                    if (card == null) 
+                    {
+                        result = false;
+                        logMsg = "条件: 单卡次数检查失败 (Card is null)";
+                    }
+                    else
+                    {
+                        int cardCount = card.ActiveCount; // 假设 Card.ActiveCount 属性已实现
+                        if (op == SkillComparisonOperator.ABOVE_OR_EQUAL) result = cardCount >= value;
+                        else if (op == SkillComparisonOperator.BELOW_OR_EQUAL) result = cardCount <= value;
+                        logMsg = $"条件: 卡牌 {card.FullName} 使用次数 {OpToString(op)} {value} (当前: {cardCount}) -> {(result ? "满足" : "不满足")}";
+                    }
+                    break;
                 default:
-                    return false;
+                    result = false;
+                    logMsg = $"条件: 未知类型 {conditionType}";
+                    break;
             }
+
+            if (Simulator.DebugMode) Console.WriteLine("  " + logMsg);
+            return result;
+        }
+
+        private static string OpToString(SkillComparisonOperator op)
+        {
+            return op switch
+            {
+                SkillComparisonOperator.ABOVE_OR_EQUAL => ">=",
+                SkillComparisonOperator.BELOW_OR_EQUAL => "<=",
+                _ => "?"
+            };
         }
 
         /// <summary>
@@ -364,6 +398,7 @@ namespace DeckMiner.Services
                 case SkillEffectType.APChange:
                     double apAmount = valueData * changeFactor / 10000.0;
                     playerAttrs.ApAddSkill(apAmount);
+                    if (Simulator.DebugMode) Console.WriteLine($"  应用效果: AP {(apAmount >= 0 ? "恢复" : "消耗")} {Math.Abs(apAmount):F1} 点");
                     break;
                 case SkillEffectType.ScoreGain:
                     double scoreRate = 100.0;
@@ -375,6 +410,7 @@ namespace DeckMiner.Services
                     }
                     double scoreResult = valueData / 1000000.0  * scoreRate;
                     playerAttrs.ScoreAdd(scoreResult);
+                    if (Simulator.DebugMode) Console.WriteLine($"  应用效果: 分数增加 {scoreResult:F0}");
                     break;
                 case SkillEffectType.VoltagePointChange:
                     double voltageRate = playerAttrs.VoltageGainRate;
@@ -382,27 +418,40 @@ namespace DeckMiner.Services
                     {
                         if (playerAttrs.NextVoltageGainRate.Count != 0)
                         {
-                            voltageRate += playerAttrs.NextVoltageGainRate.First() / 100.0;
+                            var bonus = playerAttrs.NextVoltageGainRate.First();
+                            voltageRate += bonus / 100.0; // Fix: Bonus is in percentage points (e.g. 54.45), need to divide by 100
                             playerAttrs.NextVoltageGainRate.RemoveAt(0);
+                            // if (Simulator.DebugMode) Console.WriteLine($"[VoltagePointChange] Applied Bonus: {bonus}, New Rate: {voltageRate}");
                         }
                     }
                     else voltageRate *= changeFactor;
                     int voltageResult = (int)Ceiling(valueData * voltageRate);
+                    // if (Simulator.DebugMode) Console.WriteLine($"[VoltagePointChange] Base: {valueData}, Rate: {voltageRate}, Result: {voltageResult}");
                     playerAttrs.Voltage.AddPoints(voltageResult);
+                    if (Simulator.DebugMode) Console.WriteLine($"  应用效果: Voltage Pt 增加 {voltageResult} 点");
                     break;
                 case SkillEffectType.MentalRateChange:
                     double hpPercent = valueData / 100.0;
+                    // if (Simulator.DebugMode) Console.WriteLine($"[SkillResolver] Applying MentalRateChange: {hpPercent}% * {changeFactor} (EffectID: {effectId})");
                     playerAttrs.Mental.SkillAdd(hpPercent * changeFactor);
+                    if (Simulator.DebugMode) Console.WriteLine($"  应用效果: HP {(changeFactor > 0 ? "恢复" : "减少")} {hpPercent:F2}%");
                     break;
                 case SkillEffectType.DeckReset:
                     playerAttrs.Deck.Reset(); // 假设 Deck.Reset() 已实现
+                    if (Simulator.DebugMode) Console.WriteLine($"  应用效果: 重置牌库");
                     break;
                 case SkillEffectType.CardExcept:
                     playerAttrs.Deck.ExceptCard(card);
+                    if (Simulator.DebugMode) Console.WriteLine($"  应用效果: 卡牌除外: {card?.FullName}");
                     break;
                 case SkillEffectType.NextAPGainRateChange: // Score Rate Change
                 case SkillEffectType.NextVoltageGainRateChange:
-                    double bonusPercent = valueData / 100.0;
+                    double bonusPercent;
+                    if (effectType == SkillEffectType.NextAPGainRateChange)
+                        bonusPercent = valueData / 100.0; // Score uses Percentage (100.0 base)
+                    else
+                        bonusPercent = valueData / 100.0; // Voltage uses Percentage (100.0 base)
+
                     var list = (effectType == SkillEffectType.NextAPGainRateChange)
                         ? playerAttrs.NextScoreGainRate
                         : playerAttrs.NextVoltageGainRate;
@@ -413,6 +462,11 @@ namespace DeckMiner.Services
                             list[i] += bonusPercent;
                         else
                             list.Add(bonusPercent);
+                    }
+                    if (Simulator.DebugMode) 
+                    {
+                        string typeStr = (effectType == SkillEffectType.NextAPGainRateChange) ? "分加成" : "电加成";
+                        Console.WriteLine($"  应用效果: {typeStr} {bonusPercent:F2}% ({usageCount} 次)");
                     }
                     break;
                 default:
