@@ -61,7 +61,9 @@ namespace DeckMiner.Models
         {
             // Python: max(1, self.current_hp + ceil(self.max_hp * value / 100))
             int healAmount = (int)Ceiling(MaxHp * value / 100.0);
+            int oldHp = CurrentHp;
             CurrentHp = Max(1, CurrentHp + healAmount);
+            if (Simulator.DebugMode) Console.WriteLine($"[Mental] SkillAdd: Value={value}, HealAmount={healAmount}, OldHP={oldHp}, NewHP={CurrentHp}");
             Rate = MaxHp == 0 ? 0.0 : CurrentHp * 100.0 / MaxHp;
         }
 

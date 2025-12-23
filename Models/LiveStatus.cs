@@ -173,6 +173,8 @@ namespace DeckMiner.Models
                 $"AP Gain Rate: {ApRate:F2}x\t" +
                 $"{Mental}\n" +
                 $"  Score: {Score:N0}\t" +
+                $"BaseScore: {_baseScore:N0}\t" +
+                $"Appeal: {Deck.Appeal:N0}\t" +
                 $"{Voltage}\t" +
                 $"分加成: {string.Join(", ", NextScoreGainRate)}\t" +
                 $"电加成: {string.Join(", ", NextVoltageGainRate)}\t"
