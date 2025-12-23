@@ -34,6 +34,15 @@ namespace DeckMiner.Config
         public List<int> CardIds { get; set; } = new();
 
         /// <summary>
+        /// 全局朋友卡片池（默认可用的朋友卡片 ID 列表）
+        /// 朋友卡片提供：基础数值（受队长被动影响）+ Center Skill
+        /// 朋友卡片不提供：一般技能 + 被动技能
+        /// 优先级：歌曲配置的 friend_card_pool > 全局 friend_card_ids
+        /// </summary>
+        [YamlMember(Alias = "friend_card_ids")]
+        public List<int> FriendCardIds { get; set; } = new();
+
+        /// <summary>
         /// 赛季模式（用于计算粉丝等级加成）
         /// - "sukushow": 只计算歌唱成员（默认）
         /// - "sukuste": 计算所有成员
@@ -172,6 +181,14 @@ namespace DeckMiner.Config
         /// </summary>
         [YamlMember(Alias = "leader_designation")]
         public string LeaderDesignation { get; set; } = "0";
+
+        /// <summary>
+        /// 朋友卡片池（该首歌可用的朋友卡片 ID 列表）
+        /// 朋友卡片提供：基础数值（受队长被动影响）+ Center Skill
+        /// 朋友卡片不提供：一般技能 + 被动技能
+        /// </summary>
+        [YamlMember(Alias = "friend_card_pool")]
+        public List<int> FriendCardPool { get; set; } = new();
     }
 
     /// <summary>

@@ -344,9 +344,21 @@ namespace DeckMiner.Services
                         {
                             Player.Voltage.SetFever(true);
                         }
+                        // 檢查自己的隊長技能
                         if (CenterCard != null)
                         {
                             foreach (var (condition, effect) in CenterCard.GetCenterSkill())
+                            {
+                                if (SkillResolver.CheckCenterSkillCondition(Player, condition, currentEvent.Type))
+                                {
+                                    SkillResolver.ApplyCenterSkillEffect(Player, effect);
+                                }
+                            }
+                        }
+                        // 檢查朋友的隊長技能（新增）
+                        if (d.FriendCard != null)
+                        {
+                            foreach (var (condition, effect) in d.FriendCard.GetCenterSkill())
                             {
                                 if (SkillResolver.CheckCenterSkillCondition(Player, condition, currentEvent.Type))
                                 {

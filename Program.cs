@@ -213,11 +213,37 @@ class Program
                 tempDir = yamlConfig.GetTempDir(MusicId);
             }
 
+            // 读取朋友卡池配置
+            List<int> friendCardPool = new();
+            if (yamlConfig != null && yamlConfig.IsYamlMode)
+            {
+                var songConfig = yamlConfig.Config.Songs
+                    .FirstOrDefault(s => s.MusicId == MusicId && s.Difficulty == Tier);
+
+                // 优先使用歌曲级别朋友卡池，否则使用全局朋友卡池
+                if (songConfig != null && songConfig.FriendCardPool.Count > 0)
+                {
+                    friendCardPool = songConfig.FriendCardPool;
+                    Console.WriteLine($"[朋友卡池] 使用歌曲级别配置: {friendCardPool.Count} 张");
+                }
+                else if (yamlConfig.Config.FriendCardIds.Count > 0)
+                {
+                    friendCardPool = yamlConfig.Config.FriendCardIds;
+                    Console.WriteLine($"[朋友卡池] 使用全局配置: {friendCardPool.Count} 张");
+                }
+            }
+
+            if (friendCardPool.Count > 0)
+            {
+                Console.WriteLine($"  候选朋友卡: [{string.Join(", ", friendCardPool)}]");
+            }
+
             Console.WriteLine($"[开始模拟]");
             Stopwatch sw2 = new();
             long bestScore = -1;
             int[] bestDeck = new int[6];
             int? bestCenter = 0;
+            int? bestFriendCard = null;
             List<string> bestLog = new();
             Exception fatalError = null;
             string errorContextInfo = string.Empty;
@@ -233,13 +259,58 @@ class Program
                 logDir: logDir
             );
 
+            // 预先过滤 DR 卡 (全局过滤)
+            var validFriendCandidates = friendCardPool
+                .Where(fid => !(DB.DB_TAG.TryGetValue(fid, out var tags) && tags.Contains(Rarity.DR)))
+                .ToList();
+
+            IEnumerable<(int[] deck, int? center, int? friendCard)> workSource;
+            long totalWorkItems;
+
+            // 本地函数：展开工作项
+            IEnumerable<(int[] deck, int? center, int? friendCard)> ExpandDecksWithFriends(DeckGenerator generator, List<int> friends)
+            {
+                foreach (var item in generator)
+                {
+                    bool any = false;
+                    foreach (var fid in friends)
+                    {
+                        // 检查重复：如果卡组中已包含该朋友卡，则跳过
+                        if (Array.IndexOf(item.deck, fid) != -1) continue;
+
+                        yield return (item.deck, item.center, fid);
+                        any = true;
+                    }
+                    // 如果没有有效的朋友卡（例如全部重复），则回退到无朋友卡模式
+                    if (!any)
+                    {
+                        yield return (item.deck, item.center, null);
+                    }
+                }
+            }
+
+            if (validFriendCandidates.Count == 0)
+            {
+                // 无朋友卡：1:1 映射
+                workSource = deckgen.Select(d => (d.deck, d.center, (int?)null));
+                totalWorkItems = deckgen.TotalDecks;
+            }
+            else
+            {
+                // 有朋友卡：展开
+                workSource = ExpandDecksWithFriends(deckgen, validFriendCandidates);
+                // 估算总数 (可能略多于实际数，因为未扣除重复卡的情况)
+                totalWorkItems = deckgen.TotalDecks * validFriendCandidates.Count;
+            }
+
             sw2.Start();
-            Parallel.ForEach(Tqdm.Wrap(deckgen, total:deckgen.TotalDecks, printsPerSecond: 5), (deckTuple, state) =>
+            Parallel.ForEach(Tqdm.Wrap(workSource, total: totalWorkItems, printsPerSecond: 5), (item, state) =>
             {
                 if (state.ShouldExitCurrentIteration || fatalError != null) return;
 
-                var card_id_list = deckTuple.deck;
-                var center_card = deckTuple.center;
+                var card_id_list = item.deck;
+                var center_card = item.center;
+                var friendCardId = item.friendCard;
 
                 // 使用 YAML 配置的卡牌练度（如果有）
                 List<CardDeckInfo> deckInfo;
@@ -256,6 +327,11 @@ class Program
                 }
 
                 Deck deckToSimulate = new Deck(deckInfo);
+                if (friendCardId.HasValue)
+                {
+                    deckToSimulate.FriendCard = Card.GetInstance(friendCardId.Value);
+                }
+
                 long newScore = -1;
                 try
                 {
@@ -265,11 +341,13 @@ class Program
                 {
                     if (Interlocked.CompareExchange(ref fatalError, ex, null) == null)
                     {
-                        errorContextInfo = $"卡组: ({string.Join(", ", card_id_list)})\nC位: {center_card}";
+                        errorContextInfo = $"卡组: ({string.Join(", ", card_id_list)})\nC位: {center_card}\n朋友卡: {friendCardId}";
                         state.Stop();
                     }
+                    return;
                 }
-                buffer.AddResult(card_id_list, center_card, newScore);
+
+                buffer.AddResult(card_id_list, center_card, newScore, friendCardId);
 
                 if (newScore > bestScore)
                 {
@@ -280,10 +358,15 @@ class Program
                             bestScore = newScore;
                             bestDeck = card_id_list;
                             bestCenter = center_card;
-                            bestLog = deckToSimulate.CardLog;
+                            bestFriendCard = friendCardId;
+                            bestLog = new List<string>();  // 无法获取最佳卡组的 CardLog，需要重新模拟
                             Console.WriteLine($"NEW HI-SCORE! Score: {bestScore:N0}".PadRight(Console.BufferWidth));
                             Console.WriteLine($"  Cards: ({string.Join(", ", card_id_list)})");
                             Console.WriteLine($"  Center: {center_card}");
+                            if (friendCardId.HasValue)
+                            {
+                                Console.WriteLine($"  Friend: {friendCardId}");
+                            }
                         }
                     }
                 }

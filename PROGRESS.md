@@ -735,3 +735,50 @@ DeckMinerLite.exe --test-yaml --config config/member-test.yaml
 - [ ] **RDeck.py**
   - Commit: `618fedb` (perf: 優化Card對象的複製效率)
   - 備註: C# 使用 Struct/Ref 機制，無需此優化。
+
+---
+
+## 🚀 Phase 6: 朋友卡片系統實作 (Updated 2025-12-23)
+
+### 目标
+實作遊戲新增的「朋友卡片」功能，允許在 6 張卡組外選擇一張朋友卡片，提供數值與隊長技能。
+
+### ✅ 已完成功能
+
+#### 1. 核心資料結構與計算
+**文件**: `Models/Deck.cs`, `Services/Simulator.cs`, `Services/SkillResolver.cs`
+
+- [x] **Deck 結構擴充**: 新增 `FriendCard` 屬性
+- [x] **數值計算**: `AppealCalc` 與 `MentalCalc` 納入朋友卡片數值
+- [x] **技能觸發**: 實作朋友卡片 Center Skill 觸發機制
+- [x] **被動影響**: 確保朋友卡片受自身隊長被動 (Center Attribute) 影響
+
+#### 2. 配置系統整合
+**文件**: `Config/MemberConfig.cs`, `Program.cs`
+
+- [x] **全局配置**: `friend_card_ids` (所有歌曲預設使用)
+- [x] **歌曲配置**: `friend_card_pool` (單曲覆蓋設定)
+- [x] **自動過濾**:
+  - 排除 DR 卡 (Death Note)
+  - 排除與卡組重複的卡片
+- [x] **自動滿練度**: 朋友卡片自動套用滿練度邏輯
+
+#### 3. 模擬流程優化
+**文件**: `Program.cs`
+
+- [x] **最佳朋友卡選擇**: 對每個生成的卡組，遍歷所有有效朋友卡，選擇分數最高者
+- [x] **向下相容**: 若無朋友卡配置，維持原有模擬邏輯
+
+#### 4. 輸出格式擴充
+**文件**: `Services/ResultBuffer.cs`, `multi_optimizer_2.py`
+
+- [x] **JSON 輸出**: 新增 `friend_card` 欄位
+- [x] **CSV 輸出**: 新增 `FriendCard` 欄位 (支援 `SaveToCsv` 方法)
+- [x] **Python 優化器**: 同步更新 `multi_optimizer_2.py` 以讀取並顯示朋友卡片資訊
+
+### 測試驗證
+- [x] 編譯通過 (dotnet build)
+- [x] 驗證朋友卡片過濾邏輯
+- [x] 驗證輸出格式正確性
+
+**狀態**: ✅ Phase 6 全部完成

@@ -145,11 +145,18 @@ namespace DeckMiner.Services
                 case CenterAttributeEffectType.MentalRateChange:
                     doubleChange = valueData / 10000.0;
                     multiplier = 1.0 + doubleChange * changeSign;
+                    // 套用到自己的 6 張卡
                     for (int i = 0; i < 6; i++)
                     {
                         var card = cards[i];
                         if (CheckMultiTarget(targetIds, card.CharactersId))
                             card.ApplyAttributeRateChange(targetAttr, multiplier);
+                    }
+                    // 套用到朋友卡片（朋友卡片數值會受自己隊長被動影響）
+                    if (playerAttrs.Deck.FriendCard != null)
+                    {
+                        if (CheckMultiTarget(targetIds, playerAttrs.Deck.FriendCard.CharactersId))
+                            playerAttrs.Deck.FriendCard.ApplyAttributeRateChange(targetAttr, multiplier);
                     }
                     break;
 
@@ -166,6 +173,12 @@ namespace DeckMiner.Services
                         var card = cards[i];
                         if (CheckMultiTarget(targetIds, card.CharactersId))
                             card.ApplyAttributeValueChange(targetAttr, intChange);
+                    }
+                    // 套用到朋友卡片（朋友卡片數值會受自己隊長被動影響）
+                    if (playerAttrs.Deck.FriendCard != null)
+                    {
+                        if (CheckMultiTarget(targetIds, playerAttrs.Deck.FriendCard.CharactersId))
+                            playerAttrs.Deck.FriendCard.ApplyAttributeValueChange(targetAttr, intChange);
                     }
                     break;
 

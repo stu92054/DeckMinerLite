@@ -17,6 +17,9 @@ namespace DeckMiner.Services
         [JsonPropertyName("center_card")]
         public int? CenterCard { get; set; }
 
+        [JsonPropertyName("friend_card")]
+        public int? FriendCard { get; set; }  // 新增：朋友卡片 ID
+
         [JsonPropertyName("score")]
         public long Score { get; set; }
 
@@ -134,7 +137,7 @@ namespace DeckMiner.Services
         /// <summary>
         /// 将结果写入容器，如果该卡组已存在，则保留得分更高的版本
         /// </summary>
-        public void AddResult(int[] cardIds, int? center, long score)
+        public void AddResult(int[] cardIds, int? center, long score, int? friendCard = null)
         {
             string key = MakeKey(cardIds);
 
@@ -144,6 +147,7 @@ namespace DeckMiner.Services
                 {
                     DeckCardIds = cardIds.ToList(),
                     CenterCard = center,
+                    FriendCard = friendCard,
                     Score = score
                 },
                 (_, existing) =>
@@ -153,6 +157,7 @@ namespace DeckMiner.Services
                         existing.DeckCardIds = cardIds.ToList();
                         existing.Score = score;
                         existing.CenterCard = center;
+                        existing.FriendCard = friendCard;
                     }
                     return existing;
                 }
@@ -372,6 +377,34 @@ namespace DeckMiner.Services
             catch (Exception e)
             {
                 Console.WriteLine($"错误: 写入模拟结果到 JSON 文件失败: {e.Message}");
+            }
+        }
+
+        /// <summary>
+        /// 将模拟结果保存为 CSV 格式
+        /// </summary>
+        public static void SaveToCsv(List<SimulationResult> results, string filePath)
+        {
+            try
+            {
+                using var writer = new StreamWriter(filePath);
+                // 写入 Header
+                writer.WriteLine("Center,FriendCard,Card1,Card2,Card3,Card4,Card5,Card6,Score,PT");
+
+                foreach (var result in results)
+                {
+                    var friendCard = result.FriendCard?.ToString() ?? "";
+                    var deckCards = string.Join(",", result.DeckCardIds);
+                    // 如果 PT 为 0，可能未计算，视情况输出
+                    var pt = result.Pt.ToString(); 
+                    
+                    writer.WriteLine($"{result.CenterCard},{friendCard},{deckCards},{result.Score},{pt}");
+                }
+                Console.WriteLine($"模拟结果已保存到 CSV: {filePath}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"保存 CSV 失败: {ex.Message}");
             }
         }
         

@@ -18,6 +18,7 @@ namespace DeckMiner.Models
     public class Deck
     {
         public Card[] Cards = new Card[6];
+        public Card? FriendCard { get; set; } = null;  // 朋友卡片（提供數值和 Center Skill，不提供一般技能和被動）
         public List<Card> Queue { get; private set; } = new List<Card>(6);
         public int Appeal { get; private set; } = 0;
         public List<string> CardLog { get; private set; } = new List<string>();
@@ -107,18 +108,30 @@ namespace DeckMiner.Models
                 case 1: // Smile
                     foreach (var card in Cards)
                         result += (card.Smile * 10) + card.Pure + card.Cool;
+                    // 朋友卡片數值（已受隊長被動影響）
+                    if (FriendCard != null)
+                        result += (FriendCard.Smile * 10) + FriendCard.Pure + FriendCard.Cool;
                     break;
                 case 2: // Pure
                     foreach (var card in Cards)
                         result += card.Smile + (card.Pure * 10) + card.Cool;
+                    // 朋友卡片數值（已受隊長被動影響）
+                    if (FriendCard != null)
+                        result += FriendCard.Smile + (FriendCard.Pure * 10) + FriendCard.Cool;
                     break;
                 case 3: // Cool
                     foreach (var card in Cards)
                         result += card.Smile + card.Pure + (card.Cool * 10);
+                    // 朋友卡片數值（已受隊長被動影響）
+                    if (FriendCard != null)
+                        result += FriendCard.Smile + FriendCard.Pure + (FriendCard.Cool * 10);
                     break;
                 default:
                     foreach (var card in Cards)
                         result += card.Smile + card.Pure + card.Cool;
+                    // 朋友卡片數值（已受隊長被動影響）
+                    if (FriendCard != null)
+                        result += FriendCard.Smile + FriendCard.Pure + FriendCard.Cool;
                     break;
             }
 
@@ -137,6 +150,11 @@ namespace DeckMiner.Models
             foreach (var card in Cards)
             {
                 result += card.Mental;
+            }
+            // 朋友卡片 HP（已受隊長被動影響）
+            if (FriendCard != null)
+            {
+                result += FriendCard.Mental;
             }
             return result;
         }
