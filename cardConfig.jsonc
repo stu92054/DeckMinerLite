@@ -1,0 +1,20 @@
+{
+  "DefaultCardLevels": {
+    "3": 80,
+    "4": 100,
+    "5": 120,
+    "7": 140,
+    "8": 140,
+    "9": 120
+  },
+  "DefaultSkillLevel": 14,
+  "DefaultCenterSkillLevel": 14,
+  "CardCache": {
+    "1021701": [140, 11, 11]
+  },
+
+  "DeathNote": {
+    "1041513": 10,
+    "1041901": 25
+  }
+}

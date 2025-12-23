@@ -1,0 +1,22 @@
+# Build outputs
+bin/
+obj/
+*.exe
+*.dll
+*.pdb
+
+# Logs
+log/
+*.log
+
+# Temporary files
+temp/
+*.tmp
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# User-specific files
+*.swp
+*~
