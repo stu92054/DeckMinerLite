@@ -34,6 +34,7 @@ output/
 # OS files
 .DS_Store
 Thumbs.db
+*.lnk
 
 # User-specific files
 *.swp
