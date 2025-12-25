@@ -185,13 +185,13 @@ class Program
                     Tier = song.Difficulty,
                     MLv = song.MasteryLevel,
                     ExcludeCards = new List<int>(),  // YAML 使用 banned_cards
-                    SecondaryCenter = new List<int>(),
+                    SecondaryCenter = song.SecondaryCenter,
                     MustCards = new RequiredCards
                     {
                         All = song.MustcardsAll,
                         Any = song.MustcardsAny
                     },
-                    MustSkills = new List<int>()
+                    MustSkills = song.MustSkills  // 如果 YAML 中沒有配置則為空列表（不檢查）
                 }).ToList();
 
                 logDir = yamlConfig.GetLogDir();

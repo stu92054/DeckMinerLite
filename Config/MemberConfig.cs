@@ -154,6 +154,19 @@ namespace DeckMiner.Config
         public List<int> MustcardsAny { get; set; } = new();
 
         /// <summary>
+        /// 必须包含的技能类型（卡组必须包含所有指定的技能类型）
+        /// 例如: [2, 3, 5, 7, 8] = [分卡, 电, 洗牌, 分加成, 电加成]
+        /// 技能类型定义：
+        /// - 2: ScoreGain（分卡）
+        /// - 3: VoltagePointChange（电）
+        /// - 5: DeckReset（洗牌/DR）
+        /// - 7: NextAPGainRateChange（分加成）
+        /// - 8: NextVoltageGainRateChange（电加成）
+        /// </summary>
+        [YamlMember(Alias = "mustskills")]
+        public List<int> MustSkills { get; set; } = new();
+
+        /// <summary>
         /// 禁止使用的卡牌（模拟时不会加入卡组）
         /// 例如: [1011501, 1052506]
         /// </summary>
@@ -181,6 +194,14 @@ namespace DeckMiner.Config
         /// </summary>
         [YamlMember(Alias = "leader_designation")]
         public string LeaderDesignation { get; set; } = "0";
+
+        /// <summary>
+        /// 次要中心角色卡片列表（可選的額外中心卡）
+        /// 用於指定非高稀有度但想作為中心卡的特定卡片
+        /// 例如: [1031533, 1032530, 1033528]
+        /// </summary>
+        [YamlMember(Alias = "secondary_center")]
+        public List<int> SecondaryCenter { get; set; } = new();
 
         /// <summary>
         /// 朋友卡片池（该首歌可用的朋友卡片 ID 列表）
