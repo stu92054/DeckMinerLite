@@ -782,3 +782,144 @@ DeckMinerLite.exe --test-yaml --config config/member-test.yaml
 - [x] 驗證輸出格式正確性
 
 **狀態**: ✅ Phase 6 全部完成
+
+---
+
+## 🔬 Phase 7: 實驗性功能與優化 (Experimental Features)
+
+此階段包含尚未確定實作的實驗性功能與性能優化方案。
+
+### 📋 待辦事項清單
+
+#### 🚀 高優先級 (High Priority)
+
+##### 1. Simulator 快轉優化 (Fast-Forward Optimization)
+**狀態**: 📝 規格書已完成 (2025-12-26)
+**文件**: [docs/exp/fast_forward_optimization_spec.md](../exp/fast_forward_optimization_spec.md)
+**預期效益**: 模擬器性能提升 2-5 倍
+
+**待辦項目**:
+- [ ] **LiveStatus.cs**: 將 `_prevAp` 和 `_prevNoteScore` 改為 `internal`
+- [ ] **Simulator.cs**: 實作快轉條件判斷邏輯
+- [ ] **Simulator.cs**: 實作 `safeHorizon` 計算 (CD 與 AP 兩種終點)
+- [ ] **Simulator.cs**: 實作快轉迴圈 (批次處理 Note)
+- [ ] **測試**: 驗證優化前後分數一致性 (誤差應為 0)
+- [ ] **Benchmark**: 測試性能提升比例
+
+**技術要點**:
+- MVP 條件: `Combo >= 50 && afkMental == 0 && (!CDAvailable || AP < Cost)`
+- 快轉終點: `Min(nextCDTime, nextAPTime)`
+- 安全性: 遇到特殊事件 (`Type > Trace`) 自動中斷快轉
+
+**風險評估**:
+- ⚠️ Voltage 變化可能導致分數誤差 (< 0.01%)
+- ⚠️ 需完整測試背水卡、花火吟等機制的兼容性
+
+---
+
+#### 🎨 中優先級 (Medium Priority)
+
+##### 2. GUI YAML 設定介面 (GUI Configuration Editor)
+**狀態**: 📝 待開始
+**目標**: 提供圖形化介面編輯 YAML 配置文件
+
+**待辦項目**:
+- [ ] 選擇 GUI 框架 (WPF / Avalonia / MAUI)
+- [ ] 設計 UI 佈局 (歌曲清單、卡池選擇、參數設定)
+- [ ] 實作 YAML 讀取與寫入邏輯
+- [ ] 整合到 exe 啟動流程 (雙擊開啟 GUI)
+- [ ] 測試跨平台兼容性 (若使用 Avalonia/MAUI)
+
+**技術選項**:
+- **WPF**: Windows 專用，.NET 原生支援，開發快速
+- **Avalonia**: 跨平台，類似 WPF 語法
+- **MAUI**: 官方跨平台方案，支援 Windows/macOS/Linux
+
+**工作量估算**: 6-10 小時
+
+**使用場景**:
+```
+用戶雙擊 DeckMinerLite.exe
+→ 彈出 GUI 視窗
+→ 選擇歌曲、卡池、參數
+→ 點擊「開始模擬」按鈕
+→ 顯示進度條與結果
+```
+
+---
+
+##### 3. Console 輸出亂碼修正 (Console Encoding Fix)
+**狀態**: 📝 待開始
+**問題描述**: Windows Console 預設編碼為 Big5/GBK，導致 UTF-8 中文字元顯示為亂碼
+
+**待辦項目**:
+- [ ] **Program.cs**: 在入口處設定 Console 編碼
+  ```csharp
+  Console.OutputEncoding = System.Text.Encoding.UTF8;
+  Console.InputEncoding = System.Text.Encoding.UTF8;
+  ```
+- [ ] 測試不同 Windows 版本 (Win10 / Win11)
+- [ ] 測試不同 Console 環境 (CMD / PowerShell / Windows Terminal)
+- [ ] 更新 README 說明如何處理亂碼問題
+
+**已知解決方案**:
+1. **程式碼修正**: 在 `Main()` 開頭加入編碼設定
+2. **環境變數**: `chcp 65001` (切換到 UTF-8 代碼頁)
+3. **使用 Windows Terminal**: 原生支援 UTF-8
+
+**工作量估算**: 0.5-1 小時
+
+---
+
+#### 🔧 低優先級 (Low Priority)
+
+##### 4. 日誌分級系統 (Logging Levels)
+**狀態**: 📝 待開始 (Phase 4 遺留項目)
+**目標**: 支援 DEBUG / INFO / WARNING / ERROR 分級日誌
+
+**待辦項目**:
+- [ ] 引入輕量級日誌框架 (如 Serilog / NLog)
+- [ ] 替換所有 `Console.WriteLine` 為日誌呼叫
+- [ ] 支援 `--log-level` 參數控制輸出詳細度
+- [ ] 支援日誌輸出到文件
+
+**工作量估算**: 2-3 小時
+
+---
+
+##### 5. will_die 判定修正 (PERFECT vs PERFECT+)
+**狀態**: 📝 待修正 (Phase 4 遺留項目)
+**問題描述**: 背水卡避免致命 MISS 時使用 `PERFECT` 而非 `PERFECT+`
+
+**修正方案**:
+- [ ] **Simulator.cs:251**: `Player.ComboAdd("PERFECT")` → `Player.ComboAdd("PERFECT+")`
+- [ ] **Simulator.cs:338**: `Player.ComboAdd("PERFECT")` → `Player.ComboAdd("PERFECT+")`
+- [ ] 驗證修正後的分數變化 (預期差異極小)
+
+**工作量估算**: 0.1 小時
+
+---
+
+### 📊 實驗功能開發優先級
+
+| 功能 | 優先級 | 預期效益 | 工作量 | 狀態 |
+|------|--------|----------|--------|------|
+| **快轉優化** | 🔴 HIGH | 性能提升 2-5x | 4-6h | 📝 規格書完成 |
+| **GUI 設定介面** | 🟡 MEDIUM | 使用者體驗提升 | 6-10h | 📝 待開始 |
+| **亂碼修正** | 🟡 MEDIUM | 可讀性提升 | 0.5-1h | 📝 待開始 |
+| **日誌分級** | 🟢 LOW | 除錯便利性 | 2-3h | 📝 待開始 |
+| **will_die 修正** | 🟢 LOW | 精度微調 | 0.1h | 📝 待開始 |
+
+---
+
+### 🎯 建議實作順序
+
+1. **亂碼修正** (最簡單,立即改善使用體驗)
+2. **快轉優化** (效益最大,但需完整測試)
+3. **GUI 設定介面** (工作量大,可分階段實作)
+4. **日誌分級** (可選功能,視需求決定)
+5. **will_die 修正** (影響微小,可併入其他開發)
+
+---
+
+**更新時間**: 2025-12-26
