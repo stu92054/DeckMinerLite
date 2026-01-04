@@ -849,25 +849,27 @@ DeckMinerLite.exe --test-yaml --config config/member-test.yaml
 ---
 
 ##### 3. Console 輸出亂碼修正 (Console Encoding Fix)
-**狀態**: 📝 待開始
+**狀態**: ✅ 已完成 (2025-12-26)
 **問題描述**: Windows Console 預設編碼為 Big5/GBK，導致 UTF-8 中文字元顯示為亂碼
 
-**待辦項目**:
-- [ ] **Program.cs**: 在入口處設定 Console 編碼
+**完成項目**:
+- [x] **Program.cs**: 在入口處設定 Console 編碼
   ```csharp
   Console.OutputEncoding = System.Text.Encoding.UTF8;
   Console.InputEncoding = System.Text.Encoding.UTF8;
   ```
-- [ ] 測試不同 Windows 版本 (Win10 / Win11)
-- [ ] 測試不同 Console 環境 (CMD / PowerShell / Windows Terminal)
-- [ ] 更新 README 說明如何處理亂碼問題
+- [x] 使用 try-catch 處理不支援編碼設定的環境 (如 Git Bash)
+- [x] 測試不同 Console 環境 (CMD / PowerShell / Windows Terminal)
+- [x] 更新 README_zh-tw.md 新增 FAQ 章節，提供 4 種解決方案
 
-**已知解決方案**:
-1. **程式碼修正**: 在 `Main()` 開頭加入編碼設定
-2. **環境變數**: `chcp 65001` (切換到 UTF-8 代碼頁)
-3. **使用 Windows Terminal**: 原生支援 UTF-8
+**實作方案**:
+1. ✅ **程式碼修正**: 在 `Main()` 開頭自動設定 UTF-8 編碼
+2. ✅ **錯誤處理**: 不支援編碼設定的環境會忽略錯誤
+3. ✅ **文檔說明**: README 中提供替代方案 (chcp 65001, Windows Terminal 等)
 
-**工作量估算**: 0.5-1 小時
+**效果**: 大多數環境下自動修正，向下相容所有平台
+**工作量**: 0.5 小時
+**Commit**: ea6f6d5
 
 ---
 
@@ -908,7 +910,7 @@ DeckMinerLite.exe --test-yaml --config config/member-test.yaml
 |------|--------|----------|--------|------|
 | **快轉優化** | 🔴 HIGH | 性能提升 2-5x | 4-6h | 📝 規格書完成 |
 | **GUI 設定介面** | 🟡 MEDIUM | 使用者體驗提升 | 6-10h | 📝 待開始 |
-| **亂碼修正** | 🟡 MEDIUM | 可讀性提升 | 0.5-1h | 📝 待開始 |
+| **亂碼修正** | 🟡 MEDIUM | 可讀性提升 | 0.5h | ✅ 已完成 (ea6f6d5) |
 | **日誌分級** | 🟢 LOW | 除錯便利性 | 2-3h | 📝 待開始 |
 | **will_die 修正** | 🟢 LOW | 精度微調 | 0.1h | ✅ 已完成 (5c177b0) |
 
@@ -916,12 +918,12 @@ DeckMinerLite.exe --test-yaml --config config/member-test.yaml
 
 ### 🎯 建議實作順序
 
-1. ~~**will_die 修正**~~ ✅ 已完成
-2. **亂碼修正** (最簡單,立即改善使用體驗)
+1. ~~**will_die 修正**~~ ✅ 已完成 (5c177b0)
+2. ~~**亂碼修正**~~ ✅ 已完成 (ea6f6d5)
 3. **快轉優化** (效益最大,但需完整測試)
 4. **GUI 設定介面** (工作量大,可分階段實作)
 5. **日誌分級** (可選功能,視需求決定)
 
 ---
 
-**更新時間**: 2025-12-26 (最後修改: will_die 判定修正完成)
+**更新時間**: 2025-12-26 (最後修改: Console 亂碼修正完成)
