@@ -252,8 +252,8 @@ namespace DeckMiner.Services
 
                             if (willDie)
                             {
-                                // 如果 MISS 會導致遊戲結束，改為 PERFECT
-                                Player.ComboAdd("PERFECT");
+                                // 如果 MISS 會導致遊戲結束，改為 PERFECT+ (完美判定加成)
+                                Player.ComboAdd("PERFECT+");
                             }
                             else
                             {
@@ -334,8 +334,8 @@ namespace DeckMiner.Services
 
                             if (willDie)
                             {
-                                // 延遲後仍會致命，改為 PERFECT
-                                Player.ComboAdd("PERFECT");
+                                // 延遲後仍會致命，改為 PERFECT+ (完美判定加成)
+                                Player.ComboAdd("PERFECT+");
                             }
                             else
                             {
