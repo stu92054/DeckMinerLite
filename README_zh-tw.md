@@ -229,6 +229,47 @@ dotnet run -- --test-yaml --config ../config/member-test.yaml
 
 ---
 
+## ❓ 常見問題 (FAQ)
+
+### Q: Console 輸出中文亂碼怎麼辦？
+
+**A**: 程式已自動設定 UTF-8 編碼，大多數情況下不會出現亂碼。若仍有問題，請嘗試以下方法：
+
+#### 方法 1: 使用 Windows Terminal（推薦）
+Windows Terminal 原生支援 UTF-8，不會有亂碼問題。
+- Windows 11: 預設安裝
+- Windows 10: 從 Microsoft Store 下載
+
+#### 方法 2: 設定 CMD 代碼頁
+在執行程式前，先在 CMD 中輸入：
+```cmd
+chcp 65001
+```
+
+#### 方法 3: 設定 PowerShell 編碼
+在 PowerShell 中執行：
+```powershell
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+```
+
+#### 方法 4: 修改 CMD 預設代碼頁（永久）
+1. 執行 `regedit` 開啟登錄編輯程式
+2. 導航至 `HKEY_LOCAL_MACHINE\Software\Microsoft\Command Processor`
+3. 新增字串值 `Autorun`，設定為 `chcp 65001 >nul`
+
+### Q: 為什麼某些環境下程式啟動較慢？
+
+**A**: 首次執行時，.NET 運行時會進行 JIT 編譯，後續執行會更快。使用 NativeAOT 版本可避免此問題。
+
+### Q: 如何確認程式版本？
+
+**A**: 查看 git commit hash 或執行：
+```bash
+DeckMinerLite.exe --version
+```
+
+---
+
 ## 📝 授權
 
 與上游專案相同

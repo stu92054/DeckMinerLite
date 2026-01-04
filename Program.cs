@@ -57,6 +57,17 @@ class Program
 
     static void Main(string[] args)
     {
+        // 設定 Console 編碼為 UTF-8，避免中日文亂碼
+        try
+        {
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+            Console.InputEncoding = System.Text.Encoding.UTF8;
+        }
+        catch (System.IO.IOException)
+        {
+            // 某些環境 (如 Git Bash) 不支援設定編碼，忽略錯誤
+        }
+
         Console.WriteLine("--- SukuShow Deck Miner Lite ---");
 
         // === 测试 YAML 配置系统 ===
