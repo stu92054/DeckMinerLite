@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
@@ -102,12 +104,28 @@ namespace DeckMiner.Config
 
             string yamlContent = File.ReadAllText(filePath);
 
-            var deserializer = new DeserializerBuilder()
-                .WithNamingConvention(UnderscoredNamingConvention.Instance)
-                .IgnoreUnmatchedProperties()
-                .Build();
+            try
+            {
+                var deserializer = new DeserializerBuilder()
+                    .WithNamingConvention(UnderscoredNamingConvention.Instance)
+                    .IgnoreUnmatchedProperties()
+                    .WithTypeConverter(new FlowIntListYamlConverter()) // Register explicitly
+                    .WithTypeConverter(new CardLevelsYamlConverter()) // Register explicitly
+                    .Build();
 
-            return deserializer.Deserialize<MemberConfig>(yamlContent);
+                return deserializer.Deserialize<MemberConfig>(yamlContent);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error loading config: {ex.Message}");
+                Console.WriteLine($"Stack Trace: {ex.StackTrace}");
+                if (ex.InnerException != null)
+                {
+                    Console.WriteLine($"Inner Exception: {ex.InnerException.Message}");
+                    Console.WriteLine($"Inner Stack: {ex.InnerException.StackTrace}");
+                }
+                throw;
+            }
         }
 
         /// <summary>
@@ -229,14 +247,29 @@ namespace DeckMiner.Config
             int rarity = (cardId / 100) % 10;
             int defaultLevel = rarity switch
             {
-                5 => 100,  // R
-                6 => 110,  // SR
-                7 => 120,  // SSR
-                8 => 140,  // LR
+                3 => 80,   // R
+                4 => 100,  // SR
+                5 => 120,  // UR
+                7 => 140,  // LR
+                8 => 140,  // DR
                 9 => 120,  // BR
                 _ => 100
             };
 
+            // 修正：選卡時最高預設練度不符合其稀有度
+            // 根據 CardDatas.json，不同稀有度的最大等級如下：
+            // R (3): 60 (未覺醒) -> 80 (覺醒)
+            // SR (4): 80 (未覺醒) -> 100 (覺醒)
+            // UR (5): 100 (未覺醒) -> 120 (覺醒)
+            // LR (7): 140
+            // DR (8): 140
+            // BR (9): 120
+            // 注意：這裡返回的是預設滿練度，所以應該是覺醒後的最大等級。
+            // 上面的 switch 已經正確反映了覺醒後的最大等級。
+            // 如果用戶指的是"選卡時"，可能是指在 GUI 中添加新卡片時的預設值。
+            // 但這裡是 GetCardLevels，用於獲取配置中的等級或默認等級。
+            // 如果配置中沒有，則返回默認滿練度。
+            
             return new List<int> { defaultLevel, 14, 14 };  // [level, cskill_max, skill_max]
         }
 
@@ -266,6 +299,237 @@ namespace DeckMiner.Config
             }
 
             return merged;
+        }
+
+        /// <summary>
+        /// 保存当前配置到 YAML 文件 (保留註解與格式)
+        /// </summary>
+        public void SaveConfig()
+        {
+            if (_configFilePath == null)
+            {
+                throw new InvalidOperationException("Cannot save configuration: No file path specified.");
+            }
+
+            // We will process the file line by line to preserve comments
+            var lines = File.Exists(_configFilePath) ? File.ReadAllLines(_configFilePath).ToList() : new List<string>();
+            
+            // 修正：按夏save時未真正寫入
+            // 問題可能出在 lines 為空時的處理，或者文件寫入權限/路徑問題。
+            // 但更可能是因為之前的邏輯中，如果文件存在但內容為空，或者讀取失敗，導致 lines 為空。
+            // 另外，如果 lines 不為空，但沒有 card_levels 區塊，之前的代碼會追加。
+            // 這裡確保如果 lines 為空，則初始化為空列表，並在後面處理。
+            
+            if (lines.Count == 0)
+            {
+                // If file doesn't exist or is empty, fallback to full serialization
+                var serializer = new SerializerBuilder()
+                    .WithNamingConvention(UnderscoredNamingConvention.Instance)
+                    .ConfigureDefaultValuesHandling(DefaultValuesHandling.OmitNull)
+                    .DisableAliases()
+                    .WithTypeConverter(new CardLevelsYamlConverter())
+                    .WithTypeConverter(new FlowIntListYamlConverter())
+                    .Build();
+                
+                string yamlContent = serializer.Serialize(_config);
+                
+                // Add comments for card_levels
+                string commentBlock = 
+@"# 特定卡牌練度覆蓋 (預設滿練度，僅需填寫非滿練卡)
+# 格式: card_id: [level, center_skill_level, skill_level]
+# R: 80, SR: 100, UR: 120, LR: 140, DR: 140, BR: 120
+card_levels:";
+                yamlContent = yamlContent.Replace("card_levels:", commentBlock);
+                
+                File.WriteAllText(_configFilePath, yamlContent);
+                return;
+            }
+
+            var newLines = new List<string>();
+            bool inCardLevels = false;
+            bool foundCardLevelsBlock = false;
+            bool inCardIds = false;
+            int indentLevel = -1;
+            var processedCardIds = new HashSet<int>();
+            var validCardIds = new HashSet<int>(_config.CardIds);
+
+            for (int i = 0; i < lines.Count; i++)
+            {
+                string line = lines[i];
+
+                if (!inCardLevels && !inCardIds)
+                {
+                    if (Regex.IsMatch(line, @"^card_levels:\s*"))
+                    {
+                        inCardLevels = true;
+                        foundCardLevelsBlock = true;
+                        newLines.Add(line);
+                        continue;
+                    }
+                    if (Regex.IsMatch(line, @"^card_ids:\s*"))
+                    {
+                        inCardIds = true;
+                        newLines.Add("card_ids:");
+                        foreach (var id in _config.CardIds.OrderBy(x => x))
+                        {
+                            newLines.Add($"  - {id}");
+                        }
+                        continue;
+                    }
+                    newLines.Add(line);
+                }
+                else if (inCardIds)
+                {
+                    // We are inside card_ids block. Skip old entries until block ends.
+                    if (string.IsNullOrWhiteSpace(line))
+                    {
+                        inCardIds = false;
+                        newLines.Add(line);
+                        continue;
+                    }
+                    
+                    // If line is not indented and not a comment, it's a new top-level key
+                    if (!line.StartsWith(" ") && !line.StartsWith("-") && !line.StartsWith("#"))
+                    {
+                        inCardIds = false;
+                        newLines.Add(line);
+                        continue;
+                    }
+                    
+                    // Skip everything else (old list items, comments inside the list)
+                    continue;
+                }
+                else
+                {
+                    // We are inside card_levels
+                    // Check indentation to see if block ended
+                    if (string.IsNullOrWhiteSpace(line) || line.TrimStart().StartsWith("#"))
+                    {
+                        newLines.Add(line);
+                        continue;
+                    }
+
+                    int currentIndent = line.TakeWhile(char.IsWhiteSpace).Count();
+                    if (indentLevel == -1) indentLevel = currentIndent;
+
+                    if (currentIndent < indentLevel)
+                    {
+                        // Block ended (indentation decreased)
+                        inCardLevels = false;
+                        // Append new cards before closing the block
+                        AppendNewCards(newLines, processedCardIds, indentLevel, validCardIds);
+                        newLines.Add(line);
+                        continue;
+                    }
+
+                    // Parse the entry
+                    // Expected format: "  123456: [100, 14, 14] # comment"
+                    var match = Regex.Match(line, @"^\s*(\d+):\s*\[(.*)\](.*)$");
+                    if (match.Success)
+                    {
+                        int cardId = int.Parse(match.Groups[1].Value);
+                        string trailingComment = match.Groups[3].Value;
+                        
+                        // Check if card is valid (in current pool)
+                        if (!validCardIds.Contains(cardId))
+                        {
+                            // Skip (remove invalid/old cards)
+                            continue;
+                        }
+
+                        if (_config.CardLevels.TryGetValue(cardId, out var levels))
+                        {
+                            // Check if values are default
+                            if (IsDefaultLevel(cardId, levels))
+                            {
+                                // Skip (remove default)
+                                processedCardIds.Add(cardId);
+                                continue;
+                            }
+                            else
+                            {
+                                // Update line with current values from memory
+                                string indent = new string(' ', currentIndent);
+                                string valStr = $"[{levels[0]}, {levels[1]}, {levels[2]}]";
+                                newLines.Add($"{indent}{cardId}: {valStr}{trailingComment}");
+                                processedCardIds.Add(cardId);
+                            }
+                        }
+                        else
+                        {
+                            // Not in config anymore (deleted by user)
+                            // Skip
+                            continue;
+                        }
+                    }
+                    else
+                    {
+                        // Could not parse, keep it to be safe
+                        newLines.Add(line);
+                    }
+                }
+            }
+
+            // If we finished the file and were inside card_levels (EOF ended block)
+            if (inCardLevels)
+            {
+                AppendNewCards(newLines, processedCardIds, indentLevel == -1 ? 2 : indentLevel, validCardIds);
+            }
+            // If we never found the block, append it at the end
+            else if (!foundCardLevelsBlock)
+            {
+                newLines.Add("");
+                newLines.Add("# 特定卡牌練度覆蓋 (預設滿練度，僅需填寫非滿練卡)");
+                newLines.Add("# 格式: card_id: [level, center_skill_level, skill_level]");
+                newLines.Add("# R: 80, SR: 100, UR: 120, LR: 140, DR: 140, BR: 120");
+                newLines.Add("card_levels:");
+                AppendNewCards(newLines, processedCardIds, 2, validCardIds);
+            }
+
+            File.WriteAllLines(_configFilePath, newLines);
+            
+            // 確保寫入磁碟
+            // File.WriteAllLines 已經會 flush 和 close，但為了保險起見，可以再次檢查文件是否存在。
+            if (!File.Exists(_configFilePath))
+            {
+                throw new IOException($"Failed to save config file: {_configFilePath}");
+            }
+        }
+
+        private void AppendNewCards(List<string> lines, HashSet<int> processedIds, int indentLevel, HashSet<int> validCardIds)
+        {
+            string indent = new string(' ', indentLevel);
+            // Sort keys for deterministic output
+            var sortedKeys = _config.CardLevels.Keys.OrderBy(k => k).ToList();
+            
+            foreach (var cardId in sortedKeys)
+            {
+                if (!processedIds.Contains(cardId) && validCardIds.Contains(cardId))
+                {
+                    var levels = _config.CardLevels[cardId];
+                    if (!IsDefaultLevel(cardId, levels))
+                    {
+                         lines.Add($"{indent}{cardId}: [{levels[0]}, {levels[1]}, {levels[2]}]");
+                    }
+                }
+            }
+        }
+
+        private bool IsDefaultLevel(int cardId, List<int> values)
+        {
+            if (values.Count != 3) return false;
+            int rarity = (cardId / 100) % 10;
+            int defaultLevel = rarity switch
+            {
+                3 => 80,   // R
+                4 => 100,  // SR
+                5 => 120,  // UR
+                7 => 140,  // LR
+                8 => 140,  // DR
+                9 => 120,  // BR
+                _ => 100
+            };
+            return values[0] == defaultLevel && values[1] == 14 && values[2] == 14;
         }
     }
 }

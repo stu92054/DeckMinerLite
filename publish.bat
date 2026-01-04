@@ -30,8 +30,8 @@ if exist "%LINUX_PACKAGE_DIR%" (
 echo Done
 
 echo.
-echo [2/8] Running dotnet publish for Windows x64...
-dotnet publish -c Release -r win-x64 --self-contained -p:PublishAot=false -p:PublishSingleFile=true -p:PublishTrimmed=false -o "%WIN_PUBLISH_DIR%"
+echo [2/8] Running dotnet publish for Windows x64 (with WPF GUI)...
+dotnet publish -c Release --framework net10.0-windows -r win-x64 --self-contained -p:PublishSingleFile=true -o "%WIN_PUBLISH_DIR%"
 
 if errorlevel 1 (
     echo.
@@ -42,8 +42,9 @@ if errorlevel 1 (
 echo Done
 
 echo.
-echo [3/8] Running dotnet publish for Linux x64...
-dotnet publish -c Release -r linux-x64 --self-contained -p:PublishAot=false -p:PublishSingleFile=true -p:PublishTrimmed=false -o "%LINUX_PUBLISH_DIR%"
+echo [3/8] Running dotnet publish for Linux x64 (CLI, no AOT - cross-compilation not supported)...
+echo [HINT] Note: NativeAOT requires native Linux build. Building without AOT for now.
+dotnet publish -c Release --framework net10.0 -r linux-x64 --self-contained -p:PublishSingleFile=true -o "%LINUX_PUBLISH_DIR%"
 
 if errorlevel 1 (
     echo.
@@ -125,9 +126,9 @@ echo.
 echo Quick Start
 echo -----------
 echo.
-echo 1. Double-click DeckMinerLite.exe to run with default config
+echo 1. Double-click DeckMinerLite.exe to launch GUI mode (Windows only)
 echo.
-echo 2. Or use custom config:
+echo 2. Or use command line for automation with custom config:
 echo    DeckMinerLite.exe --config config/member-example.yaml
 echo.
 echo 3. Test your configuration:

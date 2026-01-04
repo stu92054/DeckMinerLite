@@ -52,29 +52,33 @@ DeckMinerLite/
 │   └── UseWPF: true (Windows only)
 │
 ├── Program.cs                          # 程式入口 (條件編譯)
-├── GuiBootstrapper.cs                  # GUI 啟動器 (條件編譯)
+│   └── GuiRunner (內部類別)            # GUI 啟動器 (條件編譯)
+│
+├── GlobalUsingsWindows.cs              # Windows 版本額外的 global using
 │
 ├── Gui/                                # WPF GUI 程式碼 (條件編譯)
-│   ├── App.xaml                        # WPF Application
-│   ├── App.xaml.cs
-│   ├── MainWindow.xaml                 # 主視窗
-│   ├── MainWindow.xaml.cs
-│   ├── ViewModels/                     # MVVM ViewModels
+│   ├── App.xaml                        # WPF Application ✅
+│   ├── App.xaml.cs                     # Application entry point ✅
+│   ├── MainWindow.xaml                 # 主視窗 (4 分頁) ✅
+│   ├── MainWindow.xaml.cs              # 主視窗邏輯 (code-behind) ✅
+│   ├── ViewModels/                     # MVVM ViewModels (待實作)
 │   │   ├── MainViewModel.cs
 │   │   ├── SongConfigViewModel.cs
 │   │   └── CardPoolViewModel.cs
-│   ├── Views/                          # 子視圖控制項
+│   ├── Views/                          # 子視圖控制項 (待實作)
 │   │   ├── SongConfigPanel.xaml
 │   │   ├── CardPoolPanel.xaml
 │   │   └── SimulationPanel.xaml
-│   └── Services/                       # GUI 專用服務
+│   └── Services/                       # GUI 專用服務 (待實作)
 │       ├── ConfigService.cs            # 配置讀寫
 │       └── SimulationService.cs        # 模擬執行
 │
-├── Config/                             # 核心配置類別 (共用)
-├── Services/                           # 核心服務 (共用)
-├── Models/                             # 核心模型 (共用)
-└── Data/                               # 資料模型 (共用)
+├── Config/                             # 核心配置類別 (共用) ✅
+├── Services/                           # 核心服務 (共用) ✅
+├── Models/                             # 核心模型 (共用) ✅
+└── Data/                               # 資料模型 (共用) ✅
+
+✅ = 已實作  ⚪ = 待實作
 ```
 
 ### 1.3 條件編譯策略
@@ -428,20 +432,48 @@ public static class CliRunner
 }
 ```
 
-**GuiRunner.cs** (僅 Windows):
+**GuiRunner** (僅 Windows, 作為 Program 內部類別):
 ```csharp
-#if WINDOWS
-public static class GuiRunner
+// Program.cs
+class Program
 {
-    public static void Run()
+#if WINDOWS
+    /// <summary>
+    /// GUI mode runner - launches WPF application (Windows only)
+    /// </summary>
+    static class GuiRunner
     {
-        var app = new App();
-        app.InitializeComponent();
-        app.Run();
+        public static int Run()
+        {
+            Console.WriteLine("[INFO] Launching GUI mode...");
+
+            try
+            {
+                var app = new DeckMiner.Gui.App();
+                app.InitializeComponent();
+                app.Run();
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[FAIL] GUI startup failed: {ex.Message}");
+                Console.WriteLine($"[HINT] Stack trace: {ex.StackTrace}");
+                Console.WriteLine("\nPress Enter to exit...");
+                Console.ReadLine();
+                return 1;
+            }
+        }
+    }
+#endif
+
+    static void Main(string[] args)
+    {
+        // ... (見下方完整範例)
     }
 }
-#endif
 ```
+
+**注**: GuiRunner 實作為 Program 內部類別而非獨立檔案,以避免條件編譯可見性問題。
 
 ### 4.2 ConfigService 與 YamlConfigManager 整合
 
@@ -645,26 +677,33 @@ private async void OnStartSimulation()
 
 根據審閱建議，調整開發優先級：
 
-**第一優先**: 基礎架構 + 唯讀配置顯示
-- ✅ 解耦 CliRunner / GuiRunner
-- ✅ 條件編譯測試
-- ✅ YAML 載入與顯示 (唯讀)
-- ✅ 驗證與現有邏輯一致性
+**第一優先**: 基礎架構 + 唯讀配置顯示 ✅ **已完成**
+- ✅ 解耦 CliRunner / GuiRunner (GuiRunner 作為 Program 內部類別)
+- ✅ 條件編譯測試 (Windows GUI + Linux CLI)
+- ✅ YAML 載入與顯示 (Configuration Tab 唯讀顯示)
+- ✅ 驗證與現有邏輯一致性 (重用 YamlConfigManager)
+- ✅ 4 分頁 UI 框架建立
+- ✅ 檔案選擇對話框整合
 
-**第二優先**: 非同步模擬控制
-- ✅ Task.Run + IProgress
-- ✅ CancellationToken 支援
-- ✅ 停止/暫停功能
+**第二優先**: 非同步模擬控制 ⏳ **待實作**
+- ⚪ Task.Run + IProgress
+- ⚪ CancellationToken 支援
+- ⚪ 停止/暫停功能
+- ⚪ 即時進度更新
+- ⚪ 日誌緩衝與限制
 
-**第三優先**: 配置編輯功能
-- ✅ 卡池管理 (含虛擬化)
-- ✅ 歌曲配置編輯
-- ✅ YAML 儲存
+**第三優先**: 配置編輯功能 ⏳ **待實作**
+- ⚪ 卡池管理 (含虛擬化)
+- ⚪ 歌曲配置編輯
+- ⚪ YAML 儲存
+- ⚪ Fan Level / Card Level 編輯器
 
-**第四優先**: UI 體驗優化
+**第四優先**: UI 體驗優化 ⏳ **未來版本**
 - ⚪ 搜尋與過濾
 - ⚪ 主題切換
 - ⚪ 快捷鍵
+
+**實際進度**: Phase 1-2 完成，已達成第一優先級全部目標
 
 ---
 
@@ -688,22 +727,36 @@ private async void OnStartSimulation()
 
 ---
 
-### Phase 2: 基本配置編輯 (3-4 小時)
+### Phase 2: GUI 基礎實作 (已完成 ✅)
 
-**目標**: 實作基本設定與卡池管理
+**目標**: 實作基本 WPF GUI 框架與配置顯示
 
-- [ ] 實作 ConfigService (載入/儲存 YAML)
-- [ ] 實作 DataService (載入卡片/音樂資料)
-- [ ] 實作 MainViewModel 基本邏輯
-- [ ] 設計主視窗布局 (側邊欄 + 內容區)
-- [ ] 實作基本設定面板 (member name, lgp_mode, season_mode)
-- [ ] 實作卡池管理面板 (列表、搜尋、新增/移除)
+- [x] 建立 WPF 基本框架 (App.xaml, MainWindow.xaml)
+- [x] 實作 4 分頁布局 (Configuration, Simulation, Results, About)
+- [x] 實作 YAML 配置載入功能
+- [x] 實作配置資訊顯示 (唯讀)
+- [x] 實作歌曲列表顯示
+- [x] 實作模擬控制面板 (佔位實作)
+- [x] 實作日誌輸出區域
+- [x] 整合條件編譯與 GuiRunner
+
+**實際實作內容**:
+- ✅ MainWindow.xaml: 700x1000 主視窗，含 4 個 TabControl
+- ✅ Configuration Tab: 載入 YAML、顯示基本設定、顯示卡池與歌曲
+- ✅ Simulation Tab: 控制按鈕、進度條、即時日誌
+- ✅ Results Tab: 預留區域
+- ✅ About Tab: 版本資訊與功能說明
+- ✅ 檔案選擇對話框整合
+- ✅ 輸出資料夾快速開啟
 
 **驗收標準**:
-- ✅ 可載入現有 YAML 配置
-- ✅ 可編輯基本設定並儲存
-- ✅ 可管理卡池 (新增/移除卡片)
-- ✅ 儲存的 YAML 與原格式一致
+- ✅ Windows 版雙擊啟動 GUI
+- ✅ 可載入現有 YAML 配置並顯示
+- ✅ 配置資訊正確顯示 (member name, lgp_mode, season_mode, card pool size, songs)
+- ✅ GUI 與 CLI 雙模式自動切換
+- ✅ 編譯無錯誤，Windows/Linux 分別正常運作
+
+**完成日期**: 2025-12-26
 
 ---
 
@@ -711,10 +764,12 @@ private async void OnStartSimulation()
 
 **目標**: 實作歌曲配置與進階功能
 
+- [x] 實作卡池管理 (新增/移除卡片)
+- [x] 實作 Card Level 編輯器 (整合於卡池管理)
+- [x] 實作 YAML 儲存功能
 - [ ] 實作歌曲列表管理 (新增/編輯/刪除)
 - [ ] 實作歌曲詳細配置 (難度、精熟、約束條件)
 - [ ] 實作 Fan Level 編輯器
-- [ ] 實作 Card Level 編輯器
 - [ ] 實作優化器配置面板
 
 **驗收標準**:
@@ -862,6 +917,53 @@ dotnet publish -c Release -r linux-x64 --self-contained -f net10.0
 
 ---
 
-**最後更新**: 2025-12-26
-**狀態**: 📝 設計階段
-**預計完成**: Phase 1-5 共 10-15 小時
+---
+
+## 9. 實作進度總結
+
+### 已完成階段
+
+#### ✅ Phase 1: 基礎架構 (完成)
+- Multi-target 專案配置
+- 條件編譯與 GuiRunner 整合
+- Windows/Linux 分離編譯測試通過
+
+#### ✅ Phase 2: GUI 基礎實作 (完成)
+- WPF 主視窗與 4 分頁布局
+- YAML 配置載入與顯示
+- 模擬控制面板框架
+- GUI/CLI 雙模式自動切換
+
+### 待實作階段
+
+#### 🔄 Phase 3: 配置編輯功能 (進行中)
+- ✅ 卡池編輯器 (新增/移除卡片)
+- ✅ Card Level 編輯器 (整合於卡池管理)
+- ✅ YAML 儲存功能
+- ⚪ 歌曲配置編輯
+- ⚪ Fan Level 編輯器
+
+#### ⏳ Phase 4: 模擬執行整合
+- SimulationService 非同步執行
+- 即時進度更新與日誌
+- 暫停/停止功能
+- 結果查看與分析
+
+#### ⏳ Phase 5: 測試與優化
+- 完整功能測試
+- 效能優化 (虛擬化、非同步)
+- 錯誤處理增強
+- 使用者文檔
+
+### 當前狀態
+
+**狀態**: 🚀 Phase 3 進行中
+**完成度**: 50% (2.5/5 階段)
+**下一步**: 歌曲配置編輯與 Fan Level 編輯
+
+---
+
+**最後更新**: 2026-01-05
+**Phase 2 完成日期**: 2025-12-26
+**Phase 3 部分完成**: 2026-01-05 (卡池管理、練度編輯、儲存功能)
+**累計開發時間**: ~8 小時

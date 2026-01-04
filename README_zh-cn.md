@@ -3,7 +3,7 @@
 适用于 [Link！Like！LoveLive！](https://www.lovelive-anime.jp/hasunosora/system/) (リンクラ)
 音游模式 **School Idol Show (スクショウ)** 的 **卡组模拟器（C# 高性能版）**。
 
-本项目是 Python 版 [SukuShow Deck Miner](https://github.com/BlueNoBaka/SukuShow-Deck-Miner) 的 C# 实现，**性能更高**。  
+本项目是 Python 版 [SukuShow Deck Miner](https://github.com/BlueNoBaka/SukuShow-Deck-Miner) 的 C# 实现，**性能更高**。
 **仅实现了批量模拟**的功能，输出的 Log 与 Python 版兼容。
 
 ---
@@ -12,23 +12,87 @@
 
 ### ▶ 运行主程序
 
-本项目在 .Net 10 环境下开发，采用 **NativeAOT** 构建，使用时不需要额外安装 .Net 运行时。
+本项目在 .Net 10 环境下开发，Windows 版本提供 **WPF 图形化界面 (GUI)**，Linux 版本采用 **NativeAOT** 构建的 CLI，使用时不需要额外安装 .Net 运行时。
 
-双击 `DeckMinerLite.exe` 即可运行，练度、卡池、模拟任务通过配置文件修改。
+#### Windows 版本（含 GUI）
+
+**GUI 模式（推荐）**：
+- 双击 `DeckMinerLite.exe` 启动图形化界面
+- 通过界面加载 YAML 配置文件
+- 可视化显示卡池、歌曲配置、模拟日志
+- 适合一般用户和交互式操作
+
+**CLI 模式（自动化）**：
+```bash
+# 传入参数时自动切换为 CLI 模式
+DeckMinerLite.exe --config config/member-example.yaml
+DeckMinerLite.exe --test-yaml
+```
+
+#### Linux 版本（纯 CLI）
+
+Linux 版本仅提供命令行界面，采用 NativeAOT 优化：
+```bash
+chmod +x DeckMinerLite
+./DeckMinerLite --config config/member-example.yaml
+```
 
 ---
 
-### ⚙ 配置说明
+## 🖥 GUI 功能说明（Windows 专属）
 
-目前仅能通过 `cardConfig.jsonc` 和 `task.jsonc` 进行配置，后续也许会增加命令行参数用于指定其他配置文件。  
+### 主窗口界面
+
+GUI 提供 4 个选项卡：
+
+#### 1️⃣ Configuration（配置）
+- 加载 YAML 配置文件（支持 `config/*.yaml`）
+- 显示基本设置：成员名称、赛季模式、LGP 模式
+- 显示卡池大小
+- 列出所有歌曲配置（歌曲 ID、难度、熟练度）
+
+#### 2️⃣ Simulation（模拟）
+- 开始/停止模拟按钮
+- 进度条显示模拟进度
+- 实时日志输出（与 CLI 相同格式）
+- 清除日志按钮
+
+#### 3️⃣ Results（结果）
+- 预留区域，未来将显示模拟结果统计
+
+#### 4️⃣ About（关于）
+- 版本信息
+- 功能说明
+- CLI 模式提示
+
+### 快速操作
+
+- **加载配置**：点击「Load Config」选择 YAML 文件
+- **重新加载**：点击「Reload」刷新配置
+- **开始模拟**：加载配置后，「Start Simulation」按钮会启用
+- **打开输出文件夹**：点击「Open Output Folder」快速打开结果目录
+
+---
+
+## ⚙ 配置说明
+
+### 📋 YAML 配置（推荐）
+
+支持使用 YAML 配置文件，与 Python 版完全兼容。详细说明请参考繁体中文版 README。
+
+---
+
+### 📄 JSONC 配置（旧版）
+
+目前仅能通过 `cardConfig.jsonc` 和 `task.jsonc` 进行配置。
 
 模拟器支持读取带注释的 Json，但是**注释内容需要以 `//` 开头**，而不是 Python 注释的 `#`。
 
 * **卡牌等级配置**
-
   * 文件: `cardConfig.jsonc`
   * 功能与 Python 版的 `CardLevelConfig.py` 一致
-  * 与 Python 版不同，练度中的卡牌 ID 需要带引号，例如 `"1021701": [140, 14, 11]`。 
+  * 与 Python 版不同，练度中的卡牌 ID 需要带引号，例如 `"1021701": [140, 14, 11]`。
+
 * **卡池配置**
   * 文件: `task.jsonc`
   * 字段: `CardPool`
@@ -40,6 +104,7 @@
   * 单个任务的填写规则及用途与 Python 版基本一致，填写多个任务则会顺序执行。
   * 目前无法配置季度倍率，默认取满级的 6.6，如需重算 Pt 请使用 Python 版中的 `log_tool.py`。
   * 卡组的技能约束 `MustSkills` 需要填写技能类型的编号，具体参考下表。
+
 #### 🎯 技能类型对照表
 
 | 编号  | 枚举名                        | 说明 |
@@ -55,9 +120,87 @@
 
 ---
 
-
 ## ⚠ 与 Python 版的主要差异
 
-* 未实现花火吟的延后 Miss (影响仰卧起坐精度)。  
-* 无法配置季度等级的倍率。
-* 剩下忘了
+### ✅ 已实现
+- ✅ YAML 配置完全兼容
+- ✅ 禁卡功能（三级合并）
+- ✅ LGP 模式 / 日常模式切换
+- ✅ PT 动态计算（Fan Level + Limitbreak）
+- ✅ 输出目录隔离
+- ✅ 卡牌练度自定义
+- ✅ **WPF 图形化界面（Windows）**
+- ✅ **GUI/CLI 双模式自动切换**
+
+### ⚠ 未实现
+- ❌ 花火吟的延后 Miss（影响仰卧起坐精度）
+- ❌ 多曲优化功能（请使用 Python 版 `multi_optimizer_2.py`）
+- ❌ PT 重算工具（请使用 Python 版 `log_tool.py`）
+- ⏳ GUI 模拟执行集成（目前为占位实现）
+
+---
+
+## 📊 性能比较
+
+| 项目 | C# (DeckMinerLite) | Python (MainBatch.py) |
+|------|--------------------|-----------------------|
+| 单曲模拟速度 | **极快** | 较慢 |
+| 内存使用 | 低 | 中等 |
+| 多曲优化 | ❌ | ✅ |
+| YAML 配置 | ✅ | ✅ |
+| **图形化界面** | **✅ (Windows)** | ❌ |
+| 跨平台支持 | Windows (GUI+CLI) / Linux (CLI) | 全平台 CLI |
+
+---
+
+## 🛠 开发信息
+
+- **语言**：C# (.NET 10)
+- **构建架构**：
+  - Windows: `net10.0-windows` (WPF GUI, 无 AOT)
+  - Linux: `net10.0` (纯 CLI, NativeAOT)
+- **GUI 框架**：WPF (Windows Presentation Foundation)
+- **配置格式**：YAML（推荐）或 JSONC
+- **依赖包**：
+  - YamlDotNet 16.2.0（YAML 解析）
+  - TqdmSharp 0.4.3（进度条）
+  - CommunityToolkit.Mvvm 8.3.2（MVVM 支持，仅 Windows）
+
+### 编译项目
+
+```bash
+cd DeckMinerLite
+
+# 编译 Windows 版本（含 GUI）
+dotnet build --framework net10.0-windows
+
+# 编译 Linux 版本（纯 CLI）
+dotnet build --framework net10.0
+
+# 编译所有目标
+dotnet build
+```
+
+### 运行开发版本
+
+```bash
+# Windows: CLI 模式（需传入参数）
+dotnet run --framework net10.0-windows -- --config ../config/member-test.yaml
+
+# Linux: CLI 模式
+dotnet run --framework net10.0 -- --config ../config/member-test.yaml
+
+# 测试 YAML 配置
+dotnet run -- --test-yaml --config ../config/member-test.yaml
+```
+
+### 发布包
+
+```bash
+# 使用自动化脚本（推荐）
+publish.bat
+
+# 手动发布
+dotnet publish -c Release --framework net10.0-windows -r win-x64 --self-contained
+dotnet publish -c Release --framework net10.0 -r linux-x64 --self-contained
+```

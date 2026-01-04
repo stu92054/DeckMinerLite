@@ -1,3 +1,5 @@
+using YamlDotNet.Core;
+using YamlDotNet.Core.Events;
 using YamlDotNet.Serialization;
 
 namespace DeckMiner.Config
@@ -25,6 +27,7 @@ namespace DeckMiner.Config
         /// Debug 卡组（可选，用于单卡组测试）
         /// </summary>
         [YamlMember(Alias = "debug_deck_cards")]
+        [YamlConverter(typeof(FlowIntListYamlConverter))]
         public List<int>? DebugDeckCards { get; set; }
 
         /// <summary>
@@ -52,22 +55,22 @@ namespace DeckMiner.Config
 
         /// <summary>
         /// LGP 模式（是否允许同角色双卡）
-        /// - false: 日常模式，每个角色最多1张卡
-        /// - true: LGP 大赛模式，允许0-3个角色使用双卡（默认）
+        /// - false: 日常模式，每个角色最多1張卡
+        /// - true: LGP 大賽模式，允許0-3個角色使用雙卡（預設）
         /// </summary>
         [YamlMember(Alias = "lgp_mode")]
         public bool LgpMode { get; set; } = true;
 
         /// <summary>
-        /// 粉丝等级配置
-        /// 格式: { 角色ID: 粉丝等级 }
+        /// 粉絲等級配置
+        /// 格式: { 角色ID: 粉絲等級 }
         /// 例如: { 1031: 10, 1032: 8 }
         /// </summary>
         [YamlMember(Alias = "fan_levels")]
         public Dictionary<int, int> FanLevels { get; set; } = new();
 
         /// <summary>
-        /// 特定卡牌练度覆盖（如果有未满练的卡）
+        /// 特定卡牌練度覆蓋（如果有未滿練的卡）
         /// 格式: { 卡牌ID: [level, center_skill_level, skill_level] }
         /// 例如: { 1021701: [140, 11, 11] }
         /// </summary>
@@ -81,26 +84,26 @@ namespace DeckMiner.Config
         public int BatchSize { get; set; } = 1000000;
 
         /// <summary>
-        /// 进程数量（null = 使用所有 CPU 核心）
+        /// 進程數量（null = 使用所有 CPU 核心）
         /// </summary>
         [YamlMember(Alias = "num_processes")]
         public int? NumProcesses { get; set; }
 
         /// <summary>
-        /// 缓存配置
+        /// 緩存配置
         /// </summary>
         [YamlMember(Alias = "cache")]
         public CacheConfig Cache { get; set; } = new();
 
         /// <summary>
-        /// 优化器配置（用于 multi_optimizer_2.py）
+        /// 優化器配置（用於 multi_optimizer_2.py）
         /// </summary>
         [YamlMember(Alias = "optimizer")]
         public OptimizerConfig Optimizer { get; set; } = new();
     }
 
     /// <summary>
-    /// 输出目录配置
+    /// 輸出目錄配置
     /// </summary>
     public class OutputConfig
     {
@@ -108,7 +111,7 @@ namespace DeckMiner.Config
         public string BaseDir { get; set; } = "output";
 
         /// <summary>
-        /// 开启隔离，每次运行生成独立目录
+        /// 開啟隔離，每次運行生成獨立目錄
         /// </summary>
         [YamlMember(Alias = "enable_isolation")]
         public bool EnableIsolation { get; set; } = true;
@@ -122,77 +125,81 @@ namespace DeckMiner.Config
         /// <summary>
         /// 歌曲 ID（例如: "405117"）
         /// </summary>
-        [YamlMember(Alias = "music_id")]
+        [YamlMember(Alias = "music_id", ScalarStyle = ScalarStyle.DoubleQuoted)]
         public string MusicId { get; set; }
 
         /// <summary>
-        /// 难度
+        /// 難度
         /// - "01": Normal
         /// - "02": Hard
         /// - "03": Expert
         /// - "04": Master
         /// </summary>
-        [YamlMember(Alias = "difficulty")]
+        [YamlMember(Alias = "difficulty", ScalarStyle = ScalarStyle.DoubleQuoted)]
         public string Difficulty { get; set; }
 
         /// <summary>
-        /// 熟练度等级（通常为 50）
+        /// 熟練度等級（通常為 50）
         /// </summary>
         [YamlMember(Alias = "mastery_level")]
         public int MasteryLevel { get; set; } = 50;
 
         /// <summary>
-        /// 必须包含的所有卡牌（全部都要在卡组中）
+        /// 必須包含的所有卡牌（全部都要在卡組中）
         /// </summary>
         [YamlMember(Alias = "mustcards_all")]
+        [YamlConverter(typeof(FlowIntListYamlConverter))]
         public List<int> MustcardsAll { get; set; } = new();
 
         /// <summary>
-        /// 必须包含的任意卡牌（至少一张在卡组中）
+        /// 必須包含的任意卡牌（至少一張在卡組中）
         /// </summary>
         [YamlMember(Alias = "mustcards_any")]
+        [YamlConverter(typeof(FlowIntListYamlConverter))]
         public List<int> MustcardsAny { get; set; } = new();
 
         /// <summary>
-        /// 必须包含的技能类型（卡组必须包含所有指定的技能类型）
-        /// 例如: [2, 3, 5, 7, 8] = [分卡, 电, 洗牌, 分加成, 电加成]
-        /// 技能类型定义：
+        /// 必須包含的技能類型（卡組必須包含所有指定的技能類型）
+        /// 例如: [2, 3, 5, 7, 8] = [分卡, 電, 洗牌, 分加成, 電加成]
+        /// 技能類型定義：
         /// - 2: ScoreGain（分卡）
-        /// - 3: VoltagePointChange（电）
+        /// - 3: VoltagePointChange（電）
         /// - 5: DeckReset（洗牌/DR）
         /// - 7: NextAPGainRateChange（分加成）
-        /// - 8: NextVoltageGainRateChange（电加成）
+        /// - 8: NextVoltageGainRateChange（電加成）
         /// </summary>
         [YamlMember(Alias = "mustskills")]
+        [YamlConverter(typeof(FlowIntListYamlConverter))]
         public List<int> MustSkills { get; set; } = new();
 
         /// <summary>
-        /// 禁止使用的卡牌（模拟时不会加入卡组）
+        /// 禁止使用的卡牌（模擬時不會加入卡組）
         /// 例如: [1011501, 1052506]
         /// </summary>
         [YamlMember(Alias = "banned_cards")]
+        [YamlConverter(typeof(FlowIntListYamlConverter))]
         public List<int> BannedCards { get; set; } = new();
 
         /// <summary>
-        /// 覆盖中心角色 ID（null = 使用歌曲默认）
+        /// 覆蓋中心角色 ID（null = 使用歌曲默認）
         /// </summary>
         [YamlMember(Alias = "center_override")]
         public int? CenterOverride { get; set; }
 
         /// <summary>
-        /// 覆盖歌曲颜色
+        /// 覆蓋歌曲顏色
         /// - 1: Smile
         /// - 2: Pure
         /// - 3: Cool
-        /// - null: 使用歌曲默认
+        /// - null: 使用歌曲默認
         /// </summary>
         [YamlMember(Alias = "color_override")]
         public int? ColorOverride { get; set; }
 
         /// <summary>
-        /// 队长指定（"0" = 自动选择）
+        /// 隊長指定（"0" = 自動選擇）
         /// </summary>
-        [YamlMember(Alias = "leader_designation")]
+        [YamlMember(Alias = "leader_designation", ScalarStyle = ScalarStyle.DoubleQuoted)]
         public string LeaderDesignation { get; set; } = "0";
 
         /// <summary>
@@ -201,19 +208,21 @@ namespace DeckMiner.Config
         /// 例如: [1031533, 1032530, 1033528]
         /// </summary>
         [YamlMember(Alias = "secondary_center")]
+        [YamlConverter(typeof(FlowIntListYamlConverter))]
         public List<int> SecondaryCenter { get; set; } = new();
 
         /// <summary>
-        /// 朋友卡片池（该首歌可用的朋友卡片 ID 列表）
-        /// 朋友卡片提供：基础数值（受队长被动影响）+ Center Skill
-        /// 朋友卡片不提供：一般技能 + 被动技能
+        /// 朋友卡片池（該首歌可用的朋友卡片 ID 列表）
+        /// 朋友卡片提供：基礎數值（受隊長被動影響）+ Center Skill
+        /// 朋友卡片不提供：一般技能 + 被動技能
         /// </summary>
         [YamlMember(Alias = "friend_card_pool")]
+        [YamlConverter(typeof(FlowIntListYamlConverter))]
         public List<int> FriendCardPool { get; set; } = new();
     }
 
     /// <summary>
-    /// 缓存配置
+    /// 緩存配置
     /// </summary>
     public class CacheConfig
     {
@@ -228,18 +237,18 @@ namespace DeckMiner.Config
     }
 
     /// <summary>
-    /// 优化器配置（用于 multi_optimizer_2.py）
+    /// 優化器配置（用於 multi_optimizer_2.py）
     /// </summary>
     public class OptimizerConfig
     {
         /// <summary>
-        /// 每首歌保留得分排名前 N 名的卡组
+        /// 每首歌保留得分排名前 N 名的卡組
         /// </summary>
         [YamlMember(Alias = "top_n")]
         public int TopN { get; set; } = 50000;
 
         /// <summary>
-        /// 在输出中显示卡牌名称
+        /// 在輸出中顯示卡牌名稱
         /// </summary>
         [YamlMember(Alias = "show_card_names")]
         public bool ShowCardNames { get; set; } = true;
@@ -249,31 +258,33 @@ namespace DeckMiner.Config
         /// 例如: [1011501, 1052506]
         /// </summary>
         [YamlMember(Alias = "forbidden_cards")]
+        [YamlConverter(typeof(FlowIntListYamlConverter))]
         public List<int> ForbiddenCards { get; set; } = new();
 
         /// <summary>
-        /// 多曲优化器歌曲配置（可选，优先级高于上方的 songs 配置）
-        /// 如果配置了此区块，优化器将使用这里的歌曲列表和禁卡设定
+        /// 多曲優化器歌曲配置（可選，優先級高於上方的 songs 配置）
+        /// 如果配置了此區塊，優化器將使用這裡的歌曲列表和禁卡設定
         /// </summary>
         [YamlMember(Alias = "songs")]
         public List<OptimizerSongConfig>? Songs { get; set; }
     }
 
     /// <summary>
-    /// 优化器歌曲配置
+    /// 優化器歌曲配置
     /// </summary>
     public class OptimizerSongConfig
     {
-        [YamlMember(Alias = "music_id")]
+        [YamlMember(Alias = "music_id", ScalarStyle = ScalarStyle.DoubleQuoted)]
         public string MusicId { get; set; }
 
-        [YamlMember(Alias = "difficulty")]
+        [YamlMember(Alias = "difficulty", ScalarStyle = ScalarStyle.DoubleQuoted)]
         public string Difficulty { get; set; }
 
         /// <summary>
-        /// 该首歌的禁卡（与全局禁卡合并使用）
+        /// 該首歌的禁卡（與全局禁卡合併使用）
         /// </summary>
         [YamlMember(Alias = "banned_cards")]
+        [YamlConverter(typeof(FlowIntListYamlConverter))]
         public List<int> BannedCards { get; set; } = new();
     }
 }

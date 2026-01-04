@@ -1,0 +1,295 @@
+<Window x:Class="DeckMiner.Gui.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="SukuShow Deck Miner Lite - GUI"
+        Height="700"
+        Width="1000"
+        WindowStartupLocation="CenterScreen"
+        MinHeight="600"
+        MinWidth="800">
+
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <StackPanel Grid.Row="0" Margin="0,0,0,15">
+            <TextBlock Text="SukuShow Deck Miner Lite"
+                       FontSize="28"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center"/>
+            <TextBlock x:Name="StatusText"
+                       Text="Ready to load configuration"
+                       FontSize="14"
+                       HorizontalAlignment="Center"
+                       Margin="0,8,0,0"
+                       Foreground="#666"/>
+        </StackPanel>
+
+        <!-- Main Content -->
+        <TabControl Grid.Row="1" Margin="0,0,0,15">
+            <!-- Configuration Tab -->
+            <TabItem Header="Configuration">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="10">
+                    <StackPanel>
+                        <!-- Config File Loading -->
+                        <GroupBox Header="Configuration File" Margin="0,0,0,10">
+                            <StackPanel Margin="10">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBox x:Name="ConfigPathTextBox"
+                                             Grid.Column="0"
+                                             IsReadOnly="True"
+                                             Text="No configuration loaded"
+                                             VerticalAlignment="Center"/>
+
+                                    <Button x:Name="LoadConfigButton"
+                                            Grid.Column="1"
+                                            Content="Load Config"
+                                            Click="LoadConfigButton_Click"/>
+
+                                    <Button x:Name="SaveConfigButton"
+                                            Grid.Column="2"
+                                            Content="Save"
+                                            Click="SaveConfigButton_Click"
+                                            IsEnabled="False"/>
+
+                                    <Button x:Name="ReloadConfigButton"
+                                            Grid.Column="3"
+                                            Content="Reload"
+                                            Click="ReloadConfigButton_Click"
+                                            IsEnabled="False"/>
+                                </Grid>
+                            </StackPanel>
+                        </GroupBox>
+
+                        <!-- Basic Settings -->
+                        <GroupBox Header="Basic Settings" Margin="0,0,0,10">
+                            <Grid Margin="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Grid.Row="0" Grid.Column="0" Text="Member Name:" VerticalAlignment="Center" Margin="5"/>
+                                <TextBox x:Name="MemberNameTextBox" Grid.Row="0" Grid.Column="1" IsReadOnly="True"/>
+
+                                <TextBlock Grid.Row="1" Grid.Column="0" Text="Season Mode:" VerticalAlignment="Center" Margin="5"/>
+                                <TextBox x:Name="SeasonModeTextBox" Grid.Row="1" Grid.Column="1" IsReadOnly="True"/>
+
+                                <TextBlock Grid.Row="2" Grid.Column="0" Text="LGP Mode:" VerticalAlignment="Center" Margin="5"/>
+                                <TextBox x:Name="LgpModeTextBox" Grid.Row="2" Grid.Column="1" IsReadOnly="True"/>
+
+                                <TextBlock Grid.Row="3" Grid.Column="0" Text="Card Pool Size:" VerticalAlignment="Center" Margin="5"/>
+                                <Grid Grid.Row="3" Grid.Column="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBox x:Name="CardPoolSizeTextBox" Grid.Column="0" IsReadOnly="True"/>
+                                    <Button x:Name="EditCardPoolButton" Grid.Column="1" Content="Edit" Click="EditCardPoolButton_Click" IsEnabled="False" Width="60" Margin="5,0,0,0"/>
+                                </Grid>
+                            </Grid>
+                        </GroupBox>
+
+                        <!-- Songs Configuration -->
+                        <GroupBox Header="Songs" Margin="0,0,0,10">
+                            <StackPanel Margin="10">
+                                <TextBlock x:Name="SongsSummary" Text="No songs configured" Margin="0,0,0,5"/>
+                                <ListBox x:Name="SongsListBox"
+                                         Height="150"
+                                         SelectionMode="Single">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock>
+                                                <Run Text="Song ID: "/>
+                                                <Run Text="{Binding MusicId}" FontWeight="Bold"/>
+                                                <Run Text=" | Difficulty: "/>
+                                                <Run Text="{Binding Difficulty}"/>
+                                                <Run Text=" | Mastery: "/>
+                                                <Run Text="{Binding MasteryLevel}"/>
+                                            </TextBlock>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </StackPanel>
+                        </GroupBox>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+
+            <!-- Simulation Tab -->
+            <TabItem Header="Simulation">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Simulation Controls -->
+                    <StackPanel Grid.Row="0" Margin="0,0,0,10">
+                        <GroupBox Header="Simulation Control">
+                            <StackPanel Margin="10">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5">
+                                    <Button x:Name="StartSimulationButton"
+                                            Content="Start Simulation"
+                                            Width="150"
+                                            Click="StartSimulationButton_Click"
+                                            IsEnabled="False"/>
+
+                                    <Button x:Name="StopSimulationButton"
+                                            Content="Stop"
+                                            Width="100"
+                                            Click="StopSimulationButton_Click"
+                                            IsEnabled="False"/>
+                                </StackPanel>
+
+                                <ProgressBar x:Name="SimulationProgressBar"
+                                             Height="25"
+                                             Margin="0,5"
+                                             Minimum="0"
+                                             Maximum="100"
+                                             Value="0"/>
+
+                                <TextBlock x:Name="SimulationStatusText"
+                                           Text="Not started"
+                                           HorizontalAlignment="Center"
+                                           Margin="0,5"/>
+                            </StackPanel>
+                        </GroupBox>
+                    </StackPanel>
+
+                    <!-- Log Output -->
+                    <GroupBox Grid.Row="1" Header="Simulation Log" Margin="0,5,0,0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto" x:Name="LogScrollViewer">
+                                <TextBox x:Name="LogTextBox"
+                                         IsReadOnly="True"
+                                         TextWrapping="Wrap"
+                                         FontFamily="Consolas"
+                                         FontSize="11"
+                                         BorderThickness="0"
+                                         Background="Transparent"
+                                         VerticalScrollBarVisibility="Disabled"/>
+                            </ScrollViewer>
+
+                            <Button Grid.Row="1"
+                                    Content="Clear Log"
+                                    HorizontalAlignment="Right"
+                                    Click="ClearLogButton_Click"
+                                    Margin="0,5,0,0"/>
+                        </Grid>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+
+            <!-- Results Tab -->
+            <TabItem Header="Results">
+                <Grid Margin="10">
+                    <TextBlock x:Name="ResultsPlaceholder"
+                               Text="Results will be displayed here after simulation completes"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               FontStyle="Italic"
+                               FontSize="14"
+                               Foreground="Gray"/>
+                </Grid>
+            </TabItem>
+
+            <!-- About Tab -->
+            <TabItem Header="About">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="20">
+                    <StackPanel>
+                        <TextBlock Text="SukuShow Deck Miner Lite"
+                                   FontSize="24"
+                                   FontWeight="Bold"
+                                   HorizontalAlignment="Center"
+                                   Margin="0,0,0,10"/>
+
+                        <TextBlock TextWrapping="Wrap" Margin="0,10">
+                            <Run Text="Version: " FontWeight="Bold"/>
+                            <Run Text="1.3 (GUI Edition)"/>
+                        </TextBlock>
+
+                        <TextBlock TextWrapping="Wrap" Margin="0,10">
+                            <Run Text="Purpose: " FontWeight="Bold"/>
+                            <LineBreak/>
+                            <Run Text="Deck optimization tool for Link! Like! LoveLive! School Idol Show mode."/>
+                        </TextBlock>
+
+                        <TextBlock TextWrapping="Wrap" Margin="0,10">
+                            <Run Text="Features: " FontWeight="Bold"/>
+                            <LineBreak/>
+                            <Run Text="- YAML configuration management"/>
+                            <LineBreak/>
+                            <Run Text="- Multi-song deck simulation"/>
+                            <LineBreak/>
+                            <Run Text="- LGP mode support (dual-card same character)"/>
+                            <LineBreak/>
+                            <Run Text="- Per-song banned cards"/>
+                            <LineBreak/>
+                            <Run Text="- Friend card pool support"/>
+                        </TextBlock>
+
+                        <TextBlock TextWrapping="Wrap" Margin="0,10">
+                            <Run Text="CLI Mode: " FontWeight="Bold"/>
+                            <LineBreak/>
+                            <Run Text="Run with --help parameter to see CLI options"/>
+                        </TextBlock>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+        </TabControl>
+
+        <!-- Status Bar -->
+        <Border Grid.Row="2"
+                BorderBrush="LightGray"
+                BorderThickness="0,1,0,0"
+                Padding="10,8">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock x:Name="FooterStatusText"
+                           Grid.Column="0"
+                           Text="Ready"
+                           VerticalAlignment="Center"
+                           Foreground="#666"/>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <Button Content="Open Output Folder"
+                            Click="OpenOutputFolderButton_Click"
+                            Width="140"/>
+                    <Button Content="Exit"
+                            Click="ExitButton_Click"
+                            Width="80"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
