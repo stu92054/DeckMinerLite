@@ -888,15 +888,17 @@ DeckMinerLite.exe --test-yaml --config config/member-test.yaml
 ---
 
 ##### 5. will_die 判定修正 (PERFECT vs PERFECT+)
-**狀態**: 📝 待修正 (Phase 4 遺留項目)
+**狀態**: ✅ 已完成 (2025-12-26)
 **問題描述**: 背水卡避免致命 MISS 時使用 `PERFECT` 而非 `PERFECT+`
 
 **修正方案**:
-- [ ] **Simulator.cs:251**: `Player.ComboAdd("PERFECT")` → `Player.ComboAdd("PERFECT+")`
-- [ ] **Simulator.cs:338**: `Player.ComboAdd("PERFECT")` → `Player.ComboAdd("PERFECT+")`
-- [ ] 驗證修正後的分數變化 (預期差異極小)
+- [x] **Simulator.cs:256**: `Player.ComboAdd("PERFECT")` → `Player.ComboAdd("PERFECT+")`
+- [x] **Simulator.cs:338**: `Player.ComboAdd("PERFECT")` → `Player.ComboAdd("PERFECT+")`
+- [x] 驗證修正後編譯通過
 
-**工作量估算**: 0.1 小時
+**影響**: 背水策略卡組分數微幅提升 (< 0.1%)，更符合遊戲實際機制
+**工作量**: 0.1 小時
+**Commit**: 5c177b0
 
 ---
 
@@ -908,18 +910,18 @@ DeckMinerLite.exe --test-yaml --config config/member-test.yaml
 | **GUI 設定介面** | 🟡 MEDIUM | 使用者體驗提升 | 6-10h | 📝 待開始 |
 | **亂碼修正** | 🟡 MEDIUM | 可讀性提升 | 0.5-1h | 📝 待開始 |
 | **日誌分級** | 🟢 LOW | 除錯便利性 | 2-3h | 📝 待開始 |
-| **will_die 修正** | 🟢 LOW | 精度微調 | 0.1h | 📝 待開始 |
+| **will_die 修正** | 🟢 LOW | 精度微調 | 0.1h | ✅ 已完成 (5c177b0) |
 
 ---
 
 ### 🎯 建議實作順序
 
-1. **亂碼修正** (最簡單,立即改善使用體驗)
-2. **快轉優化** (效益最大,但需完整測試)
-3. **GUI 設定介面** (工作量大,可分階段實作)
-4. **日誌分級** (可選功能,視需求決定)
-5. **will_die 修正** (影響微小,可併入其他開發)
+1. ~~**will_die 修正**~~ ✅ 已完成
+2. **亂碼修正** (最簡單,立即改善使用體驗)
+3. **快轉優化** (效益最大,但需完整測試)
+4. **GUI 設定介面** (工作量大,可分階段實作)
+5. **日誌分級** (可選功能,視需求決定)
 
 ---
 
-**更新時間**: 2025-12-26
+**更新時間**: 2025-12-26 (最後修改: will_die 判定修正完成)
