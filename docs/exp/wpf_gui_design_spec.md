@@ -936,12 +936,15 @@ dotnet publish -c Release -r linux-x64 --self-contained -f net10.0
 
 ### 待實作階段
 
-#### 🔄 Phase 3: 配置編輯功能 (進行中)
+#### ✅ Phase 3: 配置編輯功能 (已完成)
+- ✅ 新建配置檔功能 (NewConfigDialog)
+- ✅ Basic Settings 可編輯 (LGP Mode)
 - ✅ 卡池編輯器 (新增/移除卡片)
 - ✅ Card Level 編輯器 (整合於卡池管理)
 - ✅ YAML 儲存功能
-- ⚪ 歌曲配置編輯
-- ⚪ Fan Level 編輯器
+- ✅ 歌曲配置編輯 (SongConfigWindow)
+- ✅ Fan Level 編輯器 (FanLevelsWindow)
+- ✅ Friend Card 選擇器 (FriendCardSelectorWindow)
 
 #### ⏳ Phase 4: 模擬執行整合
 - SimulationService 非同步執行
@@ -957,13 +960,106 @@ dotnet publish -c Release -r linux-x64 --self-contained -f net10.0
 
 ### 當前狀態
 
-**狀態**: 🚀 Phase 3 進行中
-**完成度**: 50% (2.5/5 階段)
-**下一步**: 歌曲配置編輯與 Fan Level 編輯
+**狀態**: 🎉 Phase 3 已完成
+**完成度**: 60% (3/5 階段)
+**下一步**: Phase 4 - 模擬執行整合
+
+---
+
+## 10. Phase 3 完成內容詳細說明
+
+### 10.1 新建配置檔功能
+
+**檔案**: `NewConfigDialog.xaml`, `NewConfigDialog.xaml.cs`
+
+**功能**:
+- 輸入成員名稱，自動生成 `member-<name>.yaml` 格式的檔案名
+- 即時更新儲存路徑顯示
+- 預設配置包含所有必要欄位（fan_levels 預設為 0）
+- 自動過濾不合法的檔案名稱字元
+
+**使用方式**:
+1. 點擊主視窗 "New" 按鈕
+2. 輸入成員名稱（例如：Alice）
+3. 路徑自動更新為 `config/member-Alice.yaml`
+4. 點擊"建立"完成
+
+### 10.2 Basic Settings 編輯
+
+**可編輯項目**:
+- **LGP Mode**: 下拉選單，可選擇 True (允許雙卡) 或 False (單卡模式)
+
+**唯讀項目**:
+- **Member Name**: 從配置檔案名稱自動提取
+- **Season Mode**: 固定為 sukushow
+
+**修改立即生效**: 變更後自動更新配置物件，按 Save 儲存
+
+### 10.3 Fan Levels 編輯器
+
+**檔案**: `FanLevelsWindow.xaml`, `FanLevelsWindow.xaml.cs`
+
+**功能**:
+- 顯示所有 12 個角色的粉絲等級輸入框
+- 使用 GameConstants 中的角色全名顯示
+- 預設值為 10（滿等）
+- 驗證範圍：0-10
+- 快速操作："全部設為 10" 按鈕
+
+**格式**:
+```
+1011  大賀美 沙知      [10]
+1021  乙宗 梢          [10]
+1022  夕霧 綴理        [10]
+...
+```
+
+### 10.4 歌曲配置編輯器改進
+
+**檔案**: `SongConfigWindow.xaml`, `SongConfigWindow.xaml.cs`
+
+**完成的改進**:
+- ✅ 修正 YAML 格式問題（card_ids 縮排從 2 空格改為 1 空格）
+- ✅ 修正 ComboBox 共享實例問題（每個 ComboBox 獨立 UI 元素）
+- ✅ 修正 CheckBox 對齊問題（VerticalAlignment="Center"）
+- ✅ 卡片顯示格式統一為 `{cardId} [{rarityName}] {charName} {cardName}`
+- ✅ 必帶卡片與禁用卡片支援雙擊移除
+
+### 10.5 Friend Card 選擇器
+
+**檔案**: `FriendCardSelectorWindow.xaml`, `FriendCardSelectorWindow.xaml.cs`
+
+**功能**:
+- 完整的卡片資料庫顯示（ID、稀有度、角色、卡片名稱）
+- 搜尋功能（支援 ID、角色名、卡片名、稀有度）
+- 雙擊上方列表新增/移除卡片
+- 雙擊下方已選列表移除卡片
+- "全部清空"按鈕（含確認對話框）
+- 卡片數量即時顯示
 
 ---
 
 **最後更新**: 2026-01-05
 **Phase 2 完成日期**: 2025-12-26
-**Phase 3 部分完成**: 2026-01-05 (卡池管理、練度編輯、儲存功能)
-**累計開發時間**: ~8 小時
+**Phase 3 完成日期**: 2026-01-05
+**累計開發時間**: ~12 小時
+
+### 已實作的視窗列表
+
+1. ✅ **MainWindow** - 主視窗 (4 分頁)
+2. ✅ **NewConfigDialog** - 新建配置檔對話框
+3. ✅ **CardPoolWindow** - 卡池管理視窗
+4. ✅ **SongConfigWindow** - 歌曲配置編輯視窗
+5. ✅ **FanLevelsWindow** - 粉絲等級編輯視窗
+6. ✅ **FriendCardSelectorWindow** - 朋友卡選擇器
+
+### 已實作的核心功能
+
+- ✅ YAML 配置載入與儲存
+- ✅ 新建配置檔（含預設值）
+- ✅ 基本設定編輯（LGP Mode）
+- ✅ 完整的卡池管理（新增、移除、練度設定）
+- ✅ 完整的歌曲配置（3 首上限、各種約束條件）
+- ✅ 粉絲等級編輯（12 個角色）
+- ✅ 朋友卡池管理
+- ✅ 配置驗證與錯誤處理

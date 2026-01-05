@@ -372,7 +372,7 @@ card_levels:";
                         newLines.Add("card_ids:");
                         foreach (var id in _config.CardIds.OrderBy(x => x))
                         {
-                            newLines.Add($"  - {id}");
+                            newLines.Add($" - {id}");
                         }
                         continue;
                     }
