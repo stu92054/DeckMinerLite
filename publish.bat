@@ -69,6 +69,21 @@ copy "%WIN_PUBLISH_DIR%\task.jsonc" "%WIN_PACKAGE_DIR%\"
 copy "..\config\default.yaml" "%WIN_PACKAGE_DIR%\config\"
 copy "..\config\member-example.yaml" "%WIN_PACKAGE_DIR%\config\"
 copy "..\config\member-test.yaml" "%WIN_PACKAGE_DIR%\config\"
+
+echo.
+echo [5.1/8] Packaging Python optimizer with PyInstaller...
+echo [INFO] Checking if multi_optimizer_2.exe already exists...
+if exist "..\dist\multi_optimizer_2.exe" (
+    echo [INFO] Found pre-built multi_optimizer_2.exe, copying...
+    copy "..\dist\multi_optimizer_2.exe" "%WIN_PACKAGE_DIR%\"
+) else (
+    echo [WARN] multi_optimizer_2.exe not found!
+    echo [HINT] Please run: cd .. ^&^& pyinstaller --onefile multi_optimizer_2.py
+    echo [HINT] Then re-run this publish script.
+    echo.
+    echo [SKIP] Continuing without Python optimizer...
+    echo [NOTE] GUI will still work but multi-song optimization will be unavailable
+)
 echo Done
 
 echo.

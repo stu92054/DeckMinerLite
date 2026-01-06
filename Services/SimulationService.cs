@@ -251,19 +251,42 @@ namespace DeckMiner.Services
         }
 
         /// <summary>
-        /// 執行多曲優化器 (Python 腳本，階段 2)
+        /// 執行多曲優化器 (打包的 exe 或 Python 腳本，階段 2)
         /// </summary>
         private async Task<bool> ExecuteOptimizerAsync(MemberConfig config, string configPath, CancellationToken cancellationToken)
         {
-            OnLogOutput("[INFO] Starting multi-song optimizer (multi_optimizer_2.py)");
+            OnLogOutput("[INFO] Starting multi-song optimizer");
 
-            // 找到專案根目錄 (DeckMinerLite.exe 所在目錄的上一層)
-            string projectRoot = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, ".."));
-            string optimizerScript = Path.Combine(projectRoot, "multi_optimizer_2.py");
+            // 優先使用打包的 exe，否則回退到 Python 腳本
+            string baseDir = AppContext.BaseDirectory;
+            string optimizerExe = Path.Combine(baseDir, "multi_optimizer_2.exe");
+            string optimizerPy = Path.Combine(Path.GetFullPath(Path.Combine(baseDir, "..")), "multi_optimizer_2.py");
 
-            if (!File.Exists(optimizerScript))
+            string fileName;
+            string arguments;
+            string workingDir;
+
+            if (File.Exists(optimizerExe))
             {
-                OnLogOutput($"[FAIL] Optimizer script not found: {optimizerScript}");
+                // 使用打包的 exe
+                OnLogOutput("[INFO] Using packaged optimizer: multi_optimizer_2.exe");
+                fileName = optimizerExe;
+                arguments = "";
+                workingDir = baseDir;
+            }
+            else if (File.Exists(optimizerPy))
+            {
+                // 回退到 Python 腳本（開發環境）
+                OnLogOutput("[INFO] Using Python script: multi_optimizer_2.py (development mode)");
+                fileName = "python";
+                arguments = $"\"{optimizerPy}\"";
+                workingDir = Path.GetDirectoryName(optimizerPy);
+            }
+            else
+            {
+                OnLogOutput($"[FAIL] Optimizer not found!");
+                OnLogOutput($"[FAIL] Checked: {optimizerExe}");
+                OnLogOutput($"[FAIL] Checked: {optimizerPy}");
                 return false;
             }
 
@@ -271,9 +294,9 @@ namespace DeckMiner.Services
             {
                 var processStartInfo = new ProcessStartInfo
                 {
-                    FileName = "python",
-                    Arguments = $"\"{optimizerScript}\"",
-                    WorkingDirectory = projectRoot,
+                    FileName = fileName,
+                    Arguments = arguments,
+                    WorkingDirectory = workingDir,
                     UseShellExecute = false,
                     RedirectStandardOutput = true,
                     RedirectStandardError = true,

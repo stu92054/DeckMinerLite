@@ -214,7 +214,7 @@
                         <GroupBox Header="執行模式" Margin="0,0,0,10">
                             <StackPanel Margin="10">
                                 <RadioButton x:Name="FullOptimizationModeRadio"
-                                             Content="☑ 執行完整優化流程（推薦）"
+                                             Content="完整優化流程（推薦）"
                                              IsChecked="True"
                                              Margin="0,0,0,5"
                                              Checked="ExecutionModeChanged"/>
@@ -228,7 +228,7 @@
                                            Foreground="Gray"/>
 
                                 <RadioButton x:Name="SimulationOnlyModeRadio"
-                                             Content="☐ 僅執行模擬（進階）"
+                                             Content="僅執行模擬（進階）"
                                              Margin="0,5,0,0"
                                              Checked="ExecutionModeChanged"/>
                                 <TextBlock Text="  └─ 只模擬歌曲，不進行多曲優化"
