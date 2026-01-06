@@ -259,6 +259,10 @@ optimizer:
             EditCardPoolButton.IsEnabled = true;
             EditSongsButton.IsEnabled = true;
             EditFanLevelsButton.IsEnabled = true;
+            EditGlobalFriendCardsButton.IsEnabled = true;
+            EditOptimizerButton.IsEnabled = true;
+            UpdateGlobalFriendCardsSummary();
+            UpdateOptimizerSummary();
             StatusText.Text = $"Configuration loaded: {_configManager.MemberName}";
             FooterStatusText.Text = $"Loaded: {Path.GetFileName(configPath)} | {config.Songs?.Count ?? 0} songs | {config.CardIds?.Count ?? 0} cards";
 
@@ -320,6 +324,34 @@ optimizer:
         }
     }
 
+    private void EditGlobalFriendCardsButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (_configManager == null) return;
+
+        var friendCardSelector = new FriendCardSelectorWindow(_configManager.Config.FriendCardIds);
+        friendCardSelector.Owner = this;
+
+        if (friendCardSelector.ShowDialog() == true)
+        {
+            // Update global friend card pool
+            _configManager.Config.FriendCardIds = friendCardSelector.SelectedCardIds;
+            UpdateGlobalFriendCardsSummary();
+            AppendLog($"[INFO] Updated global friend cards: {_configManager.Config.FriendCardIds.Count} cards selected");
+        }
+    }
+
+    private void UpdateGlobalFriendCardsSummary()
+    {
+        if (_configManager?.Config?.FriendCardIds != null && _configManager.Config.FriendCardIds.Count > 0)
+        {
+            GlobalFriendCardsSummary.Text = $"已選擇 {_configManager.Config.FriendCardIds.Count} 張朋友卡";
+        }
+        else
+        {
+            GlobalFriendCardsSummary.Text = "未選擇朋友卡";
+        }
+    }
+
     private void EditSongsButton_Click(object sender, RoutedEventArgs e)
     {
         if (_configManager == null) return;
@@ -349,6 +381,41 @@ optimizer:
 
             AppendLog($"[INFO] Updated song configuration: {config.Songs?.Count ?? 0} songs configured");
             FooterStatusText.Text = $"Loaded: {Path.GetFileName(_currentConfigPath)} | {config.Songs?.Count ?? 0} songs | {config.CardIds?.Count ?? 0} cards";
+        }
+    }
+
+    private void EditOptimizerButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (_configManager == null) return;
+
+        var optimizerWindow = new OptimizerConfigWindow(_configManager.Config);
+        optimizerWindow.Owner = this;
+
+        if (optimizerWindow.ShowDialog() == true)
+        {
+            // Config is updated inside OptimizerConfigWindow
+            UpdateOptimizerSummary();
+            AppendLog($"[INFO] Updated optimizer configuration");
+        }
+    }
+
+    private void UpdateOptimizerSummary()
+    {
+        if (_configManager?.Config?.Optimizer != null)
+        {
+            int forbiddenCount = _configManager.Config.Optimizer.ForbiddenCards?.Count ?? 0;
+            if (forbiddenCount > 0)
+            {
+                OptimizerSummary.Text = $"Top N: {_configManager.Config.Optimizer.TopN} | 全局禁卡: {forbiddenCount} 張";
+            }
+            else
+            {
+                OptimizerSummary.Text = $"Top N: {_configManager.Config.Optimizer.TopN} | 無全局禁卡";
+            }
+        }
+        else
+        {
+            OptimizerSummary.Text = "用於 multi_optimizer_2.py";
         }
     }
 

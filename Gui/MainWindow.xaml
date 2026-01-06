@@ -139,6 +139,18 @@
                             </Grid>
                         </GroupBox>
 
+                        <!-- Global Friend Cards -->
+                        <GroupBox Header="Friend Cards (全局朋友卡池)" Margin="0,0,0,10">
+                            <Grid Margin="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock x:Name="GlobalFriendCardsSummary" Grid.Column="0" Text="未選擇朋友卡" VerticalAlignment="Center"/>
+                                <Button x:Name="EditGlobalFriendCardsButton" Grid.Column="1" Content="編輯" Click="EditGlobalFriendCardsButton_Click" IsEnabled="False" Width="60"/>
+                            </Grid>
+                        </GroupBox>
+
                         <!-- Songs Configuration -->
                         <GroupBox Header="Songs" Margin="0,0,0,10">
                             <StackPanel Margin="10">
@@ -171,6 +183,18 @@
                                     </ListBox.ItemTemplate>
                                 </ListBox>
                             </StackPanel>
+                        </GroupBox>
+
+                        <!-- Optimizer Configuration -->
+                        <GroupBox Header="Optimizer (優化器配置)" Margin="0,0,0,10">
+                            <Grid Margin="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock x:Name="OptimizerSummary" Grid.Column="0" Text="用於 multi_optimizer_2.py" VerticalAlignment="Center"/>
+                                <Button x:Name="EditOptimizerButton" Grid.Column="1" Content="編輯" Click="EditOptimizerButton_Click" IsEnabled="False" Width="60"/>
+                            </Grid>
                         </GroupBox>
                     </StackPanel>
                 </ScrollViewer>

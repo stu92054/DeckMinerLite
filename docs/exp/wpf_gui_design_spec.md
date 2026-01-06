@@ -1037,6 +1037,44 @@ dotnet publish -c Release -r linux-x64 --self-contained -f net10.0
 - "全部清空"按鈕（含確認對話框）
 - 卡片數量即時顯示
 
+**用途**:
+- 全局朋友卡池 (friend_card_ids): 所有歌曲的預設朋友卡
+- 歌曲層級朋友卡池 (friend_card_pool): 覆蓋全局配置，只對該首歌生效
+
+### 10.6 全局朋友卡池
+
+**整合位置**: MainWindow - Configuration 分頁
+
+**功能**:
+- 在 Fan Levels 和 Songs 之間新增「Friend Cards (全局朋友卡池)」區塊
+- 顯示摘要：「已選擇 X 張朋友卡」或「未選擇朋友卡」
+- 重用 FriendCardSelectorWindow 進行編輯
+- 配置載入時自動更新摘要
+
+**配置層級**:
+- **friend_card_ids** (全局): 所有歌曲的預設朋友卡池
+- **songs[].friend_card_pool** (歌曲層級): 覆蓋全局配置
+
+### 10.7 優化器配置
+
+**檔案**: `OptimizerConfigWindow.xaml`, `OptimizerConfigWindow.xaml.cs`
+
+**功能**:
+- **Top N**: 設定每首歌保留前 N 名卡組（預設 50000）
+- **Show Card Names**: 控制輸出中是否顯示卡牌名稱
+- **Forbidden Cards**: 全局禁卡列表（三面均生效）
+  - 從卡池中選擇
+  - 雙擊移除
+  - 一鍵清空
+
+**用途**:
+- 專用於 `multi_optimizer_2.py` 多曲優化器
+- 尋找三首歌曲的最佳卡組組合
+
+**與歌曲禁卡的區別**:
+- 歌曲層級 banned_cards: 只對該首歌生效
+- 優化器 forbidden_cards: 對所有三首歌都生效
+
 ---
 
 **最後更新**: 2026-01-05
@@ -1052,6 +1090,7 @@ dotnet publish -c Release -r linux-x64 --self-contained -f net10.0
 4. ✅ **SongConfigWindow** - 歌曲配置編輯視窗
 5. ✅ **FanLevelsWindow** - 粉絲等級編輯視窗
 6. ✅ **FriendCardSelectorWindow** - 朋友卡選擇器
+7. ✅ **OptimizerConfigWindow** - 優化器配置視窗
 
 ### 已實作的核心功能
 
@@ -1059,7 +1098,9 @@ dotnet publish -c Release -r linux-x64 --self-contained -f net10.0
 - ✅ 新建配置檔（含預設值）
 - ✅ 基本設定編輯（LGP Mode）
 - ✅ 完整的卡池管理（新增、移除、練度設定）
-- ✅ 完整的歌曲配置（3 首上限、各種約束條件）
+- ✅ 完整的歌曲配置（3 首上限、各種約束條件、進階設定）
 - ✅ 粉絲等級編輯（12 個角色）
-- ✅ 朋友卡池管理
+- ✅ 全局朋友卡池管理（friend_card_ids）
+- ✅ 歌曲層級朋友卡池管理（friend_card_pool）
+- ✅ 優化器配置（multi_optimizer_2.py 專用）
 - ✅ 配置驗證與錯誤處理
