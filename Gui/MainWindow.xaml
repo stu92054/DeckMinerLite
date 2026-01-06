@@ -210,31 +210,64 @@
 
                     <!-- Simulation Controls -->
                     <StackPanel Grid.Row="0" Margin="0,0,0,10">
-                        <GroupBox Header="Simulation Control">
+                        <!-- Execution Mode Selection -->
+                        <GroupBox Header="執行模式" Margin="0,0,0,10">
+                            <StackPanel Margin="10">
+                                <RadioButton x:Name="FullOptimizationModeRadio"
+                                             Content="☑ 執行完整優化流程（推薦）"
+                                             IsChecked="True"
+                                             Margin="0,0,0,5"
+                                             Checked="ExecutionModeChanged"/>
+                                <TextBlock Text="  ├─ 階段 1：模擬歌曲（1-3 首）"
+                                           Margin="20,0,0,2"
+                                           FontSize="11"
+                                           Foreground="Gray"/>
+                                <TextBlock Text="  └─ 階段 2：多曲優化（multi_optimizer_2.py，僅 3 首時執行）"
+                                           Margin="20,0,0,5"
+                                           FontSize="11"
+                                           Foreground="Gray"/>
+
+                                <RadioButton x:Name="SimulationOnlyModeRadio"
+                                             Content="☐ 僅執行模擬（進階）"
+                                             Margin="0,5,0,0"
+                                             Checked="ExecutionModeChanged"/>
+                                <TextBlock Text="  └─ 只模擬歌曲，不進行多曲優化"
+                                           Margin="20,0,0,0"
+                                           FontSize="11"
+                                           Foreground="Gray"/>
+                            </StackPanel>
+                        </GroupBox>
+
+                        <!-- Simulation Control -->
+                        <GroupBox Header="模擬控制">
                             <StackPanel Margin="10">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5">
                                     <Button x:Name="StartSimulationButton"
-                                            Content="Start Simulation"
+                                            Content="開始"
                                             Width="150"
+                                            Height="35"
+                                            FontSize="14"
                                             Click="StartSimulationButton_Click"
                                             IsEnabled="False"/>
 
                                     <Button x:Name="StopSimulationButton"
-                                            Content="Stop"
+                                            Content="停止"
                                             Width="100"
+                                            Height="35"
+                                            Margin="10,0,0,0"
                                             Click="StopSimulationButton_Click"
                                             IsEnabled="False"/>
                                 </StackPanel>
 
                                 <ProgressBar x:Name="SimulationProgressBar"
                                              Height="25"
-                                             Margin="0,5"
+                                             Margin="0,10,0,5"
                                              Minimum="0"
                                              Maximum="100"
                                              Value="0"/>
 
                                 <TextBlock x:Name="SimulationStatusText"
-                                           Text="Not started"
+                                           Text="尚未開始"
                                            HorizontalAlignment="Center"
                                            Margin="0,5"/>
                             </StackPanel>

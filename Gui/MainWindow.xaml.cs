@@ -1,4 +1,5 @@
 using DeckMiner.Config;
+using DeckMiner.Services;
 using Microsoft.Win32;
 using System;
 using System.IO;
@@ -16,10 +17,17 @@ public partial class MainWindow : Window
 {
     private YamlConfigManager _configManager;
     private string _currentConfigPath;
+    private SimulationService _simulationService;
 
     public MainWindow()
     {
         InitializeComponent();
+
+        // Initialize simulation service
+        _simulationService = new SimulationService();
+        _simulationService.ProgressChanged += OnSimulationProgressChanged;
+        _simulationService.LogOutput += OnSimulationLogOutput;
+        _simulationService.ExecutionCompleted += OnSimulationCompleted;
 
         // Use Loaded event to ensure UI is fully initialized before logging
         Loaded += MainWindow_Loaded;
@@ -436,47 +444,86 @@ optimizer:
         }
     }
 
-    private void StartSimulationButton_Click(object sender, RoutedEventArgs e)
+    private async void StartSimulationButton_Click(object sender, RoutedEventArgs e)
     {
         if (_configManager == null)
         {
             MessageBox.Show(
-                "Please load a configuration file first.",
-                "No Configuration",
+                "請先載入配置檔案",
+                "無配置檔案",
                 MessageBoxButton.OK,
                 MessageBoxImage.Warning
             );
             return;
         }
 
-        AppendLog("\n[INFO] Starting simulation...");
-        AppendLog("[INFO] This feature will be fully implemented in Phase 3");
-        AppendLog("[HINT] For now, use CLI mode for full simulation functionality");
+        if (_simulationService.IsRunning)
+        {
+            MessageBox.Show(
+                "模擬正在執行中",
+                "執行中",
+                MessageBoxButton.OK,
+                MessageBoxImage.Information
+            );
+            return;
+        }
 
-        MessageBox.Show(
-            "Simulation feature is under development (Phase 3).\n\n" +
-            "Current implementation:\n" +
-            "- Configuration loading: ✓ Complete\n" +
-            "- UI controls: ✓ Complete\n" +
-            "- Async simulation: ⚠ In Progress\n" +
-            "- Results display: ⚠ Planned\n\n" +
-            "For full simulation, use CLI mode:\n" +
-            "DeckMinerLite.exe --config path/to/config.yaml",
-            "Feature In Development",
-            MessageBoxButton.OK,
-            MessageBoxImage.Information
-        );
+        // 禁用開始按鈕，啟用停止按鈕
+        StartSimulationButton.IsEnabled = false;
+        StopSimulationButton.IsEnabled = true;
+
+        // 重置進度條
+        SimulationProgressBar.Value = 0;
+        SimulationStatusText.Text = "準備中...";
+
+        // 根據選擇的執行模式執行
+        if (FullOptimizationModeRadio.IsChecked == true)
+        {
+            await _simulationService.ExecuteFullOptimizationAsync(_configManager.Config, _currentConfigPath);
+        }
+        else
+        {
+            await _simulationService.ExecuteSimulationOnlyAsync(_configManager.Config, _currentConfigPath);
+        }
     }
 
     private void StopSimulationButton_Click(object sender, RoutedEventArgs e)
     {
-        AppendLog("[INFO] Stop requested (placeholder)");
+        if (_simulationService.IsRunning)
+        {
+            var result = MessageBox.Show(
+                "確定要停止執行嗎？",
+                "確認停止",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question
+            );
+
+            if (result == MessageBoxResult.Yes)
+            {
+                _simulationService.Stop();
+            }
+        }
     }
 
     private void ClearLogButton_Click(object sender, RoutedEventArgs e)
     {
         LogTextBox.Clear();
         AppendLog("[INFO] Log cleared");
+    }
+
+    private void ExecutionModeChanged(object sender, RoutedEventArgs e)
+    {
+        // 避免在 XAML 初始化時觸發（此時 LogTextBox 尚未初始化）
+        if (LogTextBox == null) return;
+
+        if (FullOptimizationModeRadio?.IsChecked == true)
+        {
+            AppendLog("[INFO] Execution mode: Full Optimization (Simulation + Optimizer)");
+        }
+        else if (SimulationOnlyModeRadio?.IsChecked == true)
+        {
+            AppendLog("[INFO] Execution mode: Simulation Only");
+        }
     }
 
     private void OpenOutputFolderButton_Click(object sender, RoutedEventArgs e)
@@ -528,6 +575,52 @@ optimizer:
         var timestamp = DateTime.Now.ToString("HH:mm:ss");
         LogTextBox.AppendText($"[{timestamp}] {message}\n");
         LogScrollViewer.ScrollToEnd();
+    }
+
+    // SimulationService 事件處理器
+    private void OnSimulationProgressChanged(int progress, string message)
+    {
+        Dispatcher.Invoke(() =>
+        {
+            SimulationProgressBar.Value = progress;
+            SimulationStatusText.Text = message;
+        });
+    }
+
+    private void OnSimulationLogOutput(string message)
+    {
+        Dispatcher.Invoke(() =>
+        {
+            AppendLog(message);
+        });
+    }
+
+    private void OnSimulationCompleted(bool success)
+    {
+        Dispatcher.Invoke(() =>
+        {
+            StartSimulationButton.IsEnabled = true;
+            StopSimulationButton.IsEnabled = false;
+
+            if (success)
+            {
+                MessageBox.Show(
+                    "執行完成！\n\n請切換到 Results 分頁查看結果",
+                    "執行成功",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information
+                );
+            }
+            else
+            {
+                MessageBox.Show(
+                    "執行失敗或已取消。\n\n請查看日誌以了解詳情",
+                    "執行失敗",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning
+                );
+            }
+        });
     }
 
     private void BasicSettingsChanged(object sender, RoutedEventArgs e)

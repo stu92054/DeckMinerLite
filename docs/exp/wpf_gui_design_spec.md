@@ -946,11 +946,14 @@ dotnet publish -c Release -r linux-x64 --self-contained -f net10.0
 - ✅ Fan Level 編輯器 (FanLevelsWindow)
 - ✅ Friend Card 選擇器 (FriendCardSelectorWindow)
 
-#### ⏳ Phase 4: 模擬執行整合
-- SimulationService 非同步執行
-- 即時進度更新與日誌
-- 暫停/停止功能
-- 結果查看與分析
+#### 🚧 Phase 4: 模擬執行整合 (進行中)
+- ✅ SimulationService 非同步執行框架
+- ✅ 執行模式選擇 UI (完整優化 vs 僅模擬)
+- ✅ 即時進度更新與日誌
+- ✅ 停止功能
+- ✅ multi_optimizer_2.py 整合
+- ⏳ C# 模擬邏輯整合 (待完成)
+- ⏳ 結果查看與分析 (待完成)
 
 #### ⏳ Phase 5: 測試與優化
 - 完整功能測試
@@ -960,9 +963,9 @@ dotnet publish -c Release -r linux-x64 --self-contained -f net10.0
 
 ### 當前狀態
 
-**狀態**: 🎉 Phase 3 已完成
-**完成度**: 60% (3/5 階段)
-**下一步**: Phase 4 - 模擬執行整合
+**狀態**: 🚧 Phase 4 進行中 (Phase 4.1 框架完成)
+**完成度**: 70% (3.5/5 階段)
+**下一步**: Phase 4.2 - C# 模擬邏輯整合
 
 ---
 
@@ -1077,10 +1080,145 @@ dotnet publish -c Release -r linux-x64 --self-contained -f net10.0
 
 ---
 
-**最後更新**: 2026-01-05
+## 11. Phase 4.1 完成內容詳細說明
+
+### 11.1 執行模式選擇 UI
+
+**更新檔案**: `MainWindow.xaml` (Simulation 分頁)
+
+**功能**:
+- **完整優化流程（推薦）**
+  - 階段 1：模擬歌曲（1-3 首）
+  - 階段 2：多曲優化（multi_optimizer_2.py，僅 3 首時執行）
+- **僅執行模擬（進階）**
+  - 只模擬歌曲，不進行多曲優化
+
+**UI 元件**:
+- RadioButton 選擇執行模式
+- 清楚說明每種模式的執行流程
+- 模式切換時在日誌中記錄
+
+### 11.2 SimulationService 類別
+
+**檔案**: `Services/SimulationService.cs`
+
+**架構設計**:
+- **事件驅動架構**
+  - `ProgressChanged`: 進度更新事件 (0-100%, 狀態訊息)
+  - `LogOutput`: 日誌輸出事件
+  - `ExecutionCompleted`: 執行完成事件 (成功/失敗)
+
+**核心方法**:
+1. `ExecuteFullOptimizationAsync`: 完整優化流程
+2. `ExecuteSimulationOnlyAsync`: 僅執行模擬
+3. `Stop`: 停止執行
+4. `ValidateConfiguration`: 配置驗證
+
+**執行流程**:
+```
+完整優化流程:
+  0-5%   : 配置驗證
+  5-70%  : 模擬歌曲 (C# 實作，待整合)
+  70-75% : 準備優化
+  75-100%: 多曲優化 (multi_optimizer_2.py)
+
+僅模擬:
+  0-5%   : 配置驗證
+  5-100% : 模擬歌曲
+```
+
+**取消機制**:
+- 使用 `CancellationTokenSource` 實作
+- 支援優雅取消（清理資源）
+- Python 進程可被中止
+
+### 11.3 MainWindow 整合
+
+**更新檔案**: `MainWindow.xaml.cs`
+
+**新增功能**:
+1. **SimulationService 初始化與事件訂閱**
+   - 建構函式中初始化服務
+   - 訂閱三個事件：進度、日誌、完成
+
+2. **事件處理器**
+   - `OnSimulationProgressChanged`: 更新進度條與狀態文字
+   - `OnSimulationLogOutput`: 將日誌輸出到 GUI
+   - `OnSimulationCompleted`: 顯示完成對話框，重置按鈕狀態
+
+3. **按鈕邏輯**
+   - `StartSimulationButton_Click`: 根據選擇的模式執行
+   - `StopSimulationButton_Click`: 確認對話框後停止執行
+   - `ExecutionModeChanged`: 記錄模式切換
+
+**UI 更新機制**:
+- 使用 `Dispatcher.Invoke` 確保 UI 執行緒安全
+- 按鈕狀態自動切換（執行中禁用開始、啟用停止）
+
+### 11.4 multi_optimizer_2.py 整合
+
+**實作位置**: `SimulationService.ExecuteOptimizerAsync`
+
+**執行機制**:
+- 使用 `Process` 類別執行 Python 腳本
+- 工作目錄：專案根目錄
+- 環境變數：`CONFIG_FILE` 設定為配置檔路徑
+
+**輸出處理**:
+- `StandardOutput`: 重導向到日誌（前綴 `[OPTIMIZER]`）
+- `StandardError`: 重導向到日誌（前綴 `[OPTIMIZER ERROR]`）
+- 監控 `ExitCode` 判斷執行成功
+
+**取消支援**:
+- 監控 `CancellationToken`
+- 取消時呼叫 `Process.Kill()`
+
+### 11.5 進度追蹤與日誌系統
+
+**進度條**:
+- 0-100% 範圍
+- 分階段更新（模擬 5-70%，優化 70-100%）
+- 即時狀態文字顯示
+
+**日誌系統**:
+- 時間戳記格式：`[HH:mm:ss]`
+- 日誌等級：`[INFO]`, `[PASS]`, `[FAIL]`, `[WARN]`, `[DEBUG]`
+- 自動捲動到最新訊息
+- 清空日誌按鈕
+
+### 11.6 配置驗證
+
+**驗證項目**:
+- ✅ 歌曲數量：1-3 首
+- ✅ 卡池非空
+- ✅ 配置物件完整性
+
+**錯誤處理**:
+- 驗證失敗時顯示錯誤訊息
+- 記錄到日誌
+- 阻止執行
+
+### 11.7 待整合項目
+
+**C# 模擬邏輯**（Phase 4.2）:
+- 目前使用 placeholder 實作（模擬進度更新）
+- 需要整合：
+  - `DeckGenerator`: 卡組生成
+  - `Simulator`: 模擬執行
+  - 輸出結果到檔案
+
+**結果查看**（Phase 4.3）:
+- Results 分頁顯示模擬結果
+- 解析輸出檔案
+- 卡組排名展示
+
+---
+
+**最後更新**: 2026-01-06
 **Phase 2 完成日期**: 2025-12-26
 **Phase 3 完成日期**: 2026-01-05
-**累計開發時間**: ~12 小時
+**Phase 4.1 完成日期**: 2026-01-06
+**累計開發時間**: ~15 小時
 
 ### 已實作的視窗列表
 
@@ -1094,6 +1232,7 @@ dotnet publish -c Release -r linux-x64 --self-contained -f net10.0
 
 ### 已實作的核心功能
 
+**配置管理**:
 - ✅ YAML 配置載入與儲存
 - ✅ 新建配置檔（含預設值）
 - ✅ 基本設定編輯（LGP Mode）
@@ -1104,3 +1243,14 @@ dotnet publish -c Release -r linux-x64 --self-contained -f net10.0
 - ✅ 歌曲層級朋友卡池管理（friend_card_pool）
 - ✅ 優化器配置（multi_optimizer_2.py 專用）
 - ✅ 配置驗證與錯誤處理
+
+**模擬執行** (Phase 4.1):
+- ✅ SimulationService 非同步執行框架
+- ✅ 執行模式選擇（完整優化 vs 僅模擬）
+- ✅ 事件驅動架構（進度、日誌、完成）
+- ✅ 即時進度更新與狀態顯示
+- ✅ 日誌系統（時間戳記、等級標記）
+- ✅ 停止功能（優雅取消）
+- ✅ multi_optimizer_2.py 整合
+- ⏳ C# 模擬邏輯整合（待完成）
+- ⏳ 結果查看與分析（待完成）
