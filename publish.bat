@@ -31,7 +31,7 @@ echo Done
 
 echo.
 echo [2/8] Running dotnet publish for Windows x64 (with WPF GUI)...
-dotnet publish -c Release --framework net10.0-windows -r win-x64 --self-contained -p:PublishSingleFile=true -o "%WIN_PUBLISH_DIR%"
+dotnet publish -c Release --framework net10.0-windows -r win-x64 --self-contained -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o "%WIN_PUBLISH_DIR%"
 
 if errorlevel 1 (
     echo.
@@ -83,6 +83,17 @@ if exist "..\dist\multi_optimizer_2.exe" (
     echo.
     echo [SKIP] Continuing without Python optimizer...
     echo [NOTE] GUI will still work but multi-song optimization will be unavailable
+)
+echo Done
+
+echo.
+echo [5.2/8] Copying Musics.yaml for optimizer...
+echo [INFO] Copying Musics.yaml from Data to GameData for packaged optimizer...
+if exist "..\Data\Musics.yaml" (
+    copy "..\Data\Musics.yaml" "%WIN_PACKAGE_DIR%\GameData\"
+    echo [INFO] Musics.yaml copied successfully
+) else (
+    echo [WARN] Musics.yaml not found in Data directory!
 )
 echo Done
 

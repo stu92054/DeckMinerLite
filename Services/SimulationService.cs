@@ -268,7 +268,8 @@ namespace DeckMiner.Services
 
             if (File.Exists(optimizerExe))
             {
-                // 使用打包的 exe
+                // 使用打包的 exe（工作目錄設為 DeckMinerLite.exe 所在目錄）
+                // GameData/Musics.yaml 會在這個目錄下，optimizer 會優先載入
                 OnLogOutput("[INFO] Using packaged optimizer: multi_optimizer_2.exe");
                 fileName = optimizerExe;
                 arguments = "";
