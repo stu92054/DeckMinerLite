@@ -283,7 +283,7 @@ namespace DeckMiner.Services
                 // GameData/Musics.yaml 會在這個目錄下，optimizer 會優先載入
                 OnLogOutput("[INFO] Using packaged optimizer: multi_optimizer_2.exe");
                 fileName = optimizerExe;
-                arguments = "";
+                arguments = $"--config \"{configPath}\"";
                 workingDir = baseDir;
             }
             else if (File.Exists(optimizerPy))
@@ -291,7 +291,7 @@ namespace DeckMiner.Services
                 // 回退到 Python 腳本（開發環境）
                 OnLogOutput("[INFO] Using Python script: multi_optimizer_2.py (development mode)");
                 fileName = "python";
-                arguments = $"\"{optimizerPy}\"";
+                arguments = $"\"{optimizerPy}\" --config \"{configPath}\"";
                 workingDir = Path.GetDirectoryName(optimizerPy);
             }
             else
@@ -314,9 +314,6 @@ namespace DeckMiner.Services
                     RedirectStandardError = true,
                     CreateNoWindow = true
                 };
-
-                // 設定環境變數 (CONFIG_FILE)
-                processStartInfo.Environment["CONFIG_FILE"] = configPath;
 
                 using var process = new Process { StartInfo = processStartInfo };
 
