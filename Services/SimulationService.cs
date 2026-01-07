@@ -214,40 +214,51 @@ namespace DeckMiner.Services
         /// </summary>
         private async Task<bool> ExecuteSimulationAsync(MemberConfig config, string configPath, CancellationToken cancellationToken)
         {
-            // TODO: 整合 C# 模擬邏輯
-            // 目前為 placeholder 實作
-
-            OnLogOutput("[INFO] Simulation execution (C# implementation)");
+            OnLogOutput("[INFO] Starting C# batch simulation");
             OnLogOutput($"[INFO] Config: {configPath}");
             OnLogOutput($"[INFO] Songs: {config.Songs.Count}");
             OnLogOutput($"[INFO] Card pool: {config.CardIds.Count} cards");
 
-            int songCount = config.Songs.Count;
-            double progressPerSong = 65.0 / songCount; // 5-70% 分配給模擬階段
-
-            for (int i = 0; i < songCount; i++)
+            try
             {
-                cancellationToken.ThrowIfCancellationRequested();
+                // 載入 YAML 配置
+                var yamlConfig = new YamlConfigManager(configPath);
 
-                var song = config.Songs[i];
-                OnLogOutput($"[INFO] Simulating song {i + 1}/{songCount}: {song.MusicId} (Difficulty: {song.Difficulty})");
+                // 初始化進度追蹤
+                int totalSongs = config.Songs.Count;
+                int currentSong = 0;
 
-                // 模擬進度更新
-                int progressStart = (int)(5 + i * progressPerSong);
-                int progressEnd = (int)(5 + (i + 1) * progressPerSong);
-
-                for (int p = progressStart; p <= progressEnd; p += 5)
+                // 在背景執行緒執行批次模擬
+                await Task.Run(() =>
                 {
-                    cancellationToken.ThrowIfCancellationRequested();
-                    OnProgressChanged(p, $"模擬歌曲 {i + 1}/{songCount}...");
-                    await Task.Delay(100, cancellationToken); // 模擬工作
-                }
+                    BatchSimulationService.RunBatchSimulation(
+                        yamlConfig,
+                        onLog: OnLogOutput,
+                        onProgress: (current, total, message) =>
+                        {
+                            currentSong = current;
+                            // 計算進度百分比 (5-70% 分配給模擬階段)
+                            int progress = 5 + (int)((current / (double)total) * 65.0);
+                            OnProgressChanged(progress, message);
+                        },
+                        cancellationToken: cancellationToken
+                    );
+                }, cancellationToken);
 
-                OnLogOutput($"[PASS] Song {i + 1} simulation completed");
+                OnLogOutput("[PASS] Batch simulation completed successfully");
+                return true;
             }
-
-            OnLogOutput("[PASS] All songs simulated successfully");
-            return true;
+            catch (OperationCanceledException)
+            {
+                OnLogOutput("[WARN] Simulation cancelled by user");
+                throw;
+            }
+            catch (Exception ex)
+            {
+                OnLogOutput($"[FAIL] Batch simulation error: {ex.Message}");
+                OnLogOutput($"[DEBUG] Stack trace: {ex.StackTrace}");
+                return false;
+            }
         }
 
         /// <summary>

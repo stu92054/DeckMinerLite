@@ -90,10 +90,10 @@
                         </GroupBox>
 
                         <!-- Basic Settings -->
-                        <GroupBox Header="Basic Settings" Margin="0,0,0,10">
+                        <GroupBox Header="Basic Settings (基本設定)" Margin="0,0,0,10">
                             <Grid Margin="10">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="180"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
@@ -103,19 +103,19 @@
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
 
-                                <TextBlock Grid.Row="0" Grid.Column="0" Text="Member Name:" VerticalAlignment="Center" Margin="5"/>
+                                <TextBlock Grid.Row="0" Grid.Column="0" Text="Member Name (成員名稱):" VerticalAlignment="Center" Margin="5"/>
                                 <TextBox x:Name="MemberNameTextBox" Grid.Row="0" Grid.Column="1" IsReadOnly="True" ToolTip="成員名稱從配置檔案名稱取得"/>
 
-                                <TextBlock Grid.Row="1" Grid.Column="0" Text="Season Mode:" VerticalAlignment="Center" Margin="5"/>
+                                <TextBlock Grid.Row="1" Grid.Column="0" Text="Season Mode (賽季模式):" VerticalAlignment="Center" Margin="5"/>
                                 <TextBox x:Name="SeasonModeTextBox" Grid.Row="1" Grid.Column="1" IsReadOnly="True" Text="sukushow" ToolTip="固定為 sukushow 模式"/>
 
-                                <TextBlock Grid.Row="2" Grid.Column="0" Text="LGP Mode:" VerticalAlignment="Center" Margin="5"/>
+                                <TextBlock Grid.Row="2" Grid.Column="0" Text="LGP Mode (雙卡模式):" VerticalAlignment="Center" Margin="5"/>
                                 <ComboBox x:Name="LgpModeComboBox" Grid.Row="2" Grid.Column="1" SelectionChanged="BasicSettingsChanged">
                                     <ComboBoxItem Content="True (允許雙卡)" Tag="True"/>
                                     <ComboBoxItem Content="False (單卡模式)" Tag="False"/>
                                 </ComboBox>
 
-                                <TextBlock Grid.Row="3" Grid.Column="0" Text="Card Pool Size:" VerticalAlignment="Center" Margin="5"/>
+                                <TextBlock Grid.Row="3" Grid.Column="0" Text="Card Pool (卡池大小):" VerticalAlignment="Center" Margin="5"/>
                                 <Grid Grid.Row="3" Grid.Column="1">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
@@ -140,7 +140,7 @@
                         </GroupBox>
 
                         <!-- Global Friend Cards -->
-                        <GroupBox Header="Friend Cards (全局朋友卡池)" Margin="0,0,0,10">
+                        <GroupBox Header="Friend Cards (全域朋友卡池)" Margin="0,0,0,10">
                             <Grid Margin="10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -152,14 +152,14 @@
                         </GroupBox>
 
                         <!-- Songs Configuration -->
-                        <GroupBox Header="Songs" Margin="0,0,0,10">
+                        <GroupBox Header="Songs (歌曲配置)" Margin="0,0,0,10">
                             <StackPanel Margin="10">
                                 <Grid Margin="0,0,0,5">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock x:Name="SongsSummary" Grid.Column="0" Text="No songs configured" VerticalAlignment="Center"/>
+                                    <TextBlock x:Name="SongsSummary" Grid.Column="0" Text="尚未配置歌曲" VerticalAlignment="Center"/>
                                     <Button x:Name="EditSongsButton" Grid.Column="1" Content="編輯" Click="EditSongsButton_Click" IsEnabled="False" Width="60"/>
                                 </Grid>
                                 <ListBox x:Name="SongsListBox"
@@ -286,7 +286,7 @@
                                 <TextBox x:Name="LogTextBox"
                                          IsReadOnly="True"
                                          TextWrapping="Wrap"
-                                         FontFamily="Consolas"
+                                         FontFamily="Consolas, Microsoft YaHei UI, Yu Gothic UI"
                                          FontSize="11"
                                          BorderThickness="0"
                                          Background="Transparent"
@@ -306,13 +306,38 @@
             <!-- Results Tab -->
             <TabItem Header="Results">
                 <Grid Margin="10">
-                    <TextBlock x:Name="ResultsPlaceholder"
-                               Text="Results will be displayed here after simulation completes"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center"
-                               FontStyle="Italic"
-                               FontSize="14"
-                               Foreground="Gray"/>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Toolbar -->
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
+                        <Button x:Name="RefreshResultsButton"
+                                Content="重新載入結果"
+                                Width="120"
+                                Height="30"
+                                Click="RefreshResultsButton_Click"
+                                Margin="0,0,10,0"/>
+                        <TextBlock x:Name="ResultsStatusText"
+                                   Text="尚無結果檔案"
+                                   VerticalAlignment="Center"
+                                   Foreground="Gray"
+                                   FontStyle="Italic"/>
+                    </StackPanel>
+
+                    <!-- Results Display -->
+                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                        <TextBox x:Name="ResultsTextBox"
+                                 FontFamily="Consolas, Microsoft YaHei UI, Yu Gothic UI"
+                                 FontSize="12"
+                                 IsReadOnly="True"
+                                 TextWrapping="NoWrap"
+                                 BorderThickness="0"
+                                 Background="Transparent"
+                                 Padding="5"
+                                 Text="模擬完成後，結果將自動顯示於此處。&#x0a;您也可以點擊「重新載入結果」按鈕手動重新整理。"/>
+                    </ScrollViewer>
                 </Grid>
             </TabItem>
 

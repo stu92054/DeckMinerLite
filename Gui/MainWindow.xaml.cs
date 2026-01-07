@@ -249,7 +249,7 @@ optimizer:
 
             if (config.Songs != null && config.Songs.Count > 0)
             {
-                SongsSummary.Text = $"{config.Songs.Count} song(s) configured";
+                SongsSummary.Text = $"已配置 {config.Songs.Count} 首歌曲";
                 // 轉換為 ViewModel 以顯示歌曲名稱
                 var songViewModels = config.Songs.Select(s => ViewModels.SongViewModel.FromConfig(s)).ToList();
                 SongsListBox.ItemsSource = songViewModels;
@@ -257,7 +257,7 @@ optimizer:
             }
             else
             {
-                SongsSummary.Text = "No songs configured";
+                SongsSummary.Text = "尚未配置歌曲";
                 SongsListBox.ItemsSource = null;
                 StartSimulationButton.IsEnabled = false;
             }
@@ -374,7 +374,7 @@ optimizer:
 
             if (config.Songs != null && config.Songs.Count > 0)
             {
-                SongsSummary.Text = $"{config.Songs.Count} song(s) configured";
+                SongsSummary.Text = $"已配置 {config.Songs.Count} 首歌曲";
                 // 轉換為 ViewModel 以顯示歌曲名稱
                 var songViewModels = config.Songs.Select(s => ViewModels.SongViewModel.FromConfig(s)).ToList();
                 SongsListBox.ItemsSource = songViewModels;
@@ -382,7 +382,7 @@ optimizer:
             }
             else
             {
-                SongsSummary.Text = "No songs configured";
+                SongsSummary.Text = "尚未配置歌曲";
                 SongsListBox.ItemsSource = null;
                 StartSimulationButton.IsEnabled = false;
             }
@@ -466,6 +466,28 @@ optimizer:
                 MessageBoxImage.Information
             );
             return;
+        }
+
+        // 在開始模擬前先儲存配置，確保使用最新的設定
+        try
+        {
+            _configManager.SaveConfig();
+            AppendLog("[INFO] Configuration saved before simulation");
+        }
+        catch (Exception ex)
+        {
+            AppendLog($"[WARN] Failed to save configuration: {ex.Message}");
+            var result = MessageBox.Show(
+                $"儲存配置時發生錯誤：\n{ex.Message}\n\n是否仍要繼續執行？",
+                "儲存配置失敗",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Warning
+            );
+
+            if (result == MessageBoxResult.No)
+            {
+                return;
+            }
         }
 
         // 禁用開始按鈕，啟用停止按鈕
@@ -604,6 +626,9 @@ optimizer:
 
             if (success)
             {
+                // Automatically load results if available
+                LoadResults();
+
                 MessageBox.Show(
                     "執行完成！\n\n請切換到 Results 分頁查看結果",
                     "執行成功",
@@ -621,6 +646,73 @@ optimizer:
                 );
             }
         });
+    }
+
+    private void RefreshResultsButton_Click(object sender, RoutedEventArgs e)
+    {
+        LoadResults();
+    }
+
+    private void LoadResults()
+    {
+        try
+        {
+            // Determine the working directory where results file should be
+            string baseDir = AppContext.BaseDirectory;
+
+            // First try the base directory (for packaged exe)
+            string resultsPath = Path.Combine(baseDir, "best_3_song_combo.txt");
+
+            // If not found, try the parent directory (for development mode)
+            if (!File.Exists(resultsPath))
+            {
+                string parentDir = Path.GetFullPath(Path.Combine(baseDir, ".."));
+                resultsPath = Path.Combine(parentDir, "best_3_song_combo.txt");
+            }
+
+            // Also check for 2-song combo file
+            string results2Path = resultsPath.Replace("best_3_song_combo.txt", "best_2_song_combo.txt");
+
+            string resultsContent = null;
+            string fileName = null;
+
+            // Try to load 3-song results first, then 2-song
+            if (File.Exists(resultsPath))
+            {
+                resultsContent = File.ReadAllText(resultsPath, System.Text.Encoding.UTF8);
+                fileName = "best_3_song_combo.txt";
+            }
+            else if (File.Exists(results2Path))
+            {
+                resultsContent = File.ReadAllText(results2Path, System.Text.Encoding.UTF8);
+                fileName = "best_2_song_combo.txt";
+            }
+
+            if (resultsContent != null)
+            {
+                ResultsTextBox.Text = resultsContent;
+                var fileInfo = new FileInfo(fileName == "best_3_song_combo.txt" ? resultsPath : results2Path);
+                ResultsStatusText.Text = $"已載入: {fileName} (更新時間: {fileInfo.LastWriteTime:yyyy-MM-dd HH:mm:ss})";
+                ResultsStatusText.Foreground = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.Green);
+                AppendLog($"[PASS] Results loaded from {fileName}");
+            }
+            else
+            {
+                ResultsTextBox.Text = "尚未找到結果檔案。\n\n請執行「完整優化」模式以生成 best_3_song_combo.txt 或 best_2_song_combo.txt 檔案。\n\n檔案搜尋路徑:\n" +
+                                      $"1. {Path.Combine(baseDir, "best_3_song_combo.txt")}\n" +
+                                      $"2. {Path.Combine(Path.GetFullPath(Path.Combine(baseDir, "..")), "best_3_song_combo.txt")}";
+                ResultsStatusText.Text = "尚無結果檔案";
+                ResultsStatusText.Foreground = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.Gray);
+                AppendLog("[INFO] No results file found");
+            }
+        }
+        catch (Exception ex)
+        {
+            ResultsTextBox.Text = $"載入結果時發生錯誤:\n\n{ex.Message}";
+            ResultsStatusText.Text = "載入失敗";
+            ResultsStatusText.Foreground = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.Red);
+            AppendLog($"[FAIL] Failed to load results: {ex.Message}");
+        }
     }
 
     private void BasicSettingsChanged(object sender, RoutedEventArgs e)

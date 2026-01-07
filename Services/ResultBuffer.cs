@@ -141,6 +141,7 @@ namespace DeckMiner.Services
         {
             string key = MakeKey(cardIds);
 
+            // 使用不可變更新模式以確保線程安全並解決 GUI/CLI 不一致問題
             _results.AddOrUpdate(
                 key,
                 (_) => new SimulationResult
@@ -152,12 +153,17 @@ namespace DeckMiner.Services
                 },
                 (_, existing) =>
                 {
-                    if (score > existing.Score)
+                    // 如果分數更高，或者分數相同但卡組順序 "更小" (字典序)，則更新
+                    // 這保證了並行執行時的確定性
+                    if (score > existing.Score || (score == existing.Score && CompareDecks(cardIds, existing.DeckCardIds) < 0))
                     {
-                        existing.DeckCardIds = cardIds.ToList();
-                        existing.Score = score;
-                        existing.CenterCard = center;
-                        existing.FriendCard = friendCard;
+                        return new SimulationResult
+                        {
+                            DeckCardIds = cardIds.ToList(),
+                            CenterCard = center,
+                            FriendCard = friendCard,
+                            Score = score
+                        };
                     }
                     return existing;
                 }
@@ -167,6 +173,17 @@ namespace DeckMiner.Services
             Interlocked.Increment(ref _counter);
 
             TryFlush();
+        }
+
+        private static int CompareDecks(IList<int> a, IList<int> b)
+        {
+            int count = Math.Min(a.Count, b.Count);
+            for (int i = 0; i < count; i++)
+            {
+                int cmp = a[i].CompareTo(b[i]);
+                if (cmp != 0) return cmp;
+            }
+            return a.Count.CompareTo(b.Count);
         }
 
         private void TryFlush()

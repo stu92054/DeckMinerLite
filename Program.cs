@@ -281,6 +281,36 @@ class Program
         }
 
         // ------------------------------------------------------------------
+        // 步骤 3: 使用 BatchSimulationService 執行批次模擬
+        // ------------------------------------------------------------------
+        Console.WriteLine("\n開始批次模擬...");
+        try
+        {
+            BatchSimulationService.RunBatchSimulation(
+                yamlConfig,
+                onLog: Console.WriteLine,
+                onProgress: null,  // CLI 已有 Tqdm 進度條，不需額外進度回呼
+                cancellationToken: default
+            );
+        }
+        catch (Exception ex)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($"\n[FAIL] 批次模擬發生錯誤: {ex.Message}");
+            Console.WriteLine($"堆疊追蹤: {ex.StackTrace}");
+            Console.ResetColor();
+            Console.WriteLine("\n按 [Enter] 鍵退出程序...");
+            Console.ReadLine();
+            Environment.Exit(1);
+        }
+
+        Console.WriteLine($"\n已完成全部模擬任務，按 [Enter] 退出程序...");
+        Console.Read();
+    }
+
+    // 原本的 foreach 迴圈已移至 BatchSimulationService，保留供參考
+    /*
+        // ------------------------------------------------------------------
         // 步骤 3: 遍历每首歌曲进行模拟
         // ------------------------------------------------------------------
         foreach (var task in tasks)
@@ -583,7 +613,7 @@ class Program
         }
         Console.WriteLine($"\n已完成全部模拟任务，按 [Enter] 退出程序...");
         Console.Read();
-    }
+        */
 
     // === YAML 配置测试方法 ===
     static void TestYamlConfigLoading()
