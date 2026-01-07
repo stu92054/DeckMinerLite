@@ -267,6 +267,7 @@ namespace DeckMiner.Services
         private async Task<bool> ExecuteOptimizerAsync(MemberConfig config, string configPath, CancellationToken cancellationToken)
         {
             OnLogOutput("[INFO] Starting multi-song optimizer");
+            OnLogOutput($"[DEBUG] Config path: {configPath}");
 
             // 優先使用打包的 exe，否則回退到 Python 腳本
             string baseDir = AppContext.BaseDirectory;
@@ -285,6 +286,8 @@ namespace DeckMiner.Services
                 fileName = optimizerExe;
                 arguments = $"--config \"{configPath}\"";
                 workingDir = baseDir;
+                OnLogOutput($"[DEBUG] Command: {fileName} {arguments}");
+                OnLogOutput($"[DEBUG] Working directory: {workingDir}");
             }
             else if (File.Exists(optimizerPy))
             {
@@ -293,6 +296,8 @@ namespace DeckMiner.Services
                 fileName = "python";
                 arguments = $"\"{optimizerPy}\" --config \"{configPath}\"";
                 workingDir = Path.GetDirectoryName(optimizerPy);
+                OnLogOutput($"[DEBUG] Command: {fileName} {arguments}");
+                OnLogOutput($"[DEBUG] Working directory: {workingDir}");
             }
             else
             {
