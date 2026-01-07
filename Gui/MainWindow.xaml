@@ -353,7 +353,7 @@
 
                         <TextBlock TextWrapping="Wrap" Margin="0,10">
                             <Run Text="Version: " FontWeight="Bold"/>
-                            <Run Text="1.3 (GUI Edition)"/>
+                            <Run Text="1.4.1 (GUI Edition)"/>
                         </TextBlock>
 
                         <TextBlock TextWrapping="Wrap" Margin="0,10">

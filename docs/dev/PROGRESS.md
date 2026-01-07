@@ -1035,9 +1035,35 @@ DeckMinerLite.exe --test-yaml --config config/member-test.yaml
 - [x] **Bug Report**: `docs/BUG_REPORT_20260106.md` - GUI/CLI 差異調查報告
 
 ### 📦 發佈資訊
-**目標版本**: v1.1 (GUI Edition)
+**目標版本**: v1.4.1 (GUI Edition)
 **發佈平台**: Windows x64
 **發佈方式**: Self-contained (包含 .NET 運行時)
 **預計大小**: ~80 MB
+
+### 🎵 遊戲資料更新 (2026-01-07)
+
+#### Music 資料庫
+- **總歌曲數**: 218 首
+- **新增歌曲**: 5 首
+  - 405129: 雪舞う空と二秒の永遠
+  - 405203: もういちど ルミナス
+  - 405204: 壱雫空
+  - 405205: キミがいなくちゃっ！
+  - 405206: FIRE BIRD
+- **修正**: 405201 假名修正 (てらぱし → てれぱし)
+
+#### Chart 譜面資料
+- **總譜面數**: 524 個
+- **新增譜面**: 28 個
+- **更新來源**: `Data/bytes/*.bytes` (525 個檔案)
+- **轉換工具**: `export_all_charts.py`
+  - 智能增量更新（自動跳過相同檔案）
+  - 差異檢測與提示
+  - Music 和 Chart 同步更新
+
+#### 資料轉換工具
+- [x] **test_chart_export.py** - 測試譜面轉換正確性
+- [x] **export_all_charts.py** - 批次轉換所有 Chart 和 Music
+- [x] **備份機制** - 自動備份舊資料 (GameData_backup)
 
 **更新時間**: 2026-01-07
