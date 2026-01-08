@@ -5,6 +5,19 @@ All notable changes to DeckMinerLite will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.2] - 2026-01-08
+
+### Fixed
+- 配置儲存功能修正
+  - 修正 SaveConfig 方法，確保完整儲存所有配置項目
+  - 解決 fan_levels、songs、friend_card_ids、optimizer 等無法儲存的問題
+- 多曲優化器配置傳遞修正
+  - 改為透過命令列參數 `--config` 傳遞配置檔案路徑
+  - 解決優化器使用預設配置而非用戶設定的問題
+- 新增優化器執行除錯日誌
+  - 顯示配置路徑、執行命令、工作目錄
+  - 協助診斷優化器執行問題
+
 ## [1.4.1] - 2026-01-07
 
 ### Added
