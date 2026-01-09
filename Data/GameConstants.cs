@@ -30,9 +30,40 @@ namespace DeckMiner.Data
             { 9, "BR" }
         };
 
+        /// <summary>
+        /// 預設滿練卡牌等級（覺醒後）
+        /// </summary>
+        public static readonly Dictionary<int, int> DefaultCardLevels = new()
+        {
+            { 3, 80 },   // R
+            { 4, 100 },  // SR
+            { 5, 120 },  // UR
+            { 7, 140 },  // LR
+            { 8, 140 },  // DR
+            { 9, 120 }   // BR
+        };
+
+        /// <summary>
+        /// 預設滿練 Center Skill 等級
+        /// </summary>
+        public const int DefaultCenterSkillLevel = 14;
+
+        /// <summary>
+        /// 預設滿練 Skill 等級
+        /// </summary>
+        public const int DefaultSkillLevel = 14;
+
         public static string GetRarityString(int rarity)
         {
             return RarityNames.TryGetValue(rarity, out var name) ? name : $"★{rarity}";
+        }
+
+        /// <summary>
+        /// 根據稀有度取得預設滿練等級
+        /// </summary>
+        public static int GetDefaultCardLevel(int rarity)
+        {
+            return DefaultCardLevels.GetValueOrDefault(rarity, 100);
         }
 
         public static string GetCharacterName(int charId)

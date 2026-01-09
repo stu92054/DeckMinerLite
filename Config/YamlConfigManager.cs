@@ -243,34 +243,16 @@ namespace DeckMiner.Config
                 return levels;
             }
 
-            // 默认满练（根据稀有度）
+            // 使用 GameConstants 中的預設滿練度
             int rarity = (cardId / 100) % 10;
-            int defaultLevel = rarity switch
-            {
-                3 => 80,   // R
-                4 => 100,  // SR
-                5 => 120,  // UR
-                7 => 140,  // LR
-                8 => 140,  // DR
-                9 => 120,  // BR
-                _ => 100
-            };
+            int defaultLevel = Data.GameConstants.GetDefaultCardLevel(rarity);
 
-            // 修正：選卡時最高預設練度不符合其稀有度
-            // 根據 CardDatas.json，不同稀有度的最大等級如下：
-            // R (3): 60 (未覺醒) -> 80 (覺醒)
-            // SR (4): 80 (未覺醒) -> 100 (覺醒)
-            // UR (5): 100 (未覺醒) -> 120 (覺醒)
-            // LR (7): 140
-            // DR (8): 140
-            // BR (9): 120
-            // 注意：這裡返回的是預設滿練度，所以應該是覺醒後的最大等級。
-            // 上面的 switch 已經正確反映了覺醒後的最大等級。
-            // 如果用戶指的是"選卡時"，可能是指在 GUI 中添加新卡片時的預設值。
-            // 但這裡是 GetCardLevels，用於獲取配置中的等級或默認等級。
-            // 如果配置中沒有，則返回默認滿練度。
-            
-            return new List<int> { defaultLevel, 14, 14 };  // [level, cskill_max, skill_max]
+            return new List<int>
+            {
+                defaultLevel,
+                Data.GameConstants.DefaultCenterSkillLevel,
+                Data.GameConstants.DefaultSkillLevel
+            };
         }
 
         /// <summary>
