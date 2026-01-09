@@ -2,14 +2,34 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net10.0</TargetFramework>
+    <!-- Multi-target: Windows 專用版 + 跨平台版 -->
+    <TargetFrameworks>net10.0-windows;net10.0</TargetFrameworks>
     <AssemblyName>DeckMinerLite</AssemblyName>
     <RootNamespace>DeckMiner</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
-    <PublishAot>true</PublishAot>
-    <InvariantGlobalization>true</InvariantGlobalization>
     <OptimizationPreference>Speed</OptimizationPreference>
+
+    <!-- Version Information -->
+    <Version>1.4.3</Version>
+    <AssemblyVersion>1.4.3.0</AssemblyVersion>
+    <FileVersion>1.4.3.0</FileVersion>
+    <InformationalVersion>1.4.3</InformationalVersion>
+  </PropertyGroup>
+
+  <!-- Windows 版本啟用 WPF (Phase 2: GUI 實作) -->
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net10.0-windows'">
+    <DefineConstants>$(DefineConstants);WINDOWS</DefineConstants>
+    <UseWPF>true</UseWPF>
+    <PublishAot>false</PublishAot>
+  </PropertyGroup>
+
+  <!-- 跨平台版本: AOT 僅在原生 Linux 環境啟用 (Windows 不支援跨平台 AOT 編譯) -->
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net10.0'">
+    <!-- PublishAot 預設不啟用，需在 Linux 環境手動加上 -p:PublishAot=true -->
+    <!-- 原因: Windows 無法跨平台編譯 Linux AOT (error: Cross-OS native compilation is not supported) -->
+    <PublishAot>false</PublishAot>
+    <InvariantGlobalization>true</InvariantGlobalization>
   </PropertyGroup>
   <ItemGroup>
     <Content Include="GameData\**" CopyToOutputDirectory="PreserveNewest" />
@@ -18,5 +38,16 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="YamlDotNet" Version="16.2.0" />
+    <PackageReference Include="TqdmSharp" Version="0.4.3" />
+  </ItemGroup>
+
+  <!-- WPF 相關套件 (僅 Windows 版本) -->
+  <ItemGroup Condition="'$(TargetFramework)' == 'net10.0-windows'">
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />
+  </ItemGroup>
+
+  <!-- 非 Windows 版本排除 GUI 檔案 -->
+  <ItemGroup Condition="'$(TargetFramework)' != 'net10.0-windows'">
+    <Compile Remove="Gui\**\*.cs" />
   </ItemGroup>
 </Project>

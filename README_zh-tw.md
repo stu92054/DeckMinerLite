@@ -12,9 +12,65 @@
 
 ### ▶ 執行主程式
 
-本專案在 .Net 10 環境下開發，採用 **NativeAOT** 建置，使用時不需要額外安裝 .Net 執行環境。
+本專案在 .Net 10 環境下開發，Windows 版本提供 **WPF 圖形化介面 (GUI)**，Linux 版本採用 **NativeAOT** 建置的 CLI，使用時不需要額外安裝 .Net 執行環境。
 
-雙擊 `DeckMinerLite.exe` 即可執行，練度、卡池、模擬任務可透過配置檔修改。
+#### Windows 版本（含 GUI）
+
+**GUI 模式（推薦）**：
+- 雙擊 `DeckMinerLite.exe` 啟動圖形化介面
+- 透過介面載入 YAML 配置檔
+- 視覺化顯示卡池、歌曲配置、模擬日誌
+- 適合一般使用者和互動式操作
+
+**CLI 模式（自動化）**：
+```bash
+# 傳入參數時自動切換為 CLI 模式
+DeckMinerLite.exe --config config/member-example.yaml
+DeckMinerLite.exe --test-yaml
+```
+
+#### Linux 版本（純 CLI）
+
+Linux 版本僅提供命令列介面，採用 NativeAOT 優化：
+```bash
+chmod +x DeckMinerLite
+./DeckMinerLite --config config/member-example.yaml
+```
+
+---
+
+## 🖥 GUI 功能說明（Windows 專屬）
+
+### 主視窗介面
+
+GUI 提供 4 個分頁：
+
+#### 1️⃣ Configuration（配置）
+- 載入 YAML 配置檔（支援 `config/*.yaml`）
+- 顯示基本設定：成員名稱、賽季模式、LGP 模式
+- 顯示卡池大小
+- 列出所有歌曲配置（歌曲 ID、難度、熟練度）
+
+#### 2️⃣ Simulation（模擬）
+- 開始/停止模擬按鈕
+- 進度條顯示模擬進度
+- 即時日誌輸出（與 CLI 相同格式）
+- 清除日誌按鈕
+
+#### 3️⃣ Results（結果）
+- 預留區域，未來將顯示模擬結果統計
+
+#### 4️⃣ About（關於）
+- 版本資訊
+- 功能說明
+- CLI 模式提示
+
+### 快速操作
+
+- **載入配置**：點擊「Load Config」選擇 YAML 檔案
+- **重新載入**：點擊「Reload」刷新配置
+- **開始模擬**：載入配置後，「Start Simulation」按鈕會啟用
+- **開啟輸出資料夾**：點擊「Open Output Folder」快速開啟結果目錄
 
 ---
 
@@ -187,11 +243,14 @@ python multi_optimizer_2.py --config config/member-test.yaml
 - ✅ PT 動態計算（Fan Level + Limitbreak）
 - ✅ 輸出目錄隔離
 - ✅ 卡牌練度自訂
+- ✅ **WPF 圖形化介面（Windows）**
+- ✅ **GUI/CLI 雙模式自動切換**
 
 ### ⚠ 未實作
 - ❌ 花火吟的延後 Miss（影響仰臥起坐精度）
 - ❌ 多曲優化功能（請使用 Python 版 `multi_optimizer_2.py`）
 - ❌ PT 重算工具（請使用 Python 版 `log_tool.py`）
+- ⏳ GUI 模擬執行整合（目前為佔位實作）
 
 ---
 
@@ -203,28 +262,61 @@ python multi_optimizer_2.py --config config/member-test.yaml
 | 記憶體使用 | 低 | 中等 |
 | 多曲優化 | ❌ | ✅ |
 | YAML 配置 | ✅ | ✅ |
+| **圖形化介面** | **✅ (Windows)** | ❌ |
+| 跨平台支援 | Windows (GUI+CLI) / Linux (CLI) | 全平台 CLI |
 
 ---
 
 ## 🛠 開發資訊
 
 - **語言**：C# (.NET 10)
-- **建置**：NativeAOT（無需執行環境）
+- **建置架構**：
+  - Windows: `net10.0-windows` (WPF GUI, 無 AOT)
+  - Linux: `net10.0` (純 CLI, NativeAOT)
+- **GUI 框架**：WPF (Windows Presentation Foundation)
 - **配置格式**：YAML（推薦）或 JSONC
-- **YAML 解析**：YamlDotNet 16.2.0
+- **依賴套件**：
+  - YamlDotNet 16.2.0（YAML 解析）
+  - TqdmSharp 0.4.3（進度條）
+  - CommunityToolkit.Mvvm 8.3.2（MVVM 支援，僅 Windows）
 
 ### 編譯專案
 
 ```bash
 cd DeckMinerLite
+
+# 編譯 Windows 版本（含 GUI）
+dotnet build --framework net10.0-windows
+
+# 編譯 Linux 版本（純 CLI）
+dotnet build --framework net10.0
+
+# 編譯所有目標
 dotnet build
-dotnet run -- --config ../config/member-test.yaml
 ```
 
-### 測試 YAML 配置
+### 執行開發版本
 
 ```bash
+# Windows: CLI 模式（需傳入參數）
+dotnet run --framework net10.0-windows -- --config ../config/member-test.yaml
+
+# Linux: CLI 模式
+dotnet run --framework net10.0 -- --config ../config/member-test.yaml
+
+# 測試 YAML 配置
 dotnet run -- --test-yaml --config ../config/member-test.yaml
+```
+
+### 發布套件
+
+```bash
+# 使用自動化腳本（推薦）
+publish.bat
+
+# 手動發布
+dotnet publish -c Release --framework net10.0-windows -r win-x64 --self-contained
+dotnet publish -c Release --framework net10.0 -r linux-x64 --self-contained
 ```
 
 ---

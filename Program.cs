@@ -54,7 +54,43 @@ class MultiTextWriter : TextWriter
 
 class Program
 {
+#if WINDOWS
+    /// <summary>
+    /// GUI mode runner - launches WPF application (Windows only)
+    /// </summary>
+    static class GuiRunner
+    {
+        public static int Run()
+        {
+            Console.WriteLine("[INFO] Launching GUI mode...");
 
+            try
+            {
+                var app = new DeckMiner.Gui.App();
+                app.InitializeComponent();
+                app.Run();
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[FAIL] GUI startup failed: {ex.Message}");
+                Console.WriteLine($"[HINT] Stack trace: {ex.StackTrace}");
+
+                if (ex.InnerException != null)
+                {
+                    Console.WriteLine($"[HINT] Inner Exception: {ex.InnerException.Message}");
+                    Console.WriteLine($"[HINT] Inner Stack trace: {ex.InnerException.StackTrace}");
+                }
+
+                Console.WriteLine("\nPress Enter to exit...");
+                Console.ReadLine();
+                return 1;
+            }
+        }
+    }
+#endif
+
+    [STAThread]
     static void Main(string[] args)
     {
         // 設定 Console 編碼為 UTF-8，避免中日文亂碼
@@ -69,6 +105,27 @@ class Program
         }
 
         Console.WriteLine("--- SukuShow Deck Miner Lite ---");
+
+#if WINDOWS
+        // Windows version: Launch GUI if no args
+        if (args.Length == 0)
+        {
+            Environment.Exit(GuiRunner.Run());
+        }
+#else
+        // Linux version: Show hint if no args
+        if (args.Length == 0)
+        {
+            Console.WriteLine("[INFO] No arguments provided");
+            Console.WriteLine("[HINT] Usage examples:");
+            Console.WriteLine("[HINT]   ./DeckMinerLite --config ../config/member-example.yaml");
+            Console.WriteLine("[HINT]   ./DeckMinerLite --test-yaml");
+            Console.WriteLine("[HINT]   ./DeckMinerLite --debug <6 card IDs>");
+            return;
+        }
+#endif
+
+        // === CLI Mode Entry Point ===
 
         // === 测试 YAML 配置系统 ===
         // 如果命令行包含 --test-yaml，运行测试后退出
@@ -223,6 +280,36 @@ class Program
             lgpMode = true;  // JSONC 默认 LGP 模式
         }
 
+        // ------------------------------------------------------------------
+        // 步骤 3: 使用 BatchSimulationService 執行批次模擬
+        // ------------------------------------------------------------------
+        Console.WriteLine("\n開始批次模擬...");
+        try
+        {
+            BatchSimulationService.RunBatchSimulation(
+                yamlConfig,
+                onLog: Console.WriteLine,
+                onProgress: null,  // CLI 已有 Tqdm 進度條，不需額外進度回呼
+                cancellationToken: default
+            );
+        }
+        catch (Exception ex)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($"\n[FAIL] 批次模擬發生錯誤: {ex.Message}");
+            Console.WriteLine($"堆疊追蹤: {ex.StackTrace}");
+            Console.ResetColor();
+            Console.WriteLine("\n按 [Enter] 鍵退出程序...");
+            Console.ReadLine();
+            Environment.Exit(1);
+        }
+
+        Console.WriteLine($"\n已完成全部模擬任務，按 [Enter] 退出程序...");
+        Console.Read();
+    }
+
+    // 原本的 foreach 迴圈已移至 BatchSimulationService，保留供參考
+    /*
         // ------------------------------------------------------------------
         // 步骤 3: 遍历每首歌曲进行模拟
         // ------------------------------------------------------------------
@@ -526,7 +613,7 @@ class Program
         }
         Console.WriteLine($"\n已完成全部模拟任务，按 [Enter] 退出程序...");
         Console.Read();
-    }
+        */
 
     // === YAML 配置测试方法 ===
     static void TestYamlConfigLoading()

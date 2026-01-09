@@ -9946,6 +9946,50 @@
       30315354
     ]
   },
+  "1031536": {
+    "CardSeriesId": 1031536,
+    "Name": "雪舞う空と二秒の永遠",
+    "Description": "日野下 花帆",
+    "CharactersId": 1031,
+    "Rarity": 5,
+    "CenterSkillSeriesId": 10315360,
+    "CenterAttributeSeriesId": 20315360,
+    "MaxSmile": [
+      2000,
+      2800,
+      4000,
+      4400,
+      4800
+    ],
+    "MaxPure": [
+      2500,
+      3500,
+      5000,
+      5500,
+      6000
+    ],
+    "MaxCool": [
+      3450,
+      4830,
+      6900,
+      7590,
+      8280
+    ],
+    "MaxMental": [
+      265,
+      371,
+      530,
+      530,
+      530
+    ],
+    "RhythmGameSkillSeriesId": [
+      30315360,
+      30315360,
+      30315362,
+      30315363,
+      30315364
+    ]
+  },
   "1031801": {
     "CardSeriesId": 1031801,
     "Name": "Prism Echo",
@@ -12869,6 +12913,50 @@
       30325324
     ]
   },
+  "1032533": {
+    "CardSeriesId": 1032533,
+    "Name": "雪舞う空と二秒の永遠",
+    "Description": "村野 さやか",
+    "CharactersId": 1032,
+    "Rarity": 5,
+    "CenterSkillSeriesId": 10325330,
+    "CenterAttributeSeriesId": 20325330,
+    "MaxSmile": [
+      2025,
+      2835,
+      4050,
+      4455,
+      4860
+    ],
+    "MaxPure": [
+      2500,
+      3500,
+      5000,
+      5500,
+      6000
+    ],
+    "MaxCool": [
+      3425,
+      4795,
+      6850,
+      7535,
+      8220
+    ],
+    "MaxMental": [
+      265,
+      371,
+      530,
+      530,
+      530
+    ],
+    "RhythmGameSkillSeriesId": [
+      30325330,
+      30325330,
+      30325332,
+      30325333,
+      30325334
+    ]
+  },
   "1032801": {
     "CardSeriesId": 1032801,
     "Name": "Prism Echo",
@@ -15357,6 +15445,50 @@
       30335314
     ]
   },
+  "1033532": {
+    "CardSeriesId": 1033532,
+    "Name": "雪舞う空と二秒の永遠",
+    "Description": "大沢 瑠璃乃",
+    "CharactersId": 1033,
+    "Rarity": 5,
+    "CenterSkillSeriesId": 10335320,
+    "CenterAttributeSeriesId": 20335320,
+    "MaxSmile": [
+      1975,
+      2765,
+      3950,
+      4345,
+      4740
+    ],
+    "MaxPure": [
+      2500,
+      3500,
+      5000,
+      5500,
+      6000
+    ],
+    "MaxCool": [
+      3475,
+      4865,
+      6950,
+      7645,
+      8340
+    ],
+    "MaxMental": [
+      265,
+      371,
+      530,
+      530,
+      530
+    ],
+    "RhythmGameSkillSeriesId": [
+      30335320,
+      30335320,
+      30335322,
+      30335323,
+      30335324
+    ]
+  },
   "1033801": {
     "CardSeriesId": 1033801,
     "Name": "Prism Echo",
@@ -16828,6 +16960,45 @@
       30415204
     ]
   },
+  "1041521": {
+    "CardSeriesId": 1041521,
+    "Name": "もういちど ルミナス",
+    "Description": "百生 吟子",
+    "CharactersId": 1041,
+    "Rarity": 5,
+    "CenterSkillSeriesId": 10415210,
+    "CenterAttributeSeriesId": 20415210,
+    "MaxSmile": [
+      3605,
+      5150,
+      5665,
+      6180
+    ],
+    "MaxPure": [
+      3850,
+      5500,
+      6050,
+      6600
+    ],
+    "MaxCool": [
+      2625,
+      3750,
+      4125,
+      4500
+    ],
+    "MaxMental": [
+      336,
+      480,
+      480,
+      480
+    ],
+    "RhythmGameSkillSeriesId": [
+      30415210,
+      30415212,
+      30415213,
+      30415214
+    ]
+  },
   "1041801": {
     "CardSeriesId": 1041801,
     "Name": "Ether Aria",
@@ -18260,6 +18431,45 @@
       30425204
     ]
   },
+  "1042521": {
+    "CardSeriesId": 1042521,
+    "Name": "壱雫空",
+    "Description": "徒町 小鈴",
+    "CharactersId": 1042,
+    "Rarity": 5,
+    "CenterSkillSeriesId": 10425210,
+    "CenterAttributeSeriesId": 20425210,
+    "MaxSmile": [
+      2730,
+      3900,
+      4290,
+      4680
+    ],
+    "MaxPure": [
+      3395,
+      4850,
+      5335,
+      5820
+    ],
+    "MaxCool": [
+      3955,
+      5650,
+      6215,
+      6780
+    ],
+    "MaxMental": [
+      336,
+      480,
+      480,
+      480
+    ],
+    "RhythmGameSkillSeriesId": [
+      30425210,
+      30425212,
+      30425213,
+      30425214
+    ]
+  },
   "1042801": {
     "CardSeriesId": 1042801,
     "Name": "Ether Aria",
@@ -19609,6 +19819,45 @@
       30435194
     ]
   },
+  "1043520": {
+    "CardSeriesId": 1043520,
+    "Name": "キミがいなくちゃっ！",
+    "Description": "安養寺 姫芽",
+    "CharactersId": 1043,
+    "Rarity": 5,
+    "CenterSkillSeriesId": 10435200,
+    "CenterAttributeSeriesId": 20435200,
+    "MaxSmile": [
+      4130,
+      5900,
+      6490,
+      7080
+    ],
+    "MaxPure": [
+      3500,
+      5000,
+      5500,
+      6000
+    ],
+    "MaxCool": [
+      2310,
+      3300,
+      3630,
+      3960
+    ],
+    "MaxMental": [
+      350,
+      500,
+      500,
+      500
+    ],
+    "RhythmGameSkillSeriesId": [
+      30435200,
+      30435202,
+      30435203,
+      30435204
+    ]
+  },
   "1043521": {
     "CardSeriesId": 1043521,
     "Name": "Hip, hip, hooray!",
@@ -20379,6 +20628,45 @@
       30515072,
       30515073,
       30515074
+    ]
+  },
+  "1051508": {
+    "CardSeriesId": 1051508,
+    "Name": "FIRE BIRD",
+    "Description": "桂城 泉",
+    "CharactersId": 1051,
+    "Rarity": 5,
+    "CenterSkillSeriesId": 10515080,
+    "CenterAttributeSeriesId": 20515080,
+    "MaxSmile": [
+      2870,
+      4100,
+      4510,
+      4920
+    ],
+    "MaxPure": [
+      3255,
+      4650,
+      5115,
+      5580
+    ],
+    "MaxCool": [
+      4095,
+      5850,
+      6435,
+      7020
+    ],
+    "MaxMental": [
+      322,
+      460,
+      460,
+      460
+    ],
+    "RhythmGameSkillSeriesId": [
+      30515080,
+      30515082,
+      30515083,
+      30515084
     ]
   },
   "1051509": {

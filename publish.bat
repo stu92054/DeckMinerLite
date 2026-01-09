@@ -6,9 +6,9 @@ echo DeckMinerLite Build Script
 echo ========================================
 echo.
 
-set VERSION=1.0.0
-set WIN_PACKAGE_NAME=DeckMinerLite-v1.0-win-x64
-set LINUX_PACKAGE_NAME=DeckMinerLite-v1.0-linux-x64
+set VERSION=1.4.3
+set WIN_PACKAGE_NAME=DeckMinerLite-v1.4.3-win-x64
+set LINUX_PACKAGE_NAME=DeckMinerLite-v1.4.3-linux-x64
 set WIN_PUBLISH_DIR=..\publish\win-x64
 set LINUX_PUBLISH_DIR=..\publish\linux-x64
 set WIN_PACKAGE_DIR=..\publish\%WIN_PACKAGE_NAME%
@@ -30,8 +30,8 @@ if exist "%LINUX_PACKAGE_DIR%" (
 echo Done
 
 echo.
-echo [2/8] Running dotnet publish for Windows x64...
-dotnet publish -c Release -r win-x64 --self-contained -p:PublishAot=false -p:PublishSingleFile=true -p:PublishTrimmed=false -o "%WIN_PUBLISH_DIR%"
+echo [2/8] Running dotnet publish for Windows x64 (with WPF GUI)...
+dotnet publish -c Release --framework net10.0-windows -r win-x64 --self-contained -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o "%WIN_PUBLISH_DIR%"
 
 if errorlevel 1 (
     echo.
@@ -42,8 +42,9 @@ if errorlevel 1 (
 echo Done
 
 echo.
-echo [3/8] Running dotnet publish for Linux x64...
-dotnet publish -c Release -r linux-x64 --self-contained -p:PublishAot=false -p:PublishSingleFile=true -p:PublishTrimmed=false -o "%LINUX_PUBLISH_DIR%"
+echo [3/8] Running dotnet publish for Linux x64 (CLI, no AOT - cross-compilation not supported)...
+echo [HINT] Note: NativeAOT requires native Linux build. Building without AOT for now.
+dotnet publish -c Release --framework net10.0 -r linux-x64 --self-contained -p:PublishSingleFile=true -o "%LINUX_PUBLISH_DIR%"
 
 if errorlevel 1 (
     echo.
@@ -68,6 +69,32 @@ copy "%WIN_PUBLISH_DIR%\task.jsonc" "%WIN_PACKAGE_DIR%\"
 copy "..\config\default.yaml" "%WIN_PACKAGE_DIR%\config\"
 copy "..\config\member-example.yaml" "%WIN_PACKAGE_DIR%\config\"
 copy "..\config\member-test.yaml" "%WIN_PACKAGE_DIR%\config\"
+
+echo.
+echo [5.1/8] Packaging Python optimizer with PyInstaller...
+echo [INFO] Checking if multi_optimizer_2.exe already exists...
+if exist "..\dist\multi_optimizer_2.exe" (
+    echo [INFO] Found pre-built multi_optimizer_2.exe, copying...
+    copy "..\dist\multi_optimizer_2.exe" "%WIN_PACKAGE_DIR%\"
+) else (
+    echo [WARN] multi_optimizer_2.exe not found!
+    echo [HINT] Please run: cd .. ^&^& pyinstaller --onefile multi_optimizer_2.py
+    echo [HINT] Then re-run this publish script.
+    echo.
+    echo [SKIP] Continuing without Python optimizer...
+    echo [NOTE] GUI will still work but multi-song optimization will be unavailable
+)
+echo Done
+
+echo.
+echo [5.2/8] Copying Musics.yaml for optimizer...
+echo [INFO] Copying Musics.yaml from Data to GameData for packaged optimizer...
+if exist "..\Data\Musics.yaml" (
+    copy "..\Data\Musics.yaml" "%WIN_PACKAGE_DIR%\GameData\"
+    echo [INFO] Musics.yaml copied successfully
+) else (
+    echo [WARN] Musics.yaml not found in Data directory!
+)
 echo Done
 
 echo.
@@ -125,9 +152,9 @@ echo.
 echo Quick Start
 echo -----------
 echo.
-echo 1. Double-click DeckMinerLite.exe to run with default config
+echo 1. Double-click DeckMinerLite.exe to launch GUI mode (Windows only)
 echo.
-echo 2. Or use custom config:
+echo 2. Or use command line for automation with custom config:
 echo    DeckMinerLite.exe --config config/member-example.yaml
 echo.
 echo 3. Test your configuration:
@@ -173,7 +200,7 @@ echo - GitHub: https://github.com/stu92054/SukuShow-Deck-Miner
 echo - Documentation: docs/ directory
 echo.
 echo ========================================
-echo DeckMinerLite v1.0 - SukuShow Deck Calculator
+echo DeckMinerLite v1.4.3 - SukuShow Deck Calculator
 echo ========================================
 )
 exit /b 0
@@ -236,7 +263,7 @@ echo - GitHub: https://github.com/stu92054/SukuShow-Deck-Miner
 echo - Documentation: docs/ directory
 echo.
 echo ========================================
-echo DeckMinerLite v1.0 - SukuShow Deck Calculator
+echo DeckMinerLite v1.4.3 - SukuShow Deck Calculator
 echo ========================================
 )
 exit /b 0

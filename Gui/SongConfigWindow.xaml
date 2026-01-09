@@ -1,0 +1,233 @@
+<Window x:Class="DeckMiner.Gui.SongConfigWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="歌曲配置編輯器" Height="650" Width="950"
+        WindowStartupLocation="CenterOwner">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- 頂部工具列 -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
+            <TextBlock Text="歌曲列表" FontSize="16" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,10,0"/>
+            <TextBlock x:Name="CountText" Text="(0 / 3 首)" VerticalAlignment="Center" Foreground="Gray" Margin="0,0,15,0"/>
+            <Button Content="+ 新增歌曲" Click="AddSongButton_Click" Width="100" Margin="0,0,5,0"/>
+            <Button Content="- 移除選中" Click="RemoveSongButton_Click" Width="100"/>
+        </StackPanel>
+
+        <!-- 歌曲列表與編輯區域 -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- 左側：歌曲列表 -->
+            <GroupBox Header="已配置歌曲" Grid.Column="0" Margin="0,0,10,0">
+                <ListBox x:Name="SongsListBox"
+                         SelectionMode="Single"
+                         SelectionChanged="SongsListBox_SelectionChanged">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="2">
+                                <TextBlock FontWeight="Bold" TextWrapping="Wrap">
+                                    <Run Text="{Binding SongTitle, Mode=OneWay}"/>
+                                </TextBlock>
+                                <TextBlock FontSize="10" Foreground="Gray">
+                                    <Run Text="{Binding DifficultyText, Mode=OneWay}"/>
+                                    <Run Text=" | "/>
+                                    <Run Text="Lv."/>
+                                    <Run Text="{Binding MasteryLevel, Mode=OneWay}"/>
+                                </TextBlock>
+                                <TextBlock FontSize="9" Foreground="DarkGray">
+                                    <Run Text="ID: "/>
+                                    <Run Text="{Binding MusicId, Mode=OneWay}"/>
+                                </TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </GroupBox>
+
+            <!-- 右側：編輯區域 -->
+            <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
+                <StackPanel x:Name="EditPanel" IsEnabled="False">
+                    <!-- 基本設定 -->
+                    <GroupBox Header="基本設定" Margin="0,0,0,10">
+                        <Grid Margin="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Grid.Row="0" Grid.Column="0" Text="選擇歌曲:" VerticalAlignment="Center" Margin="5"/>
+                            <ComboBox x:Name="MusicSelectionComboBox" Grid.Row="0" Grid.Column="1" Margin="0,5"
+                                      SelectionChanged="MusicSelectionComboBox_SelectionChanged"/>
+
+                            <TextBlock Grid.Row="1" Grid.Column="0" Text="難度:" VerticalAlignment="Center" Margin="5"/>
+                            <ComboBox x:Name="DifficultyComboBox" Grid.Row="1" Grid.Column="1" Margin="0,5">
+                                <ComboBoxItem Content="Normal (01)" Tag="01"/>
+                                <ComboBoxItem Content="Hard (02)" Tag="02" IsSelected="True"/>
+                                <ComboBoxItem Content="Expert (03)" Tag="03"/>
+                                <ComboBoxItem Content="Master (04)" Tag="04"/>
+                            </ComboBox>
+
+                            <TextBlock Grid.Row="2" Grid.Column="0" Text="精熟等級:" VerticalAlignment="Center" Margin="5"/>
+                            <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Margin="0,5">
+                                <TextBox x:Name="MasteryLevelTextBox" Width="80" Text="50"/>
+                                <TextBlock Text="(1-50)" VerticalAlignment="Center" Margin="10,0,0,0" Foreground="Gray" FontSize="11"/>
+                            </StackPanel>
+                        </Grid>
+                    </GroupBox>
+
+                    <!-- 約束條件 -->
+                    <GroupBox Header="約束條件" Margin="0,0,0,10">
+                        <StackPanel Margin="10">
+                            <!-- 必帶卡片 (全部) -->
+                            <Grid Margin="0,0,0,5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="必帶卡片 (全部) - 必須同時包含以下所有卡片:" FontWeight="Bold"/>
+                                <Button Grid.Column="1" Content="清空" Click="ClearMustCardsAll_Click" Width="60"/>
+                            </Grid>
+                            <Grid Margin="0,0,0,10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <ComboBox x:Name="MustCardsAllComboBox" Grid.Column="0"/>
+                                <Button Content="新增" Grid.Column="1" Click="AddMustCardAll_Click" Width="60" Margin="5,0,0,0"/>
+                            </Grid>
+                            <ListBox x:Name="MustCardsAllListBox" Height="60" SelectionMode="Single"
+                                     MouseDoubleClick="MustCardsAllListBox_MouseDoubleClick" Margin="0,0,0,10"
+                                     ToolTip="雙擊移除卡片"/>
+
+                            <!-- 必帶卡片 (任一) -->
+                            <Grid Margin="0,10,0,5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="必帶卡片 (任一) - 至少包含以下卡片中的一張:" FontWeight="Bold"/>
+                                <Button Grid.Column="1" Content="清空" Click="ClearMustCardsAny_Click" Width="60"/>
+                            </Grid>
+                            <Grid Margin="0,0,0,10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <ComboBox x:Name="MustCardsAnyComboBox" Grid.Column="0"/>
+                                <Button Content="新增" Grid.Column="1" Click="AddMustCardAny_Click" Width="60" Margin="5,0,0,0"/>
+                            </Grid>
+                            <ListBox x:Name="MustCardsAnyListBox" Height="60" SelectionMode="Single"
+                                     MouseDoubleClick="MustCardsAnyListBox_MouseDoubleClick" Margin="0,0,0,10"
+                                     ToolTip="雙擊移除卡片"/>
+
+                            <!-- 必帶技能 -->
+                            <TextBlock Text="必帶技能:" FontWeight="Bold" Margin="0,10,0,5"/>
+                            <TextBlock Text="卡組必須包含以下所有技能類型" FontSize="11" Foreground="Gray" Margin="0,0,0,5"/>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                                <CheckBox x:Name="SkillScoreGainCheckBox" Content="2-分卡" VerticalAlignment="Center" Margin="0,0,15,0"/>
+                                <CheckBox x:Name="SkillVoltageBurstCheckBox" Content="3-電" VerticalAlignment="Center" Margin="0,0,15,0"/>
+                                <CheckBox x:Name="SkillDeckResetCheckBox" Content="5-洗牌/DR" VerticalAlignment="Center" Margin="0,0,15,0"/>
+                                <CheckBox x:Name="SkillScoreGainPlusCheckBox" Content="7-分加成" VerticalAlignment="Center" Margin="0,0,15,0"/>
+                                <CheckBox x:Name="SkillVoltagePlusCheckBox" Content="8-電加成" VerticalAlignment="Center"/>
+                            </StackPanel>
+
+                            <!-- 禁用卡片 -->
+                            <Grid Margin="0,10,0,5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="禁用卡片 - 這些卡片不會出現在卡組中:" FontWeight="Bold"/>
+                                <Button Grid.Column="1" Content="清空" Click="ClearBannedCards_Click" Width="60"/>
+                            </Grid>
+                            <Grid Margin="0,0,0,10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <ComboBox x:Name="BannedCardsComboBox" Grid.Column="0"/>
+                                <Button Content="新增" Grid.Column="1" Click="AddBannedCard_Click" Width="60" Margin="5,0,0,0"/>
+                            </Grid>
+                            <ListBox x:Name="BannedCardsListBox" Height="60" SelectionMode="Single"
+                                     MouseDoubleClick="BannedCardsListBox_MouseDoubleClick"
+                                     ToolTip="雙擊移除卡片"/>
+                        </StackPanel>
+                    </GroupBox>
+
+                    <!-- 進階設定 -->
+                    <Expander Header="進階設定" Margin="0,0,0,10">
+                        <Grid Margin="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Grid.Row="0" Grid.Column="0" Text="次要中心:" VerticalAlignment="Center" Margin="5"/>
+                            <TextBox x:Name="SecondaryCenterTextBox" Grid.Row="0" Grid.Column="1" Margin="0,5"
+                                     ToolTip="指定非高稀有度但想作為中心卡的卡片，用逗號分隔"/>
+
+                            <TextBlock Grid.Row="1" Grid.Column="0" Text="中心覆蓋:" VerticalAlignment="Center" Margin="5"/>
+                            <TextBox x:Name="CenterOverrideTextBox" Grid.Row="1" Grid.Column="1" Margin="0,5"
+                                     ToolTip="覆蓋自動偵測的中心角色 ID (留空使用自動偵測)"/>
+
+                            <TextBlock Grid.Row="2" Grid.Column="0" Text="屬性覆蓋:" VerticalAlignment="Center" Margin="5"/>
+                            <ComboBox x:Name="ColorOverrideComboBox" Grid.Row="2" Grid.Column="1" Margin="0,5">
+                                <ComboBoxItem Content="自動偵測" Tag="" IsSelected="True"/>
+                                <ComboBoxItem Content="Smile (1)" Tag="1"/>
+                                <ComboBoxItem Content="Pure (2)" Tag="2"/>
+                                <ComboBoxItem Content="Cool (3)" Tag="3"/>
+                            </ComboBox>
+
+                            <TextBlock Grid.Row="3" Grid.Column="0" Text="隊長指定:" VerticalAlignment="Center" Margin="5"/>
+                            <TextBox x:Name="LeaderDesignationTextBox" Grid.Row="3" Grid.Column="1" Margin="0,5"
+                                     Text="0" ToolTip="預設為 0"/>
+                        </Grid>
+                    </Expander>
+
+                    <!-- 朋友卡池 -->
+                    <GroupBox Header="朋友卡池 (覆蓋全局配置) - 可選" Margin="0,0,0,10">
+                        <StackPanel Margin="10">
+                            <TextBlock Text="本首歌專用的朋友卡池 (留空使用全局配置)" FontSize="11" Foreground="Gray" Margin="0,0,0,5"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Button Content="選擇朋友卡片..." Grid.Column="0" Click="SelectFriendCards_Click" Margin="0,0,5,0"/>
+                                <Button Content="清空" Grid.Column="1" Click="ClearFriendCardPool_Click" Width="60"/>
+                            </Grid>
+                            <TextBox x:Name="FriendCardPoolTextBox" Height="60" IsReadOnly="True"
+                                     TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" Margin="0,5,0,0"/>
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+
+        <!-- 底部按鈕 -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+            <TextBlock x:Name="StatusText" Text="" VerticalAlignment="Center" Margin="0,0,20,0" Foreground="Gray"/>
+            <Button Content="確定" Click="OkButton_Click" Width="80" IsDefault="True" Margin="0,0,5,0"/>
+            <Button Content="取消" Click="CancelButton_Click" Width="80" IsCancel="True"/>
+        </StackPanel>
+    </Grid>
+</Window>

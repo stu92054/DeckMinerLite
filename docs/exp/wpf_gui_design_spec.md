@@ -52,29 +52,33 @@ DeckMinerLite/
 │   └── UseWPF: true (Windows only)
 │
 ├── Program.cs                          # 程式入口 (條件編譯)
-├── GuiBootstrapper.cs                  # GUI 啟動器 (條件編譯)
+│   └── GuiRunner (內部類別)            # GUI 啟動器 (條件編譯)
+│
+├── GlobalUsingsWindows.cs              # Windows 版本額外的 global using
 │
 ├── Gui/                                # WPF GUI 程式碼 (條件編譯)
-│   ├── App.xaml                        # WPF Application
-│   ├── App.xaml.cs
-│   ├── MainWindow.xaml                 # 主視窗
-│   ├── MainWindow.xaml.cs
-│   ├── ViewModels/                     # MVVM ViewModels
+│   ├── App.xaml                        # WPF Application ✅
+│   ├── App.xaml.cs                     # Application entry point ✅
+│   ├── MainWindow.xaml                 # 主視窗 (4 分頁) ✅
+│   ├── MainWindow.xaml.cs              # 主視窗邏輯 (code-behind) ✅
+│   ├── ViewModels/                     # MVVM ViewModels (待實作)
 │   │   ├── MainViewModel.cs
 │   │   ├── SongConfigViewModel.cs
 │   │   └── CardPoolViewModel.cs
-│   ├── Views/                          # 子視圖控制項
+│   ├── Views/                          # 子視圖控制項 (待實作)
 │   │   ├── SongConfigPanel.xaml
 │   │   ├── CardPoolPanel.xaml
 │   │   └── SimulationPanel.xaml
-│   └── Services/                       # GUI 專用服務
+│   └── Services/                       # GUI 專用服務 (待實作)
 │       ├── ConfigService.cs            # 配置讀寫
 │       └── SimulationService.cs        # 模擬執行
 │
-├── Config/                             # 核心配置類別 (共用)
-├── Services/                           # 核心服務 (共用)
-├── Models/                             # 核心模型 (共用)
-└── Data/                               # 資料模型 (共用)
+├── Config/                             # 核心配置類別 (共用) ✅
+├── Services/                           # 核心服務 (共用) ✅
+├── Models/                             # 核心模型 (共用) ✅
+└── Data/                               # 資料模型 (共用) ✅
+
+✅ = 已實作  ⚪ = 待實作
 ```
 
 ### 1.3 條件編譯策略
@@ -428,20 +432,48 @@ public static class CliRunner
 }
 ```
 
-**GuiRunner.cs** (僅 Windows):
+**GuiRunner** (僅 Windows, 作為 Program 內部類別):
 ```csharp
-#if WINDOWS
-public static class GuiRunner
+// Program.cs
+class Program
 {
-    public static void Run()
+#if WINDOWS
+    /// <summary>
+    /// GUI mode runner - launches WPF application (Windows only)
+    /// </summary>
+    static class GuiRunner
     {
-        var app = new App();
-        app.InitializeComponent();
-        app.Run();
+        public static int Run()
+        {
+            Console.WriteLine("[INFO] Launching GUI mode...");
+
+            try
+            {
+                var app = new DeckMiner.Gui.App();
+                app.InitializeComponent();
+                app.Run();
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[FAIL] GUI startup failed: {ex.Message}");
+                Console.WriteLine($"[HINT] Stack trace: {ex.StackTrace}");
+                Console.WriteLine("\nPress Enter to exit...");
+                Console.ReadLine();
+                return 1;
+            }
+        }
+    }
+#endif
+
+    static void Main(string[] args)
+    {
+        // ... (見下方完整範例)
     }
 }
-#endif
 ```
+
+**注**: GuiRunner 實作為 Program 內部類別而非獨立檔案,以避免條件編譯可見性問題。
 
 ### 4.2 ConfigService 與 YamlConfigManager 整合
 
@@ -645,26 +677,33 @@ private async void OnStartSimulation()
 
 根據審閱建議，調整開發優先級：
 
-**第一優先**: 基礎架構 + 唯讀配置顯示
-- ✅ 解耦 CliRunner / GuiRunner
-- ✅ 條件編譯測試
-- ✅ YAML 載入與顯示 (唯讀)
-- ✅ 驗證與現有邏輯一致性
+**第一優先**: 基礎架構 + 唯讀配置顯示 ✅ **已完成**
+- ✅ 解耦 CliRunner / GuiRunner (GuiRunner 作為 Program 內部類別)
+- ✅ 條件編譯測試 (Windows GUI + Linux CLI)
+- ✅ YAML 載入與顯示 (Configuration Tab 唯讀顯示)
+- ✅ 驗證與現有邏輯一致性 (重用 YamlConfigManager)
+- ✅ 4 分頁 UI 框架建立
+- ✅ 檔案選擇對話框整合
 
-**第二優先**: 非同步模擬控制
-- ✅ Task.Run + IProgress
-- ✅ CancellationToken 支援
-- ✅ 停止/暫停功能
+**第二優先**: 非同步模擬控制 ⏳ **待實作**
+- ⚪ Task.Run + IProgress
+- ⚪ CancellationToken 支援
+- ⚪ 停止/暫停功能
+- ⚪ 即時進度更新
+- ⚪ 日誌緩衝與限制
 
-**第三優先**: 配置編輯功能
-- ✅ 卡池管理 (含虛擬化)
-- ✅ 歌曲配置編輯
-- ✅ YAML 儲存
+**第三優先**: 配置編輯功能 ⏳ **待實作**
+- ⚪ 卡池管理 (含虛擬化)
+- ⚪ 歌曲配置編輯
+- ⚪ YAML 儲存
+- ⚪ Fan Level / Card Level 編輯器
 
-**第四優先**: UI 體驗優化
+**第四優先**: UI 體驗優化 ⏳ **未來版本**
 - ⚪ 搜尋與過濾
 - ⚪ 主題切換
 - ⚪ 快捷鍵
+
+**實際進度**: Phase 1-2 完成，已達成第一優先級全部目標
 
 ---
 
@@ -688,22 +727,36 @@ private async void OnStartSimulation()
 
 ---
 
-### Phase 2: 基本配置編輯 (3-4 小時)
+### Phase 2: GUI 基礎實作 (已完成 ✅)
 
-**目標**: 實作基本設定與卡池管理
+**目標**: 實作基本 WPF GUI 框架與配置顯示
 
-- [ ] 實作 ConfigService (載入/儲存 YAML)
-- [ ] 實作 DataService (載入卡片/音樂資料)
-- [ ] 實作 MainViewModel 基本邏輯
-- [ ] 設計主視窗布局 (側邊欄 + 內容區)
-- [ ] 實作基本設定面板 (member name, lgp_mode, season_mode)
-- [ ] 實作卡池管理面板 (列表、搜尋、新增/移除)
+- [x] 建立 WPF 基本框架 (App.xaml, MainWindow.xaml)
+- [x] 實作 4 分頁布局 (Configuration, Simulation, Results, About)
+- [x] 實作 YAML 配置載入功能
+- [x] 實作配置資訊顯示 (唯讀)
+- [x] 實作歌曲列表顯示
+- [x] 實作模擬控制面板 (佔位實作)
+- [x] 實作日誌輸出區域
+- [x] 整合條件編譯與 GuiRunner
+
+**實際實作內容**:
+- ✅ MainWindow.xaml: 700x1000 主視窗，含 4 個 TabControl
+- ✅ Configuration Tab: 載入 YAML、顯示基本設定、顯示卡池與歌曲
+- ✅ Simulation Tab: 控制按鈕、進度條、即時日誌
+- ✅ Results Tab: 預留區域
+- ✅ About Tab: 版本資訊與功能說明
+- ✅ 檔案選擇對話框整合
+- ✅ 輸出資料夾快速開啟
 
 **驗收標準**:
-- ✅ 可載入現有 YAML 配置
-- ✅ 可編輯基本設定並儲存
-- ✅ 可管理卡池 (新增/移除卡片)
-- ✅ 儲存的 YAML 與原格式一致
+- ✅ Windows 版雙擊啟動 GUI
+- ✅ 可載入現有 YAML 配置並顯示
+- ✅ 配置資訊正確顯示 (member name, lgp_mode, season_mode, card pool size, songs)
+- ✅ GUI 與 CLI 雙模式自動切換
+- ✅ 編譯無錯誤，Windows/Linux 分別正常運作
+
+**完成日期**: 2025-12-26
 
 ---
 
@@ -711,10 +764,12 @@ private async void OnStartSimulation()
 
 **目標**: 實作歌曲配置與進階功能
 
+- [x] 實作卡池管理 (新增/移除卡片)
+- [x] 實作 Card Level 編輯器 (整合於卡池管理)
+- [x] 實作 YAML 儲存功能
 - [ ] 實作歌曲列表管理 (新增/編輯/刪除)
 - [ ] 實作歌曲詳細配置 (難度、精熟、約束條件)
 - [ ] 實作 Fan Level 編輯器
-- [ ] 實作 Card Level 編輯器
 - [ ] 實作優化器配置面板
 
 **驗收標準**:
@@ -862,6 +917,372 @@ dotnet publish -c Release -r linux-x64 --self-contained -f net10.0
 
 ---
 
-**最後更新**: 2025-12-26
-**狀態**: 📝 設計階段
-**預計完成**: Phase 1-5 共 10-15 小時
+---
+
+## 9. 實作進度總結
+
+### 已完成階段
+
+#### ✅ Phase 1: 基礎架構 (完成)
+- Multi-target 專案配置
+- 條件編譯與 GuiRunner 整合
+- Windows/Linux 分離編譯測試通過
+
+#### ✅ Phase 2: GUI 基礎實作 (完成)
+- WPF 主視窗與 4 分頁布局
+- YAML 配置載入與顯示
+- 模擬控制面板框架
+- GUI/CLI 雙模式自動切換
+
+### 待實作階段
+
+#### ✅ Phase 3: 配置編輯功能 (已完成)
+- ✅ 新建配置檔功能 (NewConfigDialog)
+- ✅ Basic Settings 可編輯 (LGP Mode)
+- ✅ 卡池編輯器 (新增/移除卡片)
+- ✅ Card Level 編輯器 (整合於卡池管理)
+- ✅ YAML 儲存功能
+- ✅ 歌曲配置編輯 (SongConfigWindow)
+- ✅ Fan Level 編輯器 (FanLevelsWindow)
+- ✅ Friend Card 選擇器 (FriendCardSelectorWindow)
+
+#### 🚧 Phase 4: 模擬執行整合 (進行中)
+- ✅ SimulationService 非同步執行框架
+- ✅ 執行模式選擇 UI (完整優化 vs 僅模擬)
+- ✅ 即時進度更新與日誌
+- ✅ 停止功能
+- ✅ multi_optimizer_2.py 整合
+- ⏳ C# 模擬邏輯整合 (待完成)
+- ⏳ 結果查看與分析 (待完成)
+
+#### ⏳ Phase 5: 測試與優化
+- 完整功能測試
+- 效能優化 (虛擬化、非同步)
+- 錯誤處理增強
+- 使用者文檔
+
+### 當前狀態
+
+**狀態**: 🚧 Phase 4 進行中 (Phase 4.1 框架完成)
+**完成度**: 70% (3.5/5 階段)
+**下一步**: Phase 4.2 - C# 模擬邏輯整合
+
+---
+
+## 10. Phase 3 完成內容詳細說明
+
+### 10.1 新建配置檔功能
+
+**檔案**: `NewConfigDialog.xaml`, `NewConfigDialog.xaml.cs`
+
+**功能**:
+- 輸入成員名稱，自動生成 `member-<name>.yaml` 格式的檔案名
+- 即時更新儲存路徑顯示
+- 預設配置包含所有必要欄位（fan_levels 預設為 0）
+- 自動過濾不合法的檔案名稱字元
+
+**使用方式**:
+1. 點擊主視窗 "New" 按鈕
+2. 輸入成員名稱（例如：Alice）
+3. 路徑自動更新為 `config/member-Alice.yaml`
+4. 點擊"建立"完成
+
+### 10.2 Basic Settings 編輯
+
+**可編輯項目**:
+- **LGP Mode**: 下拉選單，可選擇 True (允許雙卡) 或 False (單卡模式)
+
+**唯讀項目**:
+- **Member Name**: 從配置檔案名稱自動提取
+- **Season Mode**: 固定為 sukushow
+
+**修改立即生效**: 變更後自動更新配置物件，按 Save 儲存
+
+### 10.3 Fan Levels 編輯器
+
+**檔案**: `FanLevelsWindow.xaml`, `FanLevelsWindow.xaml.cs`
+
+**功能**:
+- 顯示所有 12 個角色的粉絲等級輸入框
+- 使用 GameConstants 中的角色全名顯示
+- 預設值為 10（滿等）
+- 驗證範圍：0-10
+- 快速操作："全部設為 10" 按鈕
+
+**格式**:
+```
+1011  大賀美 沙知      [10]
+1021  乙宗 梢          [10]
+1022  夕霧 綴理        [10]
+...
+```
+
+### 10.4 歌曲配置編輯器改進
+
+**檔案**: `SongConfigWindow.xaml`, `SongConfigWindow.xaml.cs`
+
+**完成的改進**:
+- ✅ 修正 YAML 格式問題（card_ids 縮排從 2 空格改為 1 空格）
+- ✅ 修正 ComboBox 共享實例問題（每個 ComboBox 獨立 UI 元素）
+- ✅ 修正 CheckBox 對齊問題（VerticalAlignment="Center"）
+- ✅ 卡片顯示格式統一為 `{cardId} [{rarityName}] {charName} {cardName}`
+- ✅ 必帶卡片與禁用卡片支援雙擊移除
+
+### 10.5 Friend Card 選擇器
+
+**檔案**: `FriendCardSelectorWindow.xaml`, `FriendCardSelectorWindow.xaml.cs`
+
+**功能**:
+- 完整的卡片資料庫顯示（ID、稀有度、角色、卡片名稱）
+- 搜尋功能（支援 ID、角色名、卡片名、稀有度）
+- 雙擊上方列表新增/移除卡片
+- 雙擊下方已選列表移除卡片
+- "全部清空"按鈕（含確認對話框）
+- 卡片數量即時顯示
+
+**用途**:
+- 全局朋友卡池 (friend_card_ids): 所有歌曲的預設朋友卡
+- 歌曲層級朋友卡池 (friend_card_pool): 覆蓋全局配置，只對該首歌生效
+
+### 10.6 全局朋友卡池
+
+**整合位置**: MainWindow - Configuration 分頁
+
+**功能**:
+- 在 Fan Levels 和 Songs 之間新增「Friend Cards (全局朋友卡池)」區塊
+- 顯示摘要：「已選擇 X 張朋友卡」或「未選擇朋友卡」
+- 重用 FriendCardSelectorWindow 進行編輯
+- 配置載入時自動更新摘要
+
+**配置層級**:
+- **friend_card_ids** (全局): 所有歌曲的預設朋友卡池
+- **songs[].friend_card_pool** (歌曲層級): 覆蓋全局配置
+
+### 10.7 優化器配置
+
+**檔案**: `OptimizerConfigWindow.xaml`, `OptimizerConfigWindow.xaml.cs`
+
+**功能**:
+- **Top N**: 設定每首歌保留前 N 名卡組（預設 50000）
+- **Show Card Names**: 控制輸出中是否顯示卡牌名稱
+- **Forbidden Cards**: 全局禁卡列表（三面均生效）
+  - 從卡池中選擇
+  - 雙擊移除
+  - 一鍵清空
+
+**用途**:
+- 專用於 `multi_optimizer_2.py` 多曲優化器
+- 尋找三首歌曲的最佳卡組組合
+
+**與歌曲禁卡的區別**:
+- 歌曲層級 banned_cards: 只對該首歌生效
+- 優化器 forbidden_cards: 對所有三首歌都生效
+
+---
+
+## 11. Phase 4.1 完成內容詳細說明
+
+### 11.1 執行模式選擇 UI
+
+**更新檔案**: `MainWindow.xaml` (Simulation 分頁)
+
+**功能**:
+- **完整優化流程（推薦）**
+  - 階段 1：模擬歌曲（1-3 首）
+  - 階段 2：多曲優化（multi_optimizer_2.py，僅 3 首時執行）
+- **僅執行模擬（進階）**
+  - 只模擬歌曲，不進行多曲優化
+
+**UI 元件**:
+- RadioButton 選擇執行模式
+- 清楚說明每種模式的執行流程
+- 模式切換時在日誌中記錄
+
+### 11.2 SimulationService 類別
+
+**檔案**: `Services/SimulationService.cs`
+
+**架構設計**:
+- **事件驅動架構**
+  - `ProgressChanged`: 進度更新事件 (0-100%, 狀態訊息)
+  - `LogOutput`: 日誌輸出事件
+  - `ExecutionCompleted`: 執行完成事件 (成功/失敗)
+
+**核心方法**:
+1. `ExecuteFullOptimizationAsync`: 完整優化流程
+2. `ExecuteSimulationOnlyAsync`: 僅執行模擬
+3. `Stop`: 停止執行
+4. `ValidateConfiguration`: 配置驗證
+
+**執行流程**:
+```
+完整優化流程:
+  0-5%   : 配置驗證
+  5-70%  : 模擬歌曲 (C# 實作，待整合)
+  70-75% : 準備優化
+  75-100%: 多曲優化 (multi_optimizer_2.py)
+
+僅模擬:
+  0-5%   : 配置驗證
+  5-100% : 模擬歌曲
+```
+
+**取消機制**:
+- 使用 `CancellationTokenSource` 實作
+- 支援優雅取消（清理資源）
+- Python 進程可被中止
+
+### 11.3 MainWindow 整合
+
+**更新檔案**: `MainWindow.xaml.cs`
+
+**新增功能**:
+1. **SimulationService 初始化與事件訂閱**
+   - 建構函式中初始化服務
+   - 訂閱三個事件：進度、日誌、完成
+
+2. **事件處理器**
+   - `OnSimulationProgressChanged`: 更新進度條與狀態文字
+   - `OnSimulationLogOutput`: 將日誌輸出到 GUI
+   - `OnSimulationCompleted`: 顯示完成對話框，重置按鈕狀態
+
+3. **按鈕邏輯**
+   - `StartSimulationButton_Click`: 根據選擇的模式執行
+   - `StopSimulationButton_Click`: 確認對話框後停止執行
+   - `ExecutionModeChanged`: 記錄模式切換
+
+**UI 更新機制**:
+- 使用 `Dispatcher.Invoke` 確保 UI 執行緒安全
+- 按鈕狀態自動切換（執行中禁用開始、啟用停止）
+
+### 11.4 multi_optimizer_2.py 整合
+
+**實作位置**: `SimulationService.ExecuteOptimizerAsync`
+
+**執行機制**:
+- 使用 `Process` 類別執行 Python 腳本
+- 工作目錄：專案根目錄
+- 環境變數：`CONFIG_FILE` 設定為配置檔路徑
+
+**輸出處理**:
+- `StandardOutput`: 重導向到日誌（前綴 `[OPTIMIZER]`）
+- `StandardError`: 重導向到日誌（前綴 `[OPTIMIZER ERROR]`）
+- 監控 `ExitCode` 判斷執行成功
+
+**取消支援**:
+- 監控 `CancellationToken`
+- 取消時呼叫 `Process.Kill()`
+
+### 11.5 進度追蹤與日誌系統
+
+**進度條**:
+- 0-100% 範圍
+- 分階段更新（模擬 5-70%，優化 70-100%）
+- 即時狀態文字顯示
+
+**日誌系統**:
+- 時間戳記格式：`[HH:mm:ss]`
+- 日誌等級：`[INFO]`, `[PASS]`, `[FAIL]`, `[WARN]`, `[DEBUG]`
+- 自動捲動到最新訊息
+- 清空日誌按鈕
+
+### 11.6 配置驗證
+
+**驗證項目**:
+- ✅ 歌曲數量：1-3 首
+- ✅ 卡池非空
+- ✅ 配置物件完整性
+
+**錯誤處理**:
+- 驗證失敗時顯示錯誤訊息
+- 記錄到日誌
+- 阻止執行
+
+### 11.7 待整合項目
+
+**C# 模擬邏輯**（Phase 4.2）:
+- 目前使用 placeholder 實作（模擬進度更新）
+- 需要整合：
+  - `DeckGenerator`: 卡組生成
+  - `Simulator`: 模擬執行
+  - 輸出結果到檔案
+
+**結果查看**（Phase 4.3）:
+- Results 分頁顯示模擬結果
+- 解析輸出檔案
+- 卡組排名展示
+
+---
+
+**最後更新**: 2026-01-06
+**Phase 2 完成日期**: 2025-12-26
+**Phase 3 完成日期**: 2026-01-05
+**Phase 4.1 完成日期**: 2026-01-06
+**累計開發時間**: ~15 小時
+
+### 已實作的視窗列表
+
+1. ✅ **MainWindow** - 主視窗 (4 分頁)
+2. ✅ **NewConfigDialog** - 新建配置檔對話框
+3. ✅ **CardPoolWindow** - 卡池管理視窗
+4. ✅ **SongConfigWindow** - 歌曲配置編輯視窗
+5. ✅ **FanLevelsWindow** - 粉絲等級編輯視窗
+6. ✅ **FriendCardSelectorWindow** - 朋友卡選擇器
+7. ✅ **OptimizerConfigWindow** - 優化器配置視窗
+
+### 已實作的核心功能
+
+**配置管理**:
+- ✅ YAML 配置載入與儲存
+- ✅ 新建配置檔（含預設值）
+- ✅ 基本設定編輯（LGP Mode）
+- ✅ 完整的卡池管理（新增、移除、練度設定）
+- ✅ 完整的歌曲配置（3 首上限、各種約束條件、進階設定）
+- ✅ 粉絲等級編輯（12 個角色）
+- ✅ 全局朋友卡池管理（friend_card_ids）
+- ✅ 歌曲層級朋友卡池管理（friend_card_pool）
+- ✅ 優化器配置（multi_optimizer_2.py 專用）
+- ✅ 配置驗證與錯誤處理
+
+**模擬執行** (Phase 4.1):
+- ✅ SimulationService 非同步執行框架
+- ✅ 執行模式選擇（完整優化 vs 僅模擬）
+- ✅ 事件驅動架構（進度、日誌、完成）
+- ✅ 即時進度更新與狀態顯示
+- ✅ 日誌系統（時間戳記、等級標記）
+- ✅ 停止功能（優雅取消）
+- ✅ multi_optimizer_2.py 整合
+- ✅ C# 模擬邏輯整合（BatchSimulationService）
+- ✅ 結果查看與分析（Results Tab）
+- ✅ 配置自動儲存（模擬前）
+- ✅ 日文字型支援修正
+
+**資料更新** (2026-01-07):
+- ✅ Chart 譜面資料轉換工具（export_all_charts.py）
+- ✅ Music 資料庫更新（218 首歌曲，+5 新歌）
+- ✅ GameData 完整性（524 個譜面，+28 新譜面）
+- ✅ 智能增量更新（比對差異、跳過相同檔案）
+
+---
+
+## 版本資訊
+
+**當前版本**: v1.4.1 (GUI Edition)
+**最後更新**: 2026-01-07
+
+### 版本歷史
+
+#### v1.4.1 (2026-01-07)
+- 新增 Chart 資料轉換工具
+- 更新遊戲資料（5 首新歌、28 個新譜面）
+- 修正 GUI/CLI 結果差異（ResultBuffer Race Condition）
+- 完成 Results Tab 實作
+- 配置自動儲存功能
+- 介面中文化優化
+
+#### v1.3.0 (2026-01-06)
+- 完成 WPF GUI 基礎框架
+- 實作配置管理系統
+- 整合模擬執行服務
+- 粉絲等級編輯功能
+- 朋友卡池管理

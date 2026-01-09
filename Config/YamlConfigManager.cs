@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
@@ -102,12 +104,28 @@ namespace DeckMiner.Config
 
             string yamlContent = File.ReadAllText(filePath);
 
-            var deserializer = new DeserializerBuilder()
-                .WithNamingConvention(UnderscoredNamingConvention.Instance)
-                .IgnoreUnmatchedProperties()
-                .Build();
+            try
+            {
+                var deserializer = new DeserializerBuilder()
+                    .WithNamingConvention(UnderscoredNamingConvention.Instance)
+                    .IgnoreUnmatchedProperties()
+                    .WithTypeConverter(new FlowIntListYamlConverter()) // Register explicitly
+                    .WithTypeConverter(new CardLevelsYamlConverter()) // Register explicitly
+                    .Build();
 
-            return deserializer.Deserialize<MemberConfig>(yamlContent);
+                return deserializer.Deserialize<MemberConfig>(yamlContent);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error loading config: {ex.Message}");
+                Console.WriteLine($"Stack Trace: {ex.StackTrace}");
+                if (ex.InnerException != null)
+                {
+                    Console.WriteLine($"Inner Exception: {ex.InnerException.Message}");
+                    Console.WriteLine($"Inner Stack: {ex.InnerException.StackTrace}");
+                }
+                throw;
+            }
         }
 
         /// <summary>
@@ -225,19 +243,16 @@ namespace DeckMiner.Config
                 return levels;
             }
 
-            // 默认满练（根据稀有度）
+            // 使用 GameConstants 中的預設滿練度
             int rarity = (cardId / 100) % 10;
-            int defaultLevel = rarity switch
-            {
-                5 => 100,  // R
-                6 => 110,  // SR
-                7 => 120,  // SSR
-                8 => 140,  // LR
-                9 => 120,  // BR
-                _ => 100
-            };
+            int defaultLevel = Data.GameConstants.GetDefaultCardLevel(rarity);
 
-            return new List<int> { defaultLevel, 14, 14 };  // [level, cskill_max, skill_max]
+            return new List<int>
+            {
+                defaultLevel,
+                Data.GameConstants.DefaultCenterSkillLevel,
+                Data.GameConstants.DefaultSkillLevel
+            };
         }
 
         /// <summary>
@@ -267,5 +282,45 @@ namespace DeckMiner.Config
 
             return merged;
         }
+
+        /// <summary>
+        /// 保存当前配置到 YAML 文件 (完整序列化所有配置項目)
+        /// </summary>
+        public void SaveConfig()
+        {
+            if (_configFilePath == null)
+            {
+                throw new InvalidOperationException("Cannot save configuration: No file path specified.");
+            }
+
+            // 使用完整序列化，確保所有配置項目都被儲存
+            var serializer = new SerializerBuilder()
+                .WithNamingConvention(UnderscoredNamingConvention.Instance)
+                .ConfigureDefaultValuesHandling(DefaultValuesHandling.OmitDefaults)
+                .DisableAliases()
+                .WithTypeConverter(new CardLevelsYamlConverter())
+                .WithTypeConverter(new FlowIntListYamlConverter())
+                .Build();
+
+            string yamlContent = serializer.Serialize(_config);
+
+            // 添加 card_levels 註解
+            string cardLevelsCommentBlock =
+@"# 特定卡牌練度覆蓋 (預設滿練度，僅需填寫非滿練卡)
+# 格式: card_id: [level, center_skill_level, skill_level]
+# R: 80, SR: 100, UR: 120, LR: 140, DR: 140, BR: 120
+card_levels:";
+            yamlContent = yamlContent.Replace("card_levels:", cardLevelsCommentBlock);
+
+            // 寫入檔案
+            File.WriteAllText(_configFilePath, yamlContent, System.Text.Encoding.UTF8);
+
+            // 確保寫入成功
+            if (!File.Exists(_configFilePath))
+            {
+                throw new IOException($"Failed to save config file: {_configFilePath}");
+            }
+        }
+
     }
 }
