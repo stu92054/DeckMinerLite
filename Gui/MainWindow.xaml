@@ -140,7 +140,7 @@
                         </GroupBox>
 
                         <!-- Global Friend Cards -->
-                        <GroupBox Header="Friend Cards (全域朋友卡池)" Margin="0,0,0,10">
+                        <GroupBox Header="Friend Cards (全域朋友卡池) - 可選" Margin="0,0,0,10">
                             <Grid Margin="10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>

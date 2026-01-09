@@ -204,7 +204,7 @@
                     </Expander>
 
                     <!-- 朋友卡池 -->
-                    <GroupBox Header="朋友卡池 (覆蓋全局配置)" Margin="0,0,0,10">
+                    <GroupBox Header="朋友卡池 (覆蓋全局配置) - 可選" Margin="0,0,0,10">
                         <StackPanel Margin="10">
                             <TextBlock Text="本首歌專用的朋友卡池 (留空使用全局配置)" FontSize="11" Foreground="Gray" Margin="0,0,0,5"/>
                             <Grid>
