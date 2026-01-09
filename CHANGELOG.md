@@ -5,6 +5,20 @@ All notable changes to DeckMinerLite will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.3] - 2026-01-10
+
+### Fixed
+- 多曲優化器配置讀取修正
+  - 修正 multi_optimizer_2.py 當 optimizer.songs 未配置時，無法從主 songs 讀取 CHALLENGE_SONGS 的問題
+  - 確保優化器與模擬器使用相同的歌曲配置
+
+### Changed
+- 程式碼品質改進
+  - YAML 解析器改用 TryParse 提升錯誤訊息清晰度
+  - 將預設卡牌等級常數統一至 GameConstants，消除重複邏輯
+- 使用者介面優化
+  - 明確標記朋友卡功能為「可選」，提升操作直觀性
+
 ## [1.4.2] - 2026-01-08
 
 ### Fixed

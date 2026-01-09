@@ -3433,6 +3433,21 @@
       30008000
     ]
   },
+  "20315361": {
+    "CenterAttributeSeriesId": 20315360,
+    "CenterAttributeName": "アピールアップ（スリーズブーケ）",
+    "Description": "スリーズブーケに所属するメンバーのアピール値が200％上昇",
+    "TargetIds": [
+      "20101",
+      "20101",
+      "20101"
+    ],
+    "CenterAttributeEffectId": [
+      10020000,
+      20020000,
+      30020000
+    ]
+  },
   "20318011": {
     "CenterAttributeSeriesId": 20318010,
     "CenterAttributeName": "アピールアップ（スリーズブーケ）&APレデュース&CTレデュース",
@@ -4458,6 +4473,21 @@
       30020000
     ]
   },
+  "20325331": {
+    "CenterAttributeSeriesId": 20325330,
+    "CenterAttributeName": "アピールアップ（DOLLCHESTRA）",
+    "Description": "DOLLCHESTRAに所属するメンバーのアピール値が200％上昇",
+    "TargetIds": [
+      "20102",
+      "20102",
+      "20102"
+    ],
+    "CenterAttributeEffectId": [
+      10020000,
+      20020000,
+      30020000
+    ]
+  },
   "20328011": {
     "CenterAttributeSeriesId": 20328010,
     "CenterAttributeName": "アピールアップ（DOLLCHESTRA）&APレデュース&CTレデュース",
@@ -5335,6 +5365,21 @@
       30020000
     ]
   },
+  "20335321": {
+    "CenterAttributeSeriesId": 20335320,
+    "CenterAttributeName": "アピールアップ",
+    "Description": "全メンバーのアピール値が72％上昇",
+    "TargetIds": [
+      "50000",
+      "50000",
+      "50000"
+    ],
+    "CenterAttributeEffectId": [
+      10007200,
+      20007200,
+      30007200
+    ]
+  },
   "20338011": {
     "CenterAttributeSeriesId": 20338010,
     "CenterAttributeName": "アピールアップ（みらくらぱーく！）&APレデュース&CTレデュース",
@@ -5859,6 +5904,21 @@
       30020000
     ]
   },
+  "20415211": {
+    "CenterAttributeSeriesId": 20415210,
+    "CenterAttributeName": "アピールアップ",
+    "Description": "百生吟子／徒町小鈴／安養寺姫芽のアピール値が200％上昇",
+    "TargetIds": [
+      "30104",
+      "30104",
+      "30104"
+    ],
+    "CenterAttributeEffectId": [
+      10020000,
+      20020000,
+      30020000
+    ]
+  },
   "20418011": {
     "CenterAttributeSeriesId": 20418010,
     "CenterAttributeName": "アピールアップ（スリーズブーケ）&APレデュース&CTレデュース",
@@ -6364,6 +6424,21 @@
       30007200
     ]
   },
+  "20425211": {
+    "CenterAttributeSeriesId": 20425210,
+    "CenterAttributeName": "アピールアップ",
+    "Description": "百生吟子／徒町小鈴／安養寺姫芽のアピール値が200％上昇",
+    "TargetIds": [
+      "30104",
+      "30104",
+      "30104"
+    ],
+    "CenterAttributeEffectId": [
+      10020000,
+      20020000,
+      30020000
+    ]
+  },
   "20428011": {
     "CenterAttributeSeriesId": 20428010,
     "CenterAttributeName": "アピールアップ（DOLLCHESTRA）&APレデュース&CTレデュース",
@@ -6839,6 +6914,21 @@
       30007200
     ]
   },
+  "20435201": {
+    "CenterAttributeSeriesId": 20435200,
+    "CenterAttributeName": "アピールアップ",
+    "Description": "百生吟子／徒町小鈴／安養寺姫芽のアピール値が200％上昇",
+    "TargetIds": [
+      "30104",
+      "30104",
+      "30104"
+    ],
+    "CenterAttributeEffectId": [
+      10020000,
+      20020000,
+      30020000
+    ]
+  },
   "20435211": {
     "CenterAttributeSeriesId": 20435210,
     "CenterAttributeName": "アピールアップ（みらくらぱーく！）",
@@ -7095,6 +7185,21 @@
       "20105",
       "20105",
       "20105"
+    ],
+    "CenterAttributeEffectId": [
+      10020000,
+      20020000,
+      30020000
+    ]
+  },
+  "20515081": {
+    "CenterAttributeSeriesId": 20515080,
+    "CenterAttributeName": "アピールアップ",
+    "Description": "桂城泉／セラスのアピール値が200％上昇",
+    "TargetIds": [
+      "30105",
+      "30105",
+      "30105"
     ],
     "CenterAttributeEffectId": [
       10020000,

@@ -6,9 +6,9 @@ echo DeckMinerLite Build Script
 echo ========================================
 echo.
 
-set VERSION=1.4.2
-set WIN_PACKAGE_NAME=DeckMinerLite-v1.4.2-win-x64
-set LINUX_PACKAGE_NAME=DeckMinerLite-v1.4.2-linux-x64
+set VERSION=1.4.3
+set WIN_PACKAGE_NAME=DeckMinerLite-v1.4.3-win-x64
+set LINUX_PACKAGE_NAME=DeckMinerLite-v1.4.3-linux-x64
 set WIN_PUBLISH_DIR=..\publish\win-x64
 set LINUX_PUBLISH_DIR=..\publish\linux-x64
 set WIN_PACKAGE_DIR=..\publish\%WIN_PACKAGE_NAME%
@@ -200,7 +200,7 @@ echo - GitHub: https://github.com/stu92054/SukuShow-Deck-Miner
 echo - Documentation: docs/ directory
 echo.
 echo ========================================
-echo DeckMinerLite v1.4.2 - SukuShow Deck Calculator
+echo DeckMinerLite v1.4.3 - SukuShow Deck Calculator
 echo ========================================
 )
 exit /b 0
@@ -263,7 +263,7 @@ echo - GitHub: https://github.com/stu92054/SukuShow-Deck-Miner
 echo - Documentation: docs/ directory
 echo.
 echo ========================================
-echo DeckMinerLite v1.4.2 - SukuShow Deck Calculator
+echo DeckMinerLite v1.4.3 - SukuShow Deck Calculator
 echo ========================================
 )
 exit /b 0
