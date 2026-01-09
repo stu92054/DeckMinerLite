@@ -27,14 +27,23 @@ namespace DeckMiner.Config
             while (parser.Current is not MappingEnd)
             {
                 var keyScalar = parser.Consume<Scalar>();
-                int key = int.Parse(keyScalar.Value);
+                if (!int.TryParse(keyScalar.Value, out int key))
+                {
+                    throw new YamlException(keyScalar.Start, keyScalar.End,
+                        $"無效的卡片 ID：'{keyScalar.Value}' 不是有效的整數");
+                }
 
                 var list = new List<int>();
                 parser.Consume<SequenceStart>();
                 while (parser.Current is not SequenceEnd)
                 {
                     var valScalar = parser.Consume<Scalar>();
-                    list.Add(int.Parse(valScalar.Value));
+                    if (!int.TryParse(valScalar.Value, out int val))
+                    {
+                        throw new YamlException(valScalar.Start, valScalar.End,
+                            $"無效的練度值：'{valScalar.Value}' 不是有效的整數（卡片 ID: {key}）");
+                    }
+                    list.Add(val);
                 }
                 parser.Consume<SequenceEnd>();
 

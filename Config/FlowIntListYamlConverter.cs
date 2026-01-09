@@ -27,7 +27,12 @@ namespace DeckMiner.Config
             while (parser.Current is not SequenceEnd)
             {
                 var valScalar = parser.Consume<Scalar>();
-                list.Add(int.Parse(valScalar.Value));
+                if (!int.TryParse(valScalar.Value, out int val))
+                {
+                    throw new YamlException(valScalar.Start, valScalar.End,
+                        $"無效的整數值：'{valScalar.Value}' 不是有效的整數");
+                }
+                list.Add(val);
             }
             parser.Consume<SequenceEnd>();
             return list;
