@@ -1067,3 +1067,38 @@ DeckMinerLite.exe --test-yaml --config config/member-test.yaml
 - [x] **備份機制** - 自動備份舊資料 (GameData_backup)
 
 **更新時間**: 2026-01-07
+
+---
+
+## 📋 待辦事項 (Backlog)
+
+### 效能優化
+- [ ] **執行緒數量控制**: 實作 `num_processes` 配置支援
+  - 在 `BatchSimulationService.cs` 的 `Parallel.ForEach` 加入 `ParallelOptions.MaxDegreeOfParallelism`
+  - 在 `DeckGenerator.cs` 的 `Parallel.ForEach` 加入相同配置
+  - 從 `YamlConfigManager.Config.NumProcesses` 讀取設定值
+  - 預設值：`Environment.ProcessorCount`（使用所有 CPU 核心）
+  - 範例程式碼：
+    ```csharp
+    var parallelOptions = new ParallelOptions();
+    if (yamlConfig?.Config.NumProcesses != null)
+    {
+        parallelOptions.MaxDegreeOfParallelism = yamlConfig.Config.NumProcesses.Value;
+    }
+    else
+    {
+        parallelOptions.MaxDegreeOfParallelism = Environment.ProcessorCount;
+    }
+    Parallel.ForEach(workSource, parallelOptions, (item, state) => { ... });
+    ```
+
+### GUI 改進
+- [ ] **優化器配置介面**: 避免自動生成空的 `optimizer.songs` 區段
+  - 問題：SaveConfig 會將 `null` 的 `OptimizerConfig.Songs` 序列化為空列表
+  - 解決方案：在序列化時跳過 `null` 或空的 `optimizer.songs`
+  - 相關檔案：`YamlConfigManager.cs` SaveConfig 方法
+
+### 日誌改進
+- [x] **Optimizer stderr 標籤**: 將 `[OPTIMIZER ERROR]` 改為 `[OPTIMIZER STDERR]`
+  - Python warnings/info 輸出到 stderr 但非真正錯誤
+  - 完成於：2026-01-10 (commit fabfff7)
