@@ -335,7 +335,7 @@ namespace DeckMiner.Services
                 {
                     if (!string.IsNullOrEmpty(e.Data))
                     {
-                        OnLogOutput($"[OPTIMIZER ERROR] {e.Data}");
+                        OnLogOutput($"[OPTIMIZER STDERR] {e.Data}");
                     }
                 };
 

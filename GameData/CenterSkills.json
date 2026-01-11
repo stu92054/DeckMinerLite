@@ -39045,6 +39045,160 @@
       200041850
     ]
   },
+  "1031537001": {
+    "CenterSkillSeriesId": 10315370,
+    "CenterSkillName": "スコアアップ",
+    "Description": "【ライブ終了時に発動】合計アピール値の$139.5%$のスコアを獲得",
+    "CenterSkillConditionIds": [
+      "2000000"
+    ],
+    "CenterSkillEffectId": [
+      200013950
+    ]
+  },
+  "1031537002": {
+    "CenterSkillSeriesId": 10315370,
+    "CenterSkillName": "スコアアップ",
+    "Description": "【ライブ終了時に発動】合計アピール値の$153.45%$のスコアを獲得",
+    "CenterSkillConditionIds": [
+      "2000000"
+    ],
+    "CenterSkillEffectId": [
+      200015345
+    ]
+  },
+  "1031537003": {
+    "CenterSkillSeriesId": 10315370,
+    "CenterSkillName": "スコアアップ",
+    "Description": "【ライブ終了時に発動】合計アピール値の$167.4%$のスコアを獲得",
+    "CenterSkillConditionIds": [
+      "2000000"
+    ],
+    "CenterSkillEffectId": [
+      200016740
+    ]
+  },
+  "1031537004": {
+    "CenterSkillSeriesId": 10315370,
+    "CenterSkillName": "スコアアップ",
+    "Description": "【ライブ終了時に発動】合計アピール値の$181.35%$のスコアを獲得",
+    "CenterSkillConditionIds": [
+      "2000000"
+    ],
+    "CenterSkillEffectId": [
+      200018135
+    ]
+  },
+  "1031537005": {
+    "CenterSkillSeriesId": 10315370,
+    "CenterSkillName": "スコアアップ",
+    "Description": "【ライブ終了時に発動】合計アピール値の$195.3%$のスコアを獲得",
+    "CenterSkillConditionIds": [
+      "2000000"
+    ],
+    "CenterSkillEffectId": [
+      200019530
+    ]
+  },
+  "1031537006": {
+    "CenterSkillSeriesId": 10315370,
+    "CenterSkillName": "スコアアップ",
+    "Description": "【ライブ終了時に発動】合計アピール値の$209.25%$のスコアを獲得",
+    "CenterSkillConditionIds": [
+      "2000000"
+    ],
+    "CenterSkillEffectId": [
+      200020925
+    ]
+  },
+  "1031537007": {
+    "CenterSkillSeriesId": 10315370,
+    "CenterSkillName": "スコアアップ",
+    "Description": "【ライブ終了時に発動】合計アピール値の$223.2%$のスコアを獲得",
+    "CenterSkillConditionIds": [
+      "2000000"
+    ],
+    "CenterSkillEffectId": [
+      200022320
+    ]
+  },
+  "1031537008": {
+    "CenterSkillSeriesId": 10315370,
+    "CenterSkillName": "スコアアップ",
+    "Description": "【ライブ終了時に発動】合計アピール値の$237.15%$のスコアを獲得",
+    "CenterSkillConditionIds": [
+      "2000000"
+    ],
+    "CenterSkillEffectId": [
+      200023715
+    ]
+  },
+  "1031537009": {
+    "CenterSkillSeriesId": 10315370,
+    "CenterSkillName": "スコアアップ",
+    "Description": "【ライブ終了時に発動】合計アピール値の$251.1%$のスコアを獲得",
+    "CenterSkillConditionIds": [
+      "2000000"
+    ],
+    "CenterSkillEffectId": [
+      200025110
+    ]
+  },
+  "1031537010": {
+    "CenterSkillSeriesId": 10315370,
+    "CenterSkillName": "スコアアップ",
+    "Description": "【ライブ終了時に発動】合計アピール値の$279%$のスコアを獲得",
+    "CenterSkillConditionIds": [
+      "2000000"
+    ],
+    "CenterSkillEffectId": [
+      200027900
+    ]
+  },
+  "1031537011": {
+    "CenterSkillSeriesId": 10315370,
+    "CenterSkillName": "スコアアップ",
+    "Description": "【ライブ終了時に発動】合計アピール値の$306.9%$のスコアを獲得",
+    "CenterSkillConditionIds": [
+      "2000000"
+    ],
+    "CenterSkillEffectId": [
+      200030690
+    ]
+  },
+  "1031537012": {
+    "CenterSkillSeriesId": 10315370,
+    "CenterSkillName": "スコアアップ",
+    "Description": "【ライブ終了時に発動】合計アピール値の$334.8%$のスコアを獲得",
+    "CenterSkillConditionIds": [
+      "2000000"
+    ],
+    "CenterSkillEffectId": [
+      200033480
+    ]
+  },
+  "1031537013": {
+    "CenterSkillSeriesId": 10315370,
+    "CenterSkillName": "スコアアップ",
+    "Description": "【ライブ終了時に発動】合計アピール値の$362.7%$のスコアを獲得",
+    "CenterSkillConditionIds": [
+      "2000000"
+    ],
+    "CenterSkillEffectId": [
+      200036270
+    ]
+  },
+  "1031537014": {
+    "CenterSkillSeriesId": 10315370,
+    "CenterSkillName": "スコアアップ",
+    "Description": "【ライブ終了時に発動】合計アピール値の$418.5%$のスコアを獲得",
+    "CenterSkillConditionIds": [
+      "2000000"
+    ],
+    "CenterSkillEffectId": [
+      200041850
+    ]
+  },
   "1031801001": {
     "CenterSkillSeriesId": 10318010,
     "CenterSkillName": "スコアアップ",
@@ -66443,6 +66597,160 @@
       410010000
     ]
   },
+  "1041522001": {
+    "CenterSkillSeriesId": 10415220,
+    "CenterSkillName": "APゲイン",
+    "Description": "【ライブ開始時に発動】APを$4$回復",
+    "CenterSkillConditionIds": [
+      "1000000"
+    ],
+    "CenterSkillEffectId": [
+      100040000
+    ]
+  },
+  "1041522002": {
+    "CenterSkillSeriesId": 10415220,
+    "CenterSkillName": "APゲイン",
+    "Description": "【ライブ開始時に発動】APを$4$回復",
+    "CenterSkillConditionIds": [
+      "1000000"
+    ],
+    "CenterSkillEffectId": [
+      100040000
+    ]
+  },
+  "1041522003": {
+    "CenterSkillSeriesId": 10415220,
+    "CenterSkillName": "APゲイン",
+    "Description": "【ライブ開始時に発動】APを$4$回復",
+    "CenterSkillConditionIds": [
+      "1000000"
+    ],
+    "CenterSkillEffectId": [
+      100040000
+    ]
+  },
+  "1041522004": {
+    "CenterSkillSeriesId": 10415220,
+    "CenterSkillName": "APゲイン",
+    "Description": "【ライブ開始時に発動】APを$5$回復",
+    "CenterSkillConditionIds": [
+      "1000000"
+    ],
+    "CenterSkillEffectId": [
+      100050000
+    ]
+  },
+  "1041522005": {
+    "CenterSkillSeriesId": 10415220,
+    "CenterSkillName": "APゲイン",
+    "Description": "【ライブ開始時に発動】APを$5$回復",
+    "CenterSkillConditionIds": [
+      "1000000"
+    ],
+    "CenterSkillEffectId": [
+      100050000
+    ]
+  },
+  "1041522006": {
+    "CenterSkillSeriesId": 10415220,
+    "CenterSkillName": "APゲイン",
+    "Description": "【ライブ開始時に発動】APを$6$回復",
+    "CenterSkillConditionIds": [
+      "1000000"
+    ],
+    "CenterSkillEffectId": [
+      100060000
+    ]
+  },
+  "1041522007": {
+    "CenterSkillSeriesId": 10415220,
+    "CenterSkillName": "APゲイン",
+    "Description": "【ライブ開始時に発動】APを$6$回復",
+    "CenterSkillConditionIds": [
+      "1000000"
+    ],
+    "CenterSkillEffectId": [
+      100060000
+    ]
+  },
+  "1041522008": {
+    "CenterSkillSeriesId": 10415220,
+    "CenterSkillName": "APゲイン",
+    "Description": "【ライブ開始時に発動】APを$6$回復",
+    "CenterSkillConditionIds": [
+      "1000000"
+    ],
+    "CenterSkillEffectId": [
+      100060000
+    ]
+  },
+  "1041522009": {
+    "CenterSkillSeriesId": 10415220,
+    "CenterSkillName": "APゲイン",
+    "Description": "【ライブ開始時に発動】APを$7$回復",
+    "CenterSkillConditionIds": [
+      "1000000"
+    ],
+    "CenterSkillEffectId": [
+      100070000
+    ]
+  },
+  "1041522010": {
+    "CenterSkillSeriesId": 10415220,
+    "CenterSkillName": "APゲイン",
+    "Description": "【ライブ開始時に発動】APを$8$回復",
+    "CenterSkillConditionIds": [
+      "1000000"
+    ],
+    "CenterSkillEffectId": [
+      100080000
+    ]
+  },
+  "1041522011": {
+    "CenterSkillSeriesId": 10415220,
+    "CenterSkillName": "APゲイン",
+    "Description": "【ライブ開始時に発動】APを$8$回復",
+    "CenterSkillConditionIds": [
+      "1000000"
+    ],
+    "CenterSkillEffectId": [
+      100080000
+    ]
+  },
+  "1041522012": {
+    "CenterSkillSeriesId": 10415220,
+    "CenterSkillName": "APゲイン",
+    "Description": "【ライブ開始時に発動】APを$9$回復",
+    "CenterSkillConditionIds": [
+      "1000000"
+    ],
+    "CenterSkillEffectId": [
+      100090000
+    ]
+  },
+  "1041522013": {
+    "CenterSkillSeriesId": 10415220,
+    "CenterSkillName": "APゲイン",
+    "Description": "【ライブ開始時に発動】APを$10$回復",
+    "CenterSkillConditionIds": [
+      "1000000"
+    ],
+    "CenterSkillEffectId": [
+      100100000
+    ]
+  },
+  "1041522014": {
+    "CenterSkillSeriesId": 10415220,
+    "CenterSkillName": "APゲイン",
+    "Description": "【ライブ開始時に発動】APを$12$回復",
+    "CenterSkillConditionIds": [
+      "1000000"
+    ],
+    "CenterSkillEffectId": [
+      100120000
+    ]
+  },
   "1041801001": {
     "CenterSkillSeriesId": 10418010,
     "CenterSkillName": "メンタル減少",
@@ -74029,6 +74337,160 @@
     ],
     "CenterSkillEffectId": [
       300000251
+    ]
+  },
+  "1043406001": {
+    "CenterSkillSeriesId": 10434060,
+    "CenterSkillName": "APゲイン",
+    "Description": "【FEVER開始時に発動】APを$3$回復",
+    "CenterSkillConditionIds": [
+      "3000000"
+    ],
+    "CenterSkillEffectId": [
+      100030000
+    ]
+  },
+  "1043406002": {
+    "CenterSkillSeriesId": 10434060,
+    "CenterSkillName": "APゲイン",
+    "Description": "【FEVER開始時に発動】APを$3$回復",
+    "CenterSkillConditionIds": [
+      "3000000"
+    ],
+    "CenterSkillEffectId": [
+      100030000
+    ]
+  },
+  "1043406003": {
+    "CenterSkillSeriesId": 10434060,
+    "CenterSkillName": "APゲイン",
+    "Description": "【FEVER開始時に発動】APを$4$回復",
+    "CenterSkillConditionIds": [
+      "3000000"
+    ],
+    "CenterSkillEffectId": [
+      100040000
+    ]
+  },
+  "1043406004": {
+    "CenterSkillSeriesId": 10434060,
+    "CenterSkillName": "APゲイン",
+    "Description": "【FEVER開始時に発動】APを$4$回復",
+    "CenterSkillConditionIds": [
+      "3000000"
+    ],
+    "CenterSkillEffectId": [
+      100040000
+    ]
+  },
+  "1043406005": {
+    "CenterSkillSeriesId": 10434060,
+    "CenterSkillName": "APゲイン",
+    "Description": "【FEVER開始時に発動】APを$4$回復",
+    "CenterSkillConditionIds": [
+      "3000000"
+    ],
+    "CenterSkillEffectId": [
+      100040000
+    ]
+  },
+  "1043406006": {
+    "CenterSkillSeriesId": 10434060,
+    "CenterSkillName": "APゲイン",
+    "Description": "【FEVER開始時に発動】APを$5$回復",
+    "CenterSkillConditionIds": [
+      "3000000"
+    ],
+    "CenterSkillEffectId": [
+      100050000
+    ]
+  },
+  "1043406007": {
+    "CenterSkillSeriesId": 10434060,
+    "CenterSkillName": "APゲイン",
+    "Description": "【FEVER開始時に発動】APを$5$回復",
+    "CenterSkillConditionIds": [
+      "3000000"
+    ],
+    "CenterSkillEffectId": [
+      100050000
+    ]
+  },
+  "1043406008": {
+    "CenterSkillSeriesId": 10434060,
+    "CenterSkillName": "APゲイン",
+    "Description": "【FEVER開始時に発動】APを$5$回復",
+    "CenterSkillConditionIds": [
+      "3000000"
+    ],
+    "CenterSkillEffectId": [
+      100050000
+    ]
+  },
+  "1043406009": {
+    "CenterSkillSeriesId": 10434060,
+    "CenterSkillName": "APゲイン",
+    "Description": "【FEVER開始時に発動】APを$6$回復",
+    "CenterSkillConditionIds": [
+      "3000000"
+    ],
+    "CenterSkillEffectId": [
+      100060000
+    ]
+  },
+  "1043406010": {
+    "CenterSkillSeriesId": 10434060,
+    "CenterSkillName": "APゲイン",
+    "Description": "【FEVER開始時に発動】APを$6$回復",
+    "CenterSkillConditionIds": [
+      "3000000"
+    ],
+    "CenterSkillEffectId": [
+      100060000
+    ]
+  },
+  "1043406011": {
+    "CenterSkillSeriesId": 10434060,
+    "CenterSkillName": "APゲイン",
+    "Description": "【FEVER開始時に発動】APを$7$回復",
+    "CenterSkillConditionIds": [
+      "3000000"
+    ],
+    "CenterSkillEffectId": [
+      100070000
+    ]
+  },
+  "1043406012": {
+    "CenterSkillSeriesId": 10434060,
+    "CenterSkillName": "APゲイン",
+    "Description": "【FEVER開始時に発動】APを$8$回復",
+    "CenterSkillConditionIds": [
+      "3000000"
+    ],
+    "CenterSkillEffectId": [
+      100080000
+    ]
+  },
+  "1043406013": {
+    "CenterSkillSeriesId": 10434060,
+    "CenterSkillName": "APゲイン",
+    "Description": "【FEVER開始時に発動】APを$8$回復",
+    "CenterSkillConditionIds": [
+      "3000000"
+    ],
+    "CenterSkillEffectId": [
+      100080000
+    ]
+  },
+  "1043406014": {
+    "CenterSkillSeriesId": 10434060,
+    "CenterSkillName": "APゲイン",
+    "Description": "【FEVER開始時に発動】APを$10$回復",
+    "CenterSkillConditionIds": [
+      "3000000"
+    ],
+    "CenterSkillEffectId": [
+      100100000
     ]
   },
   "1043501001": {

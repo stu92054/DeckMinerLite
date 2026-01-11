@@ -1166,7 +1166,7 @@ dotnet publish -c Release -r linux-x64 --self-contained -f net10.0
 
 **輸出處理**:
 - `StandardOutput`: 重導向到日誌（前綴 `[OPTIMIZER]`）
-- `StandardError`: 重導向到日誌（前綴 `[OPTIMIZER ERROR]`）
+- `StandardError`: 重導向到日誌（前綴 `[OPTIMIZER STDERR]`，包含 Python warnings 等非錯誤訊息）
 - 監控 `ExitCode` 判斷執行成功
 
 **取消支援**:

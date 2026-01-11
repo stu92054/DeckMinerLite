@@ -175007,6 +175007,790 @@
       200068850
     ]
   },
+  "3031537001": {
+    "RhythmGameSkillSeriesId": 30315370,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 17,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$311.85%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$173.25%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200031185,
+      701017325
+    ]
+  },
+  "3031537002": {
+    "RhythmGameSkillSeriesId": 30315370,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 17,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$343.03%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$190.57%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200034303,
+      701019057
+    ]
+  },
+  "3031537003": {
+    "RhythmGameSkillSeriesId": 30315370,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 17,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$374.22%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$207.9%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200037422,
+      701020790
+    ]
+  },
+  "3031537004": {
+    "RhythmGameSkillSeriesId": 30315370,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 17,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$405.4%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$225.22%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200040540,
+      701022522
+    ]
+  },
+  "3031537005": {
+    "RhythmGameSkillSeriesId": 30315370,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 17,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$436.59%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$242.55%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200043659,
+      701024255
+    ]
+  },
+  "3031537006": {
+    "RhythmGameSkillSeriesId": 30315370,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 17,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$467.77%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$259.87%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200046777,
+      701025987
+    ]
+  },
+  "3031537007": {
+    "RhythmGameSkillSeriesId": 30315370,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 17,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$498.96%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$277.2%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200049896,
+      701027720
+    ]
+  },
+  "3031537008": {
+    "RhythmGameSkillSeriesId": 30315370,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 17,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$530.14%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$294.52%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200053014,
+      701029452
+    ]
+  },
+  "3031537009": {
+    "RhythmGameSkillSeriesId": 30315370,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 17,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$561.33%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$311.85%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200056133,
+      701031185
+    ]
+  },
+  "3031537010": {
+    "RhythmGameSkillSeriesId": 30315370,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 17,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$623.7%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$346.5%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200062370,
+      701034650
+    ]
+  },
+  "3031537011": {
+    "RhythmGameSkillSeriesId": 30315370,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 17,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$686.07%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$381.15%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200068607,
+      701038115
+    ]
+  },
+  "3031537012": {
+    "RhythmGameSkillSeriesId": 30315370,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 17,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$748.44%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$415.8%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200074844,
+      701041580
+    ]
+  },
+  "3031537013": {
+    "RhythmGameSkillSeriesId": 30315370,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 17,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$810.81%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$450.45%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200081081,
+      701045045
+    ]
+  },
+  "3031537014": {
+    "RhythmGameSkillSeriesId": 30315370,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 17,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$935.55%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$519.75%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200093555,
+      701051975
+    ]
+  },
+  "3031537201": {
+    "RhythmGameSkillSeriesId": 30315372,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 16,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$311.85%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$173.25%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200031185,
+      701017325
+    ]
+  },
+  "3031537202": {
+    "RhythmGameSkillSeriesId": 30315372,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 16,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$343.03%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$190.57%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200034303,
+      701019057
+    ]
+  },
+  "3031537203": {
+    "RhythmGameSkillSeriesId": 30315372,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 16,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$374.22%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$207.9%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200037422,
+      701020790
+    ]
+  },
+  "3031537204": {
+    "RhythmGameSkillSeriesId": 30315372,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 16,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$405.4%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$225.22%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200040540,
+      701022522
+    ]
+  },
+  "3031537205": {
+    "RhythmGameSkillSeriesId": 30315372,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 16,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$436.59%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$242.55%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200043659,
+      701024255
+    ]
+  },
+  "3031537206": {
+    "RhythmGameSkillSeriesId": 30315372,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 16,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$467.77%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$259.87%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200046777,
+      701025987
+    ]
+  },
+  "3031537207": {
+    "RhythmGameSkillSeriesId": 30315372,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 16,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$498.96%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$277.2%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200049896,
+      701027720
+    ]
+  },
+  "3031537208": {
+    "RhythmGameSkillSeriesId": 30315372,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 16,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$530.14%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$294.52%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200053014,
+      701029452
+    ]
+  },
+  "3031537209": {
+    "RhythmGameSkillSeriesId": 30315372,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 16,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$561.33%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$311.85%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200056133,
+      701031185
+    ]
+  },
+  "3031537210": {
+    "RhythmGameSkillSeriesId": 30315372,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 16,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$623.7%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$346.5%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200062370,
+      701034650
+    ]
+  },
+  "3031537211": {
+    "RhythmGameSkillSeriesId": 30315372,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 16,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$686.07%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$381.15%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200068607,
+      701038115
+    ]
+  },
+  "3031537212": {
+    "RhythmGameSkillSeriesId": 30315372,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 16,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$748.44%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$415.8%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200074844,
+      701041580
+    ]
+  },
+  "3031537213": {
+    "RhythmGameSkillSeriesId": 30315372,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 16,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$810.81%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$450.45%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200081081,
+      701045045
+    ]
+  },
+  "3031537214": {
+    "RhythmGameSkillSeriesId": 30315372,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 16,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$935.55%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$519.75%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200093555,
+      701051975
+    ]
+  },
+  "3031537301": {
+    "RhythmGameSkillSeriesId": 30315373,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 15,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$311.85%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$173.25%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200031185,
+      701017325
+    ]
+  },
+  "3031537302": {
+    "RhythmGameSkillSeriesId": 30315373,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 15,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$343.03%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$190.57%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200034303,
+      701019057
+    ]
+  },
+  "3031537303": {
+    "RhythmGameSkillSeriesId": 30315373,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 15,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$374.22%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$207.9%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200037422,
+      701020790
+    ]
+  },
+  "3031537304": {
+    "RhythmGameSkillSeriesId": 30315373,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 15,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$405.4%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$225.22%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200040540,
+      701022522
+    ]
+  },
+  "3031537305": {
+    "RhythmGameSkillSeriesId": 30315373,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 15,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$436.59%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$242.55%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200043659,
+      701024255
+    ]
+  },
+  "3031537306": {
+    "RhythmGameSkillSeriesId": 30315373,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 15,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$467.77%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$259.87%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200046777,
+      701025987
+    ]
+  },
+  "3031537307": {
+    "RhythmGameSkillSeriesId": 30315373,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 15,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$498.96%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$277.2%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200049896,
+      701027720
+    ]
+  },
+  "3031537308": {
+    "RhythmGameSkillSeriesId": 30315373,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 15,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$530.14%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$294.52%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200053014,
+      701029452
+    ]
+  },
+  "3031537309": {
+    "RhythmGameSkillSeriesId": 30315373,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 15,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$561.33%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$311.85%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200056133,
+      701031185
+    ]
+  },
+  "3031537310": {
+    "RhythmGameSkillSeriesId": 30315373,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 15,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$623.7%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$346.5%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200062370,
+      701034650
+    ]
+  },
+  "3031537311": {
+    "RhythmGameSkillSeriesId": 30315373,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 15,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$686.07%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$381.15%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200068607,
+      701038115
+    ]
+  },
+  "3031537312": {
+    "RhythmGameSkillSeriesId": 30315373,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 15,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$748.44%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$415.8%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200074844,
+      701041580
+    ]
+  },
+  "3031537313": {
+    "RhythmGameSkillSeriesId": 30315373,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 15,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$810.81%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$450.45%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200081081,
+      701045045
+    ]
+  },
+  "3031537314": {
+    "RhythmGameSkillSeriesId": 30315373,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 15,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$935.55%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$519.75%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200093555,
+      701051975
+    ]
+  },
+  "3031537401": {
+    "RhythmGameSkillSeriesId": 30315374,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 14,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$311.85%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$173.25%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200031185,
+      701017325
+    ]
+  },
+  "3031537402": {
+    "RhythmGameSkillSeriesId": 30315374,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 14,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$343.03%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$190.57%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200034303,
+      701019057
+    ]
+  },
+  "3031537403": {
+    "RhythmGameSkillSeriesId": 30315374,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 14,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$374.22%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$207.9%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200037422,
+      701020790
+    ]
+  },
+  "3031537404": {
+    "RhythmGameSkillSeriesId": 30315374,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 14,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$405.4%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$225.22%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200040540,
+      701022522
+    ]
+  },
+  "3031537405": {
+    "RhythmGameSkillSeriesId": 30315374,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 14,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$436.59%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$242.55%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200043659,
+      701024255
+    ]
+  },
+  "3031537406": {
+    "RhythmGameSkillSeriesId": 30315374,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 14,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$467.77%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$259.87%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200046777,
+      701025987
+    ]
+  },
+  "3031537407": {
+    "RhythmGameSkillSeriesId": 30315374,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 14,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$498.96%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$277.2%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200049896,
+      701027720
+    ]
+  },
+  "3031537408": {
+    "RhythmGameSkillSeriesId": 30315374,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 14,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$530.14%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$294.52%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200053014,
+      701029452
+    ]
+  },
+  "3031537409": {
+    "RhythmGameSkillSeriesId": 30315374,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 14,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$561.33%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$311.85%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200056133,
+      701031185
+    ]
+  },
+  "3031537410": {
+    "RhythmGameSkillSeriesId": 30315374,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 14,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$623.7%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$346.5%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200062370,
+      701034650
+    ]
+  },
+  "3031537411": {
+    "RhythmGameSkillSeriesId": 30315374,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 14,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$686.07%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$381.15%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200068607,
+      701038115
+    ]
+  },
+  "3031537412": {
+    "RhythmGameSkillSeriesId": 30315374,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 14,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$748.44%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$415.8%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200074844,
+      701041580
+    ]
+  },
+  "3031537413": {
+    "RhythmGameSkillSeriesId": 30315374,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 14,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$810.81%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$450.45%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200081081,
+      701045045
+    ]
+  },
+  "3031537414": {
+    "RhythmGameSkillSeriesId": 30315374,
+    "RhythmGameSkillName": "スコアアップ&スコア獲得量アップ",
+    "ConsumeAP": 14,
+    "Description": "スキルの合計発動回数が15回以上の時、合計アピール値の$935.55%$のスコアを獲得／スキルの合計発動回数が15回以下の時、スコア獲得効果スキルによるスコア獲得量が、1回の間$519.75%$上昇",
+    "RhythmGameSkillConditionIds": [
+      "4100015",
+      "4200015"
+    ],
+    "RhythmGameSkillEffectId": [
+      200093555,
+      701051975
+    ]
+  },
   "3031801001": {
     "RhythmGameSkillSeriesId": 30318010,
     "RhythmGameSkillName": "Prism Echo",
@@ -302751,6 +303535,1126 @@
       600000000
     ]
   },
+  "3041522001": {
+    "RhythmGameSkillSeriesId": 30415220,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 3,
+    "Description": "メンタルが最大値の1％以下の時、APを$4$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$292.5%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100040000,
+      110140000,
+      801029250,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522002": {
+    "RhythmGameSkillSeriesId": 30415220,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 3,
+    "Description": "メンタルが最大値の1％以下の時、APを$5$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$321.75%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100050000,
+      110140000,
+      801032175,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522003": {
+    "RhythmGameSkillSeriesId": 30415220,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 3,
+    "Description": "メンタルが最大値の1％以下の時、APを$5$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$351%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100050000,
+      110140000,
+      801035100,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522004": {
+    "RhythmGameSkillSeriesId": 30415220,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 3,
+    "Description": "メンタルが最大値の1％以下の時、APを$6$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$380.25%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100060000,
+      110140000,
+      801038025,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522005": {
+    "RhythmGameSkillSeriesId": 30415220,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 3,
+    "Description": "メンタルが最大値の1％以下の時、APを$6$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$409.5%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100060000,
+      110140000,
+      801040950,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522006": {
+    "RhythmGameSkillSeriesId": 30415220,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 3,
+    "Description": "メンタルが最大値の1％以下の時、APを$7$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$438.75%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100070000,
+      110140000,
+      801043875,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522007": {
+    "RhythmGameSkillSeriesId": 30415220,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 3,
+    "Description": "メンタルが最大値の1％以下の時、APを$7$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$468%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100070000,
+      110140000,
+      801046800,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522008": {
+    "RhythmGameSkillSeriesId": 30415220,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 3,
+    "Description": "メンタルが最大値の1％以下の時、APを$7$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$497.25%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100070000,
+      110140000,
+      801049725,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522009": {
+    "RhythmGameSkillSeriesId": 30415220,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 3,
+    "Description": "メンタルが最大値の1％以下の時、APを$8$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$526.5%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100080000,
+      110140000,
+      801052650,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522010": {
+    "RhythmGameSkillSeriesId": 30415220,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 3,
+    "Description": "メンタルが最大値の1％以下の時、APを$9$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$585%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100090000,
+      110140000,
+      801058500,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522011": {
+    "RhythmGameSkillSeriesId": 30415220,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 3,
+    "Description": "メンタルが最大値の1％以下の時、APを$10$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$643.5%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100100000,
+      110140000,
+      801064350,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522012": {
+    "RhythmGameSkillSeriesId": 30415220,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 3,
+    "Description": "メンタルが最大値の1％以下の時、APを$11$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$702%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100110000,
+      110140000,
+      801070200,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522013": {
+    "RhythmGameSkillSeriesId": 30415220,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 3,
+    "Description": "メンタルが最大値の1％以下の時、APを$12$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$760.5%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100120000,
+      110140000,
+      801076050,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522014": {
+    "RhythmGameSkillSeriesId": 30415220,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 3,
+    "Description": "メンタルが最大値の1％以下の時、APを$14$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$877.5%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100140000,
+      110140000,
+      801087750,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522201": {
+    "RhythmGameSkillSeriesId": 30415222,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 2,
+    "Description": "メンタルが最大値の1％以下の時、APを$4$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$292.5%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100040000,
+      110140000,
+      801029250,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522202": {
+    "RhythmGameSkillSeriesId": 30415222,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 2,
+    "Description": "メンタルが最大値の1％以下の時、APを$5$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$321.75%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100050000,
+      110140000,
+      801032175,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522203": {
+    "RhythmGameSkillSeriesId": 30415222,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 2,
+    "Description": "メンタルが最大値の1％以下の時、APを$5$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$351%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100050000,
+      110140000,
+      801035100,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522204": {
+    "RhythmGameSkillSeriesId": 30415222,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 2,
+    "Description": "メンタルが最大値の1％以下の時、APを$6$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$380.25%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100060000,
+      110140000,
+      801038025,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522205": {
+    "RhythmGameSkillSeriesId": 30415222,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 2,
+    "Description": "メンタルが最大値の1％以下の時、APを$6$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$409.5%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100060000,
+      110140000,
+      801040950,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522206": {
+    "RhythmGameSkillSeriesId": 30415222,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 2,
+    "Description": "メンタルが最大値の1％以下の時、APを$7$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$438.75%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100070000,
+      110140000,
+      801043875,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522207": {
+    "RhythmGameSkillSeriesId": 30415222,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 2,
+    "Description": "メンタルが最大値の1％以下の時、APを$7$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$468%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100070000,
+      110140000,
+      801046800,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522208": {
+    "RhythmGameSkillSeriesId": 30415222,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 2,
+    "Description": "メンタルが最大値の1％以下の時、APを$7$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$497.25%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100070000,
+      110140000,
+      801049725,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522209": {
+    "RhythmGameSkillSeriesId": 30415222,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 2,
+    "Description": "メンタルが最大値の1％以下の時、APを$8$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$526.5%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100080000,
+      110140000,
+      801052650,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522210": {
+    "RhythmGameSkillSeriesId": 30415222,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 2,
+    "Description": "メンタルが最大値の1％以下の時、APを$9$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$585%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100090000,
+      110140000,
+      801058500,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522211": {
+    "RhythmGameSkillSeriesId": 30415222,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 2,
+    "Description": "メンタルが最大値の1％以下の時、APを$10$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$643.5%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100100000,
+      110140000,
+      801064350,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522212": {
+    "RhythmGameSkillSeriesId": 30415222,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 2,
+    "Description": "メンタルが最大値の1％以下の時、APを$11$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$702%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100110000,
+      110140000,
+      801070200,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522213": {
+    "RhythmGameSkillSeriesId": 30415222,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 2,
+    "Description": "メンタルが最大値の1％以下の時、APを$12$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$760.5%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100120000,
+      110140000,
+      801076050,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522214": {
+    "RhythmGameSkillSeriesId": 30415222,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 2,
+    "Description": "メンタルが最大値の1％以下の時、APを$14$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$877.5%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100140000,
+      110140000,
+      801087750,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522301": {
+    "RhythmGameSkillSeriesId": 30415223,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 1,
+    "Description": "メンタルが最大値の1％以下の時、APを$4$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$292.5%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100040000,
+      110140000,
+      801029250,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522302": {
+    "RhythmGameSkillSeriesId": 30415223,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 1,
+    "Description": "メンタルが最大値の1％以下の時、APを$5$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$321.75%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100050000,
+      110140000,
+      801032175,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522303": {
+    "RhythmGameSkillSeriesId": 30415223,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 1,
+    "Description": "メンタルが最大値の1％以下の時、APを$5$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$351%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100050000,
+      110140000,
+      801035100,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522304": {
+    "RhythmGameSkillSeriesId": 30415223,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 1,
+    "Description": "メンタルが最大値の1％以下の時、APを$6$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$380.25%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100060000,
+      110140000,
+      801038025,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522305": {
+    "RhythmGameSkillSeriesId": 30415223,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 1,
+    "Description": "メンタルが最大値の1％以下の時、APを$6$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$409.5%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100060000,
+      110140000,
+      801040950,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522306": {
+    "RhythmGameSkillSeriesId": 30415223,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 1,
+    "Description": "メンタルが最大値の1％以下の時、APを$7$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$438.75%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100070000,
+      110140000,
+      801043875,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522307": {
+    "RhythmGameSkillSeriesId": 30415223,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 1,
+    "Description": "メンタルが最大値の1％以下の時、APを$7$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$468%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100070000,
+      110140000,
+      801046800,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522308": {
+    "RhythmGameSkillSeriesId": 30415223,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 1,
+    "Description": "メンタルが最大値の1％以下の時、APを$7$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$497.25%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100070000,
+      110140000,
+      801049725,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522309": {
+    "RhythmGameSkillSeriesId": 30415223,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 1,
+    "Description": "メンタルが最大値の1％以下の時、APを$8$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$526.5%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100080000,
+      110140000,
+      801052650,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522310": {
+    "RhythmGameSkillSeriesId": 30415223,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 1,
+    "Description": "メンタルが最大値の1％以下の時、APを$9$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$585%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100090000,
+      110140000,
+      801058500,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522311": {
+    "RhythmGameSkillSeriesId": 30415223,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 1,
+    "Description": "メンタルが最大値の1％以下の時、APを$10$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$643.5%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100100000,
+      110140000,
+      801064350,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522312": {
+    "RhythmGameSkillSeriesId": 30415223,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 1,
+    "Description": "メンタルが最大値の1％以下の時、APを$11$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$702%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100110000,
+      110140000,
+      801070200,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522313": {
+    "RhythmGameSkillSeriesId": 30415223,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 1,
+    "Description": "メンタルが最大値の1％以下の時、APを$12$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$760.5%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100120000,
+      110140000,
+      801076050,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522314": {
+    "RhythmGameSkillSeriesId": 30415223,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 1,
+    "Description": "メンタルが最大値の1％以下の時、APを$14$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$877.5%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100140000,
+      110140000,
+      801087750,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522401": {
+    "RhythmGameSkillSeriesId": 30415224,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 0,
+    "Description": "メンタルが最大値の1％以下の時、APを$4$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$292.5%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100040000,
+      110140000,
+      801029250,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522402": {
+    "RhythmGameSkillSeriesId": 30415224,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 0,
+    "Description": "メンタルが最大値の1％以下の時、APを$5$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$321.75%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100050000,
+      110140000,
+      801032175,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522403": {
+    "RhythmGameSkillSeriesId": 30415224,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 0,
+    "Description": "メンタルが最大値の1％以下の時、APを$5$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$351%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100050000,
+      110140000,
+      801035100,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522404": {
+    "RhythmGameSkillSeriesId": 30415224,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 0,
+    "Description": "メンタルが最大値の1％以下の時、APを$6$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$380.25%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100060000,
+      110140000,
+      801038025,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522405": {
+    "RhythmGameSkillSeriesId": 30415224,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 0,
+    "Description": "メンタルが最大値の1％以下の時、APを$6$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$409.5%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100060000,
+      110140000,
+      801040950,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522406": {
+    "RhythmGameSkillSeriesId": 30415224,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 0,
+    "Description": "メンタルが最大値の1％以下の時、APを$7$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$438.75%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100070000,
+      110140000,
+      801043875,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522407": {
+    "RhythmGameSkillSeriesId": 30415224,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 0,
+    "Description": "メンタルが最大値の1％以下の時、APを$7$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$468%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100070000,
+      110140000,
+      801046800,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522408": {
+    "RhythmGameSkillSeriesId": 30415224,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 0,
+    "Description": "メンタルが最大値の1％以下の時、APを$7$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$497.25%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100070000,
+      110140000,
+      801049725,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522409": {
+    "RhythmGameSkillSeriesId": 30415224,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 0,
+    "Description": "メンタルが最大値の1％以下の時、APを$8$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$526.5%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100080000,
+      110140000,
+      801052650,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522410": {
+    "RhythmGameSkillSeriesId": 30415224,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 0,
+    "Description": "メンタルが最大値の1％以下の時、APを$9$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$585%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100090000,
+      110140000,
+      801058500,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522411": {
+    "RhythmGameSkillSeriesId": 30415224,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 0,
+    "Description": "メンタルが最大値の1％以下の時、APを$10$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$643.5%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100100000,
+      110140000,
+      801064350,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522412": {
+    "RhythmGameSkillSeriesId": 30415224,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 0,
+    "Description": "メンタルが最大値の1％以下の時、APを$11$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$702%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100110000,
+      110140000,
+      801070200,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522413": {
+    "RhythmGameSkillSeriesId": 30415224,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 0,
+    "Description": "メンタルが最大値の1％以下の時、APを$12$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$760.5%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100120000,
+      110140000,
+      801076050,
+      600000000,
+      600000000
+    ]
+  },
+  "3041522414": {
+    "RhythmGameSkillSeriesId": 30415224,
+    "RhythmGameSkillName": "APゲイン&AP減少&ボルテージ獲得量アップ",
+    "ConsumeAP": 0,
+    "Description": "メンタルが最大値の1％以下の時、APを$14$回復／メンタルが最大値の1％以上の時、APを$14$減少／メンタルが最大値の1％以上の時、ボルテージ獲得効果スキルによるボルテージ獲得量が、1回の間$877.5%$上昇／メンタルが最大値の1％以上の時、このカードを除外する／このカードのスキル発動回数が2回以上の時、このカードを除外する",
+    "RhythmGameSkillConditionIds": [
+      "3200100",
+      "3100100",
+      "3100100",
+      "3100100",
+      "5100002"
+    ],
+    "RhythmGameSkillEffectId": [
+      100140000,
+      110140000,
+      801087750,
+      600000000,
+      600000000
+    ]
+  },
   "3041801001": {
     "RhythmGameSkillSeriesId": 30418010,
     "RhythmGameSkillName": "Ether Aria",
@@ -339837,6 +341741,902 @@
     "RhythmGameSkillEffectId": [
       200060264,
       600000000
+    ]
+  },
+  "3043406001": {
+    "RhythmGameSkillSeriesId": 30434060,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 23,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$379.08%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200037908,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406002": {
+    "RhythmGameSkillSeriesId": 30434060,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 23,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$416.98%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200041698,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406003": {
+    "RhythmGameSkillSeriesId": 30434060,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 23,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$454.89%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200045489,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406004": {
+    "RhythmGameSkillSeriesId": 30434060,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 23,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$492.8%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200049280,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406005": {
+    "RhythmGameSkillSeriesId": 30434060,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 23,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$530.71%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200053071,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406006": {
+    "RhythmGameSkillSeriesId": 30434060,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 23,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$568.62%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200056862,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406007": {
+    "RhythmGameSkillSeriesId": 30434060,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 23,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$606.52%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200060652,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406008": {
+    "RhythmGameSkillSeriesId": 30434060,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 23,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$644.43%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200064443,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406009": {
+    "RhythmGameSkillSeriesId": 30434060,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 23,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$682.34%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200068234,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406010": {
+    "RhythmGameSkillSeriesId": 30434060,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 23,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$758.16%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200075816,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406011": {
+    "RhythmGameSkillSeriesId": 30434060,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 23,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$833.97%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200083397,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406012": {
+    "RhythmGameSkillSeriesId": 30434060,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 23,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$909.79%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200090979,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406013": {
+    "RhythmGameSkillSeriesId": 30434060,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 23,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$985.6%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200098560,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406014": {
+    "RhythmGameSkillSeriesId": 30434060,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 23,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$1137.24%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200113724,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406201": {
+    "RhythmGameSkillSeriesId": 30434062,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 22,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$379.08%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200037908,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406202": {
+    "RhythmGameSkillSeriesId": 30434062,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 22,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$416.98%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200041698,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406203": {
+    "RhythmGameSkillSeriesId": 30434062,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 22,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$454.89%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200045489,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406204": {
+    "RhythmGameSkillSeriesId": 30434062,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 22,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$492.8%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200049280,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406205": {
+    "RhythmGameSkillSeriesId": 30434062,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 22,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$530.71%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200053071,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406206": {
+    "RhythmGameSkillSeriesId": 30434062,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 22,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$568.62%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200056862,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406207": {
+    "RhythmGameSkillSeriesId": 30434062,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 22,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$606.52%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200060652,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406208": {
+    "RhythmGameSkillSeriesId": 30434062,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 22,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$644.43%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200064443,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406209": {
+    "RhythmGameSkillSeriesId": 30434062,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 22,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$682.34%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200068234,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406210": {
+    "RhythmGameSkillSeriesId": 30434062,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 22,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$758.16%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200075816,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406211": {
+    "RhythmGameSkillSeriesId": 30434062,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 22,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$833.97%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200083397,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406212": {
+    "RhythmGameSkillSeriesId": 30434062,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 22,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$909.79%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200090979,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406213": {
+    "RhythmGameSkillSeriesId": 30434062,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 22,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$985.6%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200098560,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406214": {
+    "RhythmGameSkillSeriesId": 30434062,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 22,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$1137.24%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200113724,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406301": {
+    "RhythmGameSkillSeriesId": 30434063,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 21,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$379.08%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200037908,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406302": {
+    "RhythmGameSkillSeriesId": 30434063,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 21,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$416.98%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200041698,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406303": {
+    "RhythmGameSkillSeriesId": 30434063,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 21,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$454.89%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200045489,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406304": {
+    "RhythmGameSkillSeriesId": 30434063,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 21,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$492.8%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200049280,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406305": {
+    "RhythmGameSkillSeriesId": 30434063,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 21,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$530.71%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200053071,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406306": {
+    "RhythmGameSkillSeriesId": 30434063,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 21,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$568.62%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200056862,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406307": {
+    "RhythmGameSkillSeriesId": 30434063,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 21,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$606.52%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200060652,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406308": {
+    "RhythmGameSkillSeriesId": 30434063,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 21,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$644.43%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200064443,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406309": {
+    "RhythmGameSkillSeriesId": 30434063,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 21,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$682.34%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200068234,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406310": {
+    "RhythmGameSkillSeriesId": 30434063,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 21,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$758.16%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200075816,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406311": {
+    "RhythmGameSkillSeriesId": 30434063,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 21,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$833.97%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200083397,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406312": {
+    "RhythmGameSkillSeriesId": 30434063,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 21,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$909.79%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200090979,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406313": {
+    "RhythmGameSkillSeriesId": 30434063,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 21,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$985.6%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200098560,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406314": {
+    "RhythmGameSkillSeriesId": 30434063,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 21,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$1137.24%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200113724,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406401": {
+    "RhythmGameSkillSeriesId": 30434064,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 20,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$379.08%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200037908,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406402": {
+    "RhythmGameSkillSeriesId": 30434064,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 20,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$416.98%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200041698,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406403": {
+    "RhythmGameSkillSeriesId": 30434064,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 20,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$454.89%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200045489,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406404": {
+    "RhythmGameSkillSeriesId": 30434064,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 20,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$492.8%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200049280,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406405": {
+    "RhythmGameSkillSeriesId": 30434064,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 20,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$530.71%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200053071,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406406": {
+    "RhythmGameSkillSeriesId": 30434064,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 20,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$568.62%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200056862,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406407": {
+    "RhythmGameSkillSeriesId": 30434064,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 20,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$606.52%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200060652,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406408": {
+    "RhythmGameSkillSeriesId": 30434064,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 20,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$644.43%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200064443,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406409": {
+    "RhythmGameSkillSeriesId": 30434064,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 20,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$682.34%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200068234,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406410": {
+    "RhythmGameSkillSeriesId": 30434064,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 20,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$758.16%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200075816,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406411": {
+    "RhythmGameSkillSeriesId": 30434064,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 20,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$833.97%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200083397,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406412": {
+    "RhythmGameSkillSeriesId": 30434064,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 20,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$909.79%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200090979,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406413": {
+    "RhythmGameSkillSeriesId": 30434064,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 20,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$985.6%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200098560,
+      310005000,
+      400002500
+    ]
+  },
+  "3043406414": {
+    "RhythmGameSkillSeriesId": 30434064,
+    "RhythmGameSkillName": "スコアアップ&ボルテージダウン&メンタル回復",
+    "ConsumeAP": 20,
+    "Description": "メンタルが最大値の100％以上の時、合計アピール値の$1137.24%$のスコアを獲得／ボルテージPt.が$5000pt$減少／最大値の$25%$分のメンタルを回復",
+    "RhythmGameSkillConditionIds": [
+      "3110000",
+      "0",
+      "0"
+    ],
+    "RhythmGameSkillEffectId": [
+      200113724,
+      310005000,
+      400002500
     ]
   },
   "3043501001": {

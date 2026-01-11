@@ -3448,6 +3448,21 @@
       30020000
     ]
   },
+  "20315371": {
+    "CenterAttributeSeriesId": 20315370,
+    "CenterAttributeName": "アピールアップ",
+    "Description": "全メンバーのアピール値が80％上昇",
+    "TargetIds": [
+      "50000",
+      "50000",
+      "50000"
+    ],
+    "CenterAttributeEffectId": [
+      10008000,
+      20008000,
+      30008000
+    ]
+  },
   "20318011": {
     "CenterAttributeSeriesId": 20318010,
     "CenterAttributeName": "アピールアップ（スリーズブーケ）&APレデュース&CTレデュース",
@@ -5919,6 +5934,21 @@
       30020000
     ]
   },
+  "20415221": {
+    "CenterAttributeSeriesId": 20415220,
+    "CenterAttributeName": "アピールアップ",
+    "Description": "全メンバーのアピール値が80％上昇",
+    "TargetIds": [
+      "50000",
+      "50000",
+      "50000"
+    ],
+    "CenterAttributeEffectId": [
+      10008000,
+      20008000,
+      30008000
+    ]
+  },
   "20418011": {
     "CenterAttributeSeriesId": 20418010,
     "CenterAttributeName": "アピールアップ（スリーズブーケ）&APレデュース&CTレデュース",
@@ -6625,6 +6655,21 @@
       10006000,
       20006000,
       30006000
+    ]
+  },
+  "20434061": {
+    "CenterAttributeSeriesId": 20434060,
+    "CenterAttributeName": "アピールアップ",
+    "Description": "全メンバーのアピール値が54％上昇",
+    "TargetIds": [
+      "50000",
+      "50000",
+      "50000"
+    ],
+    "CenterAttributeEffectId": [
+      10005400,
+      20005400,
+      30005400
     ]
   },
   "20435011": {

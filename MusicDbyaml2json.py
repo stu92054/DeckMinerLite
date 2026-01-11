@@ -4,7 +4,7 @@ from pathlib import Path
 from datetime import datetime, date
 
 # --- 配置 ---
-INPUT_FILE = Path("D:\Application\Tool\Game\inspix-hailstorm-main\masterdata\Musics.yaml")
+INPUT_FILE = Path("..\Data\Musics.yaml")
 OUTPUT_FILE = Path("GameData/Musics.json")
 # ----------------
 # Custom JSON Encoder

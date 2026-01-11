@@ -9990,6 +9990,50 @@
       30315364
     ]
   },
+  "1031537": {
+    "CardSeriesId": 1031537,
+    "Name": "Sayo-Shigure",
+    "Description": "日野下 花帆",
+    "CharactersId": 1031,
+    "Rarity": 5,
+    "CenterSkillSeriesId": 10315370,
+    "CenterAttributeSeriesId": 20315370,
+    "MaxSmile": [
+      2100,
+      2940,
+      4200,
+      4620,
+      5040
+    ],
+    "MaxPure": [
+      2500,
+      3500,
+      5000,
+      5500,
+      6000
+    ],
+    "MaxCool": [
+      2550,
+      3570,
+      5100,
+      5610,
+      6120
+    ],
+    "MaxMental": [
+      245,
+      343,
+      490,
+      490,
+      490
+    ],
+    "RhythmGameSkillSeriesId": [
+      30315370,
+      30315370,
+      30315372,
+      30315373,
+      30315374
+    ]
+  },
   "1031801": {
     "CardSeriesId": 1031801,
     "Name": "Prism Echo",
@@ -16999,6 +17043,50 @@
       30415214
     ]
   },
+  "1041522": {
+    "CardSeriesId": 1041522,
+    "Name": "Sayo-Shigure",
+    "Description": "百生 吟子",
+    "CharactersId": 1041,
+    "Rarity": 5,
+    "CenterSkillSeriesId": 10415220,
+    "CenterAttributeSeriesId": 20415220,
+    "MaxSmile": [
+      2025,
+      2835,
+      4050,
+      4455,
+      4860
+    ],
+    "MaxPure": [
+      2525,
+      3535,
+      5050,
+      5555,
+      6060
+    ],
+    "MaxCool": [
+      2600,
+      3640,
+      5200,
+      5720,
+      6240
+    ],
+    "MaxMental": [
+      245,
+      343,
+      490,
+      490,
+      490
+    ],
+    "RhythmGameSkillSeriesId": [
+      30415220,
+      30415220,
+      30415222,
+      30415223,
+      30415224
+    ]
+  },
   "1041801": {
     "CardSeriesId": 1041801,
     "Name": "Ether Aria",
@@ -18981,6 +19069,50 @@
       30434052,
       30434053,
       30434054
+    ]
+  },
+  "1043406": {
+    "CardSeriesId": 1043406,
+    "Name": "ハートにQ",
+    "Description": "安養寺 姫芽",
+    "CharactersId": 1043,
+    "Rarity": 4,
+    "CenterSkillSeriesId": 10434060,
+    "CenterAttributeSeriesId": 20434060,
+    "MaxSmile": [
+      2000,
+      2800,
+      4000,
+      4400,
+      4800
+    ],
+    "MaxPure": [
+      2300,
+      3220,
+      4600,
+      5060,
+      5520
+    ],
+    "MaxCool": [
+      1850,
+      2590,
+      3700,
+      4070,
+      4440
+    ],
+    "MaxMental": [
+      225,
+      315,
+      450,
+      450,
+      450
+    ],
+    "RhythmGameSkillSeriesId": [
+      30434060,
+      30434060,
+      30434062,
+      30434063,
+      30434064
     ]
   },
   "1043501": {
