@@ -1102,3 +1102,41 @@ DeckMinerLite.exe --test-yaml --config config/member-test.yaml
 - [x] **Optimizer stderr 標籤**: 將 `[OPTIMIZER ERROR]` 改為 `[OPTIMIZER STDERR]`
   - Python warnings/info 輸出到 stderr 但非真正錯誤
   - 完成於：2026-01-10 (commit fabfff7)
+
+### 功能增強
+- [ ] **自動禁卡功能**: 指定隊長時自動在其他首歌曲禁用該卡
+  - 使用情境：三首歌曲各自指定不同隊長，避免重複使用
+  - 實作邏輯：
+    - 在 GUI/CLI 配置時，若 `song[0].leader_designation = "1031533"`，則自動加入 `song[1].banned_cards.append(1031533)` 和 `song[2].banned_cards.append(1031533)`
+    - 需要在配置驗證階段處理，避免衝突
+  - 相關檔案：
+    - `YamlConfigManager.cs`: 新增 `AutoBanLeaderCards()` 方法
+    - `MainWindow.xaml.cs` / `SongConfigWindow.xaml.cs`: GUI 編輯時自動更新
+  - 配置範例：
+    ```yaml
+    songs:
+    - music_id: "405129"
+      leader_designation: "1031533"  # 自動在歌曲 2,3 禁用
+    - music_id: "405204"
+      leader_designation: "1033524"  # 自動在歌曲 1,3 禁用
+    - music_id: "405205"
+      leader_designation: "1052506"  # 自動在歌曲 1,2 禁用
+    ```
+
+- [ ] **每首歌獨立卡池**: 允許每首歌曲配置專屬的卡片池
+  - 需求：某些歌曲只想使用特定卡片組合
+  - 資料模型：在 `SongConfig` 新增 `card_ids_override: List<int>?`
+  - 優先級：`song.card_ids_override > config.card_ids`（全域卡池）
+  - 相關檔案：
+    - `Config/MemberConfig.cs`: 新增 `SongConfig.CardIdsOverride` 欄位
+    - `Services/BatchSimulationService.cs`: 讀取歌曲專屬卡池
+    - GUI: `SongConfigWindow.xaml`: 新增「覆蓋卡池」按鈕與選擇器
+  - 配置範例：
+    ```yaml
+    card_ids: [1031533, 1033524, 1041405, ...]  # 全域卡池
+    songs:
+    - music_id: "405129"
+      card_ids_override: [1031533, 1052506, 1051901]  # 只用這 3 張卡
+    - music_id: "405204"
+      # 使用全域卡池
+    ```
