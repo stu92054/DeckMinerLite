@@ -224,9 +224,54 @@ class Program
                     }
 
                     Simulator.DebugMode = true;
-                    string musicId = "405204";
-                    string tier = "02";
-                    int masterLv = 50;
+
+                    // 解析歌曲參數（可選）
+                    string musicId = "405204";  // 預設值
+                    string tier = "02";          // 預設值
+                    int masterLv = 50;           // 預設值
+
+                    // 檢查 --music 參數
+                    if (args.Contains("--music"))
+                    {
+                        int musicIndex = Array.IndexOf(args, "--music");
+                        if (musicIndex + 1 < args.Length)
+                        {
+                            musicId = args[musicIndex + 1];
+                        }
+                    }
+
+                    // 檢查 --difficulty 參數
+                    if (args.Contains("--difficulty"))
+                    {
+                        int diffIndex = Array.IndexOf(args, "--difficulty");
+                        if (diffIndex + 1 < args.Length)
+                        {
+                            tier = args[diffIndex + 1];
+                        }
+                    }
+
+                    // 檢查 --mastery 參數
+                    if (args.Contains("--mastery"))
+                    {
+                        int masteryIndex = Array.IndexOf(args, "--mastery");
+                        if (masteryIndex + 1 < args.Length && int.TryParse(args[masteryIndex + 1], out int mlv))
+                        {
+                            masterLv = mlv;
+                        }
+                    }
+
+                    Console.WriteLine($"\n--- 正在加载谱面 (ID: {musicId}, Tier: {tier}) ---");
+                    if (!musicDb.ContainsKey(musicId))
+                    {
+                        Console.WriteLine($"[ERROR] Music ID '{musicId}' not found in database");
+                        Console.SetOut(originalOut);
+                        return;
+                    }
+                    Console.WriteLine($"[谱面信息]");
+                    Console.WriteLine($"  歌曲: {musicDb[musicId].Title}");
+                    Console.WriteLine($"  难度: {tier} (01=Normal, 02=Hard, 03=Expert, 04=Master)");
+                    Console.WriteLine($"  熟练度: Lv.{masterLv}");
+                    Console.WriteLine("-----------------------------------------------------");
 
                     Simulator sim = new Simulator(musicId, tier, masterLv);
 
