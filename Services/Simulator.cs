@@ -387,14 +387,19 @@ namespace DeckMiner.Services
                                 }
                             }
                         }
-                        // 檢查朋友的隊長技能（新增）
+                        // 檢查朋友的隊長技能（僅當好友卡與歌曲中心角色相同時才應用）
                         if (d.FriendCard != null)
                         {
-                            foreach (var (condition, effect) in d.FriendCard.GetCenterSkill())
+                            // 好友卡必須是歌曲中心角色才能應用中心技能
+                            int friendCharId = int.Parse(d.FriendCard.CardId.Substring(0, 4));
+                            if (friendCharId == Music.CenterCharacterId)
                             {
-                                if (SkillResolver.CheckCenterSkillCondition(Player, condition, currentEvent.Type))
+                                foreach (var (condition, effect) in d.FriendCard.GetCenterSkill())
                                 {
-                                    SkillResolver.ApplyCenterSkillEffect(Player, effect);
+                                    if (SkillResolver.CheckCenterSkillCondition(Player, condition, currentEvent.Type))
+                                    {
+                                        SkillResolver.ApplyCenterSkillEffect(Player, effect);
+                                    }
                                 }
                             }
                         }
