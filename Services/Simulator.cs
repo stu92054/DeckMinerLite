@@ -394,21 +394,27 @@ namespace DeckMiner.Services
                             {
                                 if (DebugMode && currentEvent.Type == LiveEventType.LiveStart)
                                 {
-                                    Console.WriteLine($"  Condition: {condition}, Effect: {effect}");
+                                    Console.WriteLine($"  條件: {condition}, 效果: {effect}");
                                 }
                                 if (SkillResolver.CheckCenterSkillCondition(Player, condition, currentEvent.Type))
                                 {
                                     if (DebugMode && currentEvent.Type == LiveEventType.LiveStart)
                                     {
-                                        Console.WriteLine($"  -> Condition Met! Applying Effect {effect}");
+                                        Console.WriteLine($"  -> 條件滿足！應用效果 {effect}");
                                     }
                                     SkillResolver.ApplyCenterSkillEffect(Player, effect);
+                                    if (DebugMode && currentEvent.Type == LiveEventType.LiveStart)
+                                    {
+                                        Console.WriteLine($"  當前屬性:");
+                                        Console.WriteLine($"    AP: {Player.Ap:F5}  Combo: {Player.Combo}  AP Gain Rate: {Player.ApRate:F2}x  Mental: {Player.Mental.CurrentHp:F0} / {Player.Mental.MaxHp:F0} ({Player.Mental.CurrentHp / (double)Player.Mental.MaxHp * 100:F2}%)");
+                                        Console.WriteLine($"    Score: {Player.Score:F0}  Voltage: {Player.Voltage.GetPoints()} Pt (Lv.{Player.Voltage.Level})");
+                                    }
                                 }
                                 else
                                 {
                                     if (DebugMode && currentEvent.Type == LiveEventType.LiveStart)
                                     {
-                                        Console.WriteLine($"  -> Condition Not Met.");
+                                        Console.WriteLine($"  -> 條件不滿足。");
                                     }
                                 }
                             }
@@ -428,21 +434,27 @@ namespace DeckMiner.Services
                                 {
                                     if (DebugMode && currentEvent.Type == LiveEventType.LiveStart)
                                     {
-                                        Console.WriteLine($"  Condition: {condition}, Effect: {effect}");
+                                        Console.WriteLine($"  條件: {condition}, 效果: {effect}");
                                     }
                                     if (SkillResolver.CheckCenterSkillCondition(Player, condition, currentEvent.Type))
                                     {
                                         if (DebugMode && currentEvent.Type == LiveEventType.LiveStart)
                                         {
-                                            Console.WriteLine($"  -> Condition Met! Applying Friend Center Skill Effect {effect}");
+                                            Console.WriteLine($"  -> 條件滿足！應用好友卡中心技能效果 {effect}");
                                         }
                                         SkillResolver.ApplyCenterSkillEffect(Player, effect);
+                                        if (DebugMode && currentEvent.Type == LiveEventType.LiveStart)
+                                        {
+                                            Console.WriteLine($"  當前屬性:");
+                                            Console.WriteLine($"    AP: {Player.Ap:F5}  Combo: {Player.Combo}  AP Gain Rate: {Player.ApRate:F2}x  Mental: {Player.Mental.CurrentHp:F0} / {Player.Mental.MaxHp:F0} ({Player.Mental.CurrentHp / (double)Player.Mental.MaxHp * 100:F2}%)");
+                                            Console.WriteLine($"    Score: {Player.Score:F0}  Voltage: {Player.Voltage.GetPoints()} Pt (Lv.{Player.Voltage.Level})");
+                                        }
                                     }
                                     else
                                     {
                                         if (DebugMode && currentEvent.Type == LiveEventType.LiveStart)
                                         {
-                                            Console.WriteLine($"  -> Condition Not Met.");
+                                            Console.WriteLine($"  -> 條件不滿足。");
                                         }
                                     }
                                 }
