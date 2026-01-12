@@ -283,7 +283,7 @@ namespace DeckMiner.Services
                     double currentRate = playerAttrs.Mental.Rate;
                     if (op == SkillComparisonOperator.ABOVE_OR_EQUAL) result = currentRate >= requiredRate;
                     else if (op == SkillComparisonOperator.BELOW_OR_EQUAL) result = currentRate <= requiredRate;
-                    logMsg = $"条件: HP {OpToString(op)} {value/100.0:P2} (当前: {currentRate:P2}) -> {(result ? "满足" : "不满足")}";
+                    logMsg = $"条件: HP {OpToString(op)} {requiredRate:.2f}% (当前: {currentRate:.2f}%) -> {(result ? "满足" : "不满足")}";
                     break;
                 case SkillConditionType.UsedAllSkillCount:
                     int allCount = playerAttrs.Deck.UsedAllSkillCalc(); // 假设此方法已实现
