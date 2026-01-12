@@ -419,13 +419,13 @@ namespace DeckMiner.Services
                         if (playerAttrs.NextVoltageGainRate.Count != 0)
                         {
                             var bonus = playerAttrs.NextVoltageGainRate.First();
-                            voltageRate += bonus / 100.0; // Fix: Bonus is in percentage points (e.g. 54.45), need to divide by 100
+                            voltageRate += bonus;
                             playerAttrs.NextVoltageGainRate.RemoveAt(0);
                             // if (Simulator.DebugMode) Console.WriteLine($"[VoltagePointChange] Applied Bonus: {bonus}, New Rate: {voltageRate}");
                         }
                     }
                     else voltageRate *= changeFactor;
-                    int voltageResult = (int)Ceiling(valueData * voltageRate);
+                    int voltageResult = (int)Ceiling(valueData * voltageRate / 100.0);
                     // if (Simulator.DebugMode) Console.WriteLine($"[VoltagePointChange] Base: {valueData}, Rate: {voltageRate}, Result: {voltageResult}");
                     playerAttrs.Voltage.AddPoints(voltageResult);
                     if (Simulator.DebugMode) Console.WriteLine($"  应用效果: Voltage Pt 增加 {voltageResult} 点");
