@@ -128,17 +128,43 @@ namespace DeckMiner.Services
 
             if (CenterCard != null)
             {
+                if (DebugMode)
+                {
+                    Console.WriteLine($"\n[Init] Applying Center Card Attributes for {CenterCard.CardId} ({CenterCard.FullName})");
+                }
                 foreach (var (target, effect) in CenterCard.GetCenterAttribute())
                 {
+                    if (DebugMode)
+                    {
+                        Console.WriteLine($"  Target: {string.Join(",", target)}, Effect: {effect}");
+                    }
                     SkillResolver.ApplyCenterAttribute(Player, effect, target);
                 }
+                if (DebugMode)
+                {
+                    Console.WriteLine($"[Init] Center Attributes applied");
+                    Console.WriteLine($"  Cooldown: {Player.Cooldown}s");
+                    Console.WriteLine($"  AP Rate: {Player.ApRate}");
+                }
             }
-            
+
             if (DebugMode) Console.WriteLine($"[Simulator] Initial afkMental: {afkMental}");
 
             d.AppealCalc(Music.MusicType);
             Player.HpCalc();
             Player.BaseScoreCalc(Chart.AllNoteSize);
+
+            if (DebugMode)
+            {
+                Console.WriteLine($"\n[Init] Deck Info After Center Attributes:");
+                foreach (var card in d.Cards)
+                {
+                    Console.WriteLine($"  Cost: {card.Cost,2} [{card.FullName}]");
+                }
+                Console.WriteLine($"  Appeal: {d.Appeal}");
+                Console.WriteLine($"  Mental: {Player.Mental.MaxHp}");
+                Console.WriteLine($"  Cooldown: {Player.Cooldown}s");
+            }
 
             var chartEvents = ChartEvent;
             var extraEvents = new PriorityQueue<RuntimeEvent, double>();
