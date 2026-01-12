@@ -188,12 +188,12 @@ namespace DeckMiner.Services
                     break;
 
                 case CenterAttributeEffectType.APGainRateChange:
-                    doubleChange = valueData / 10000.0 * changeSign;
+                    doubleChange = valueData / 100.0 * changeSign;
                     playerAttrs.ApGainRate += doubleChange;
                     break;
                 
                 case CenterAttributeEffectType.VoltageGainRateChange:
-                    doubleChange = valueData / 10000.0 * changeSign;  // 暫時改回 10000 測試
+                    doubleChange = valueData / 100.0 * changeSign;
                     playerAttrs.VoltageGainRate += doubleChange;
                     break;
 
