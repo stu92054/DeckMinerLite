@@ -160,10 +160,19 @@ class Program
             if (debugIndex + 6 < args.Length)
             {
                 List<int> debugDeck = new List<int>();
+                int? friendCardId = null;
+
+                // 讀取 6 張主要卡片
                 for (int i = 1; i <= 6; i++)
                 {
                     if (int.TryParse(args[debugIndex + i], out int cardId))
                         debugDeck.Add(cardId);
+                }
+
+                // 檢查是否有第 7 個參數（好友卡）
+                if (debugIndex + 7 < args.Length && int.TryParse(args[debugIndex + 7], out int friendCard))
+                {
+                    friendCardId = friendCard;
                 }
 
                 if (debugDeck.Count == 6)
@@ -179,6 +188,10 @@ class Program
 
                     Console.WriteLine($"\n--- Debug Mode ---");
                     Console.WriteLine($"Deck: {string.Join(", ", debugDeck)}");
+                    if (friendCardId.HasValue)
+                    {
+                        Console.WriteLine($"Friend Card: {friendCardId.Value}");
+                    }
 
                     Simulator.DebugMode = true;
                     string musicId = "405128";
@@ -205,6 +218,13 @@ class Program
                         // 每次測試新 center 時重新創建 Deck 物件 (與 Python 邏輯一致)
                         var deckInfo = CardConfig.ConvertDeckToSimulatorFormat(debugDeck);
                         Deck deck = new Deck(deckInfo);
+
+                        // 設定好友卡
+                        if (friendCardId.HasValue)
+                        {
+                            deck.FriendCard = Card.GetInstance(friendCardId.Value);
+                            Console.WriteLine($"  Friend Card Applied: {friendCardId.Value} ({deck.FriendCard.FullName})");
+                        }
 
                         long score = sim.Run(deck, centerId);
                         Console.WriteLine($"Score: {score}");

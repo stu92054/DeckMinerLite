@@ -394,13 +394,36 @@ namespace DeckMiner.Services
                             int friendCharId = int.Parse(d.FriendCard.CardId.Substring(0, 4));
                             if (friendCharId == Music.CenterCharacterId)
                             {
+                                if (DebugMode && currentEvent.Type == LiveEventType.LiveStart)
+                                {
+                                    Console.WriteLine($"[LiveStart] Checking Friend Card Center Skill for Card {d.FriendCard.CardId}");
+                                }
                                 foreach (var (condition, effect) in d.FriendCard.GetCenterSkill())
                                 {
+                                    if (DebugMode && currentEvent.Type == LiveEventType.LiveStart)
+                                    {
+                                        Console.WriteLine($"  Condition: {condition}, Effect: {effect}");
+                                    }
                                     if (SkillResolver.CheckCenterSkillCondition(Player, condition, currentEvent.Type))
                                     {
+                                        if (DebugMode && currentEvent.Type == LiveEventType.LiveStart)
+                                        {
+                                            Console.WriteLine($"  -> Condition Met! Applying Friend Center Skill Effect {effect}");
+                                        }
                                         SkillResolver.ApplyCenterSkillEffect(Player, effect);
                                     }
+                                    else
+                                    {
+                                        if (DebugMode && currentEvent.Type == LiveEventType.LiveStart)
+                                        {
+                                            Console.WriteLine($"  -> Condition Not Met.");
+                                        }
+                                    }
                                 }
+                            }
+                            else if (DebugMode && currentEvent.Type == LiveEventType.LiveStart)
+                            {
+                                Console.WriteLine($"[LiveStart] Friend Card {d.FriendCard.CardId} character ({friendCharId}) does not match center character ({Music.CenterCharacterId}), center skill skipped");
                             }
                         }
                         break;
