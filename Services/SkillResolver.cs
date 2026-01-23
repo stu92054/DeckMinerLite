@@ -24,12 +24,15 @@ namespace DeckMiner.Services
             return effectType switch
             {
                 CenterAttributeEffectType.SmileRateChange => AttributeType.Smile,
+                CenterAttributeEffectType.SmileValueChange => AttributeType.Smile,
                 CenterAttributeEffectType.PureRateChange => AttributeType.Pure,
+                CenterAttributeEffectType.PureValueChange => AttributeType.Pure,
                 CenterAttributeEffectType.CoolRateChange => AttributeType.Cool,
+                CenterAttributeEffectType.CoolValueChange => AttributeType.Cool,
                 CenterAttributeEffectType.MentalRateChange => AttributeType.Mental,
+                CenterAttributeEffectType.MentalValueChange => AttributeType.Mental,
                 CenterAttributeEffectType.ConsumeAPChange => AttributeType.Cost,
                 _ => AttributeType.None,
-                // _ => throw new ArgumentOutOfRangeException(nameof(effectType), $"未预期的效果类型: {effectType}"),
             };
         }
 
