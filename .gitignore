@@ -51,3 +51,7 @@ packages/
 TestResults/
 *.trx
 *.coverage
+
+# Game data (downloaded separately)
+GameData/
+GameData.zip
