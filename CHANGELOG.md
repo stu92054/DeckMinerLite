@@ -5,6 +5,48 @@ All notable changes to DeckMinerLite will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.6] - 2026-01-24
+
+### Fixed
+- 技能效果映射修正
+  - 補全 MapEffectToAttribute 對 ValueChange 類型的映射
+
+### Changed
+- 遊戲資料更新 (GameData 250122)
+
+### Documentation
+- 修正技能類型 5 的說明，移除錯誤的 DR 標註
+
+## [1.4.5] - 2026-01-12
+
+### Added
+- Debug 模式增強
+  - 新增歌曲參數支援 (music_id, difficulty, mastery_level)
+
+### Fixed
+- 模擬器核心修正
+  - 修正 AP 與 Voltage 增益率的初始值與計算公式
+  - 修正技能效果 Voltage 增益計算缺少除以 100
+- 技能顯示修正
+  - 修正技能條件 MentalRate 的百分比顯示格式
+  - 修正 MentalRate 條件格式化字符串語法錯誤
+
+## [1.4.4] - 2026-01-12
+
+### Added
+- Debug 模式大幅增強
+  - 新增 `--config` 參數支援，可載入完整配置檔案
+  - 增強好友卡支援與詳細輸出
+  - 增強中心特性與卡組資訊輸出
+  - 增強中心技能效果輸出
+
+### Fixed
+- 修正好友卡中心技能的角色驗證邏輯
+
+### Changed
+- GUI 改進
+  - 將優化器 stderr 日誌標籤從 ERROR 改為 STDERR
+
 ## [1.4.3] - 2026-01-10
 
 ### Fixed
@@ -142,4 +184,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-**最後更新**: 2026-01-07
+**最後更新**: 2026-01-24
