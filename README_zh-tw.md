@@ -52,13 +52,15 @@ GUI 提供 4 個分頁：
 - 列出所有歌曲配置（歌曲 ID、難度、熟練度）
 
 #### 2️⃣ Simulation（模擬）
+- 執行模式選擇：完整優化（模擬 + 多曲優化）或僅模擬
 - 開始/停止模擬按鈕
 - 進度條顯示模擬進度
 - 即時日誌輸出（與 CLI 相同格式）
 - 清除日誌按鈕
 
 #### 3️⃣ Results（結果）
-- 預留區域，未來將顯示模擬結果統計
+- 顯示多曲優化結果（`best_3_song_combo.txt` 或 `best_2_song_combo.txt`）
+- 重新整理按鈕可載入最新結果
 
 #### 4️⃣ About（關於）
 - 版本資訊
@@ -214,9 +216,17 @@ PT = score × BONUS_SFL × LIMITBREAK_BONUS
 
 ---
 
-## 🔄 與 Python 版的整合流程
+## 🔄 使用流程
 
-推薦工作流程：
+### 方式一：GUI 一鍵執行（推薦）
+
+1. 啟動 `DeckMinerLite.exe`
+2. 載入 YAML 配置檔
+3. 切換到 Simulation 分頁
+4. 選擇「完整優化」模式
+5. 點擊「開始」即可自動完成模擬 + 多曲優化
+
+### 方式二：CLI 分步執行
 
 ```bash
 # 1. 使用 C# 模擬器產生單曲結果（高效能）
@@ -230,7 +240,7 @@ python multi_optimizer_2.py --config config/member-test.yaml
 
 **輸出檔案**：
 - 單曲模擬結果：`log/{member}/simulation_results_{music_id}_{difficulty}.json`
-- 多曲優化結果：`output/{member}/optimization_results_{timestamp}.json`
+- 多曲優化結果：`best_3_song_combo.txt` / `best_2_song_combo.txt`
 
 ---
 
@@ -245,12 +255,11 @@ python multi_optimizer_2.py --config config/member-test.yaml
 - ✅ 卡牌練度自訂
 - ✅ **WPF 圖形化介面（Windows）**
 - ✅ **GUI/CLI 雙模式自動切換**
+- ✅ **GUI 模擬執行整合**（支援完整優化流程或僅模擬）
 
 ### ⚠ 未實作
 - ❌ 花火吟的延後 Miss（影響仰臥起坐精度）
-- ❌ 多曲優化功能（請使用 Python 版 `multi_optimizer_2.py`）
 - ❌ PT 重算工具（請使用 Python 版 `log_tool.py`）
-- ⏳ GUI 模擬執行整合（目前為佔位實作）
 
 ---
 
@@ -260,7 +269,7 @@ python multi_optimizer_2.py --config config/member-test.yaml
 |------|--------------------|-----------------------|
 | 單曲模擬速度 | **極快** | 較慢 |
 | 記憶體使用 | 低 | 中等 |
-| 多曲優化 | ❌ | ✅ |
+| 多曲優化 | ✅ (GUI 整合) | ✅ |
 | YAML 配置 | ✅ | ✅ |
 | **圖形化介面** | **✅ (Windows)** | ❌ |
 | 跨平台支援 | Windows (GUI+CLI) / Linux (CLI) | 全平台 CLI |

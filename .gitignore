@@ -51,3 +51,26 @@ packages/
 TestResults/
 *.trx
 *.coverage
+
+# Game data (downloaded separately)
+GameData/
+GameData.zip
+Data/CardDatas.json
+Data/CenterAttributes.json
+Data/CenterSkills.json
+Data/Musics.json
+Data/Musics.yaml
+Data/RhythmGameSkills.json
+
+# Personal config files
+member-*.yaml
+
+# Temporary/generated files
+high_rarity_cards*.txt
+test_deck.txt
+
+# Development scripts (not needed for release)
+analyze_deck_skills.py
+extract_cards.py
+extract_cards_simple.py
+test_deck_generation.py
