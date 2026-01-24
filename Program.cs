@@ -160,14 +160,45 @@ class Program
             if (debugIndex + 6 < args.Length)
             {
                 List<int> debugDeck = new List<int>();
+                int? friendCardId = null;
+
+                // 讀取 6 張主要卡片
                 for (int i = 1; i <= 6; i++)
                 {
                     if (int.TryParse(args[debugIndex + i], out int cardId))
                         debugDeck.Add(cardId);
                 }
 
+                // 檢查是否有第 7 個參數（好友卡）
+                if (debugIndex + 7 < args.Length && int.TryParse(args[debugIndex + 7], out int friendCard))
+                {
+                    friendCardId = friendCard;
+                }
+
                 if (debugDeck.Count == 6)
                 {
+                    // 檢查是否指定 --config 參數
+                    YamlConfigManager? debugYamlConfig = null;
+                    if (args.Contains("--config"))
+                    {
+                        int configIndex = Array.IndexOf(args, "--config");
+                        if (configIndex + 1 < args.Length)
+                        {
+                            string configPath = args[configIndex + 1];
+                            try
+                            {
+                                debugYamlConfig = new YamlConfigManager(configPath);
+                                Console.WriteLine($"[Config] Loaded YAML config: {configPath}");
+                                Console.WriteLine($"[Config] Member: {debugYamlConfig.MemberName}");
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine($"[Warning] Failed to load YAML config: {ex.Message}");
+                                Console.WriteLine("[Info] Falling back to cardConfig.jsonc");
+                            }
+                        }
+                    }
+
                     // 同時輸出到檔案（UTF-8 編碼）
                     string debugLogPath = Path.Combine(AppContext.BaseDirectory, "csharp_debug_log.txt");
                     using var fileWriter = new StreamWriter(debugLogPath, false, System.Text.Encoding.UTF8);
@@ -179,11 +210,68 @@ class Program
 
                     Console.WriteLine($"\n--- Debug Mode ---");
                     Console.WriteLine($"Deck: {string.Join(", ", debugDeck)}");
+                    if (friendCardId.HasValue)
+                    {
+                        Console.WriteLine($"Friend Card: {friendCardId.Value}");
+                    }
+                    if (debugYamlConfig != null)
+                    {
+                        Console.WriteLine($"Config: {debugYamlConfig.MemberName} (YAML)");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Config: cardConfig.jsonc (default)");
+                    }
 
                     Simulator.DebugMode = true;
-                    string musicId = "405128";
-                    string tier = "04";
-                    int masterLv = 50;
+
+                    // 解析歌曲參數（可選）
+                    string musicId = "405204";  // 預設值
+                    string tier = "02";          // 預設值
+                    int masterLv = 50;           // 預設值
+
+                    // 檢查 --music 參數
+                    if (args.Contains("--music"))
+                    {
+                        int musicIndex = Array.IndexOf(args, "--music");
+                        if (musicIndex + 1 < args.Length)
+                        {
+                            musicId = args[musicIndex + 1];
+                        }
+                    }
+
+                    // 檢查 --difficulty 參數
+                    if (args.Contains("--difficulty"))
+                    {
+                        int diffIndex = Array.IndexOf(args, "--difficulty");
+                        if (diffIndex + 1 < args.Length)
+                        {
+                            tier = args[diffIndex + 1];
+                        }
+                    }
+
+                    // 檢查 --mastery 參數
+                    if (args.Contains("--mastery"))
+                    {
+                        int masteryIndex = Array.IndexOf(args, "--mastery");
+                        if (masteryIndex + 1 < args.Length && int.TryParse(args[masteryIndex + 1], out int mlv))
+                        {
+                            masterLv = mlv;
+                        }
+                    }
+
+                    Console.WriteLine($"\n--- 正在加载谱面 (ID: {musicId}, Tier: {tier}) ---");
+                    if (!musicDb.ContainsKey(musicId))
+                    {
+                        Console.WriteLine($"[ERROR] Music ID '{musicId}' not found in database");
+                        Console.SetOut(originalOut);
+                        return;
+                    }
+                    Console.WriteLine($"[谱面信息]");
+                    Console.WriteLine($"  歌曲: {musicDb[musicId].Title}");
+                    Console.WriteLine($"  难度: {tier} (01=Normal, 02=Hard, 03=Expert, 04=Master)");
+                    Console.WriteLine($"  熟练度: Lv.{masterLv}");
+                    Console.WriteLine("-----------------------------------------------------");
 
                     Simulator sim = new Simulator(musicId, tier, masterLv);
 
@@ -203,8 +291,31 @@ class Program
                         Console.WriteLine($"\nTesting Center: {centerId}");
 
                         // 每次測試新 center 時重新創建 Deck 物件 (與 Python 邏輯一致)
-                        var deckInfo = CardConfig.ConvertDeckToSimulatorFormat(debugDeck);
+                        List<CardDeckInfo> deckInfo;
+                        if (debugYamlConfig != null)
+                        {
+                            // 使用 YAML 配置的卡牌練度
+                            deckInfo = debugDeck.Select(id => new CardDeckInfo(
+                                id,
+                                debugYamlConfig.GetCardLevels(id)
+                            )).ToList();
+                            Console.WriteLine($"  Using card levels from YAML config");
+                        }
+                        else
+                        {
+                            // 使用 cardConfig.jsonc 的配置
+                            deckInfo = CardConfig.ConvertDeckToSimulatorFormat(debugDeck);
+                            Console.WriteLine($"  Using card levels from cardConfig.jsonc");
+                        }
+
                         Deck deck = new Deck(deckInfo);
+
+                        // 設定好友卡
+                        if (friendCardId.HasValue)
+                        {
+                            deck.FriendCard = Card.GetInstance(friendCardId.Value);
+                            Console.WriteLine($"  Friend Card Applied: {friendCardId.Value} ({deck.FriendCard.FullName})");
+                        }
 
                         long score = sim.Run(deck, centerId);
                         Console.WriteLine($"Score: {score}");

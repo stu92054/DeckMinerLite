@@ -20,8 +20,8 @@ namespace DeckMiner.Models
         public Voltage Voltage { get; private set; } = new Voltage(0);
 
         // 辅助属性
-        public double ApGainRate { get; set; } = 1.0;
-        public double VoltageGainRate { get; set; } = 1.0;
+        public double ApGainRate { get; set; } = 100.0;
+        public double VoltageGainRate { get; set; } = 100.0;
 
         public List<double> NextScoreGainRate { get; set; } = new List<double>();
         public List<double> NextVoltageGainRate { get; set; } = new List<double>();
@@ -160,7 +160,7 @@ namespace DeckMiner.Models
 
         public void ApAddSkill(double apAmount)
         {
-            double rate = ApRate * ApGainRate;
+            double rate = ApRate * ApGainRate / 100.0;
             if (apAmount > 0) Ap += apAmount * rate;
             else Ap = Max(0, Ap + apAmount);
         }

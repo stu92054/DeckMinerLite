@@ -353,7 +353,10 @@
 
                         <TextBlock TextWrapping="Wrap" Margin="0,10">
                             <Run Text="Version: " FontWeight="Bold"/>
-                            <Run Text="1.4.3 (GUI Edition)"/>
+                            <Run Text="1.4.6 (GUI Edition)"/>
+                            <LineBreak/>
+                            <Run Text="GameData: " FontWeight="Bold"/>
+                            <Run Text="250122"/>
                         </TextBlock>
 
                         <TextBlock TextWrapping="Wrap" Margin="0,10">

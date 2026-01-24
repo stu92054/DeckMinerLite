@@ -139,7 +139,7 @@
                             <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
                                 <CheckBox x:Name="SkillScoreGainCheckBox" Content="2-分卡" VerticalAlignment="Center" Margin="0,0,15,0"/>
                                 <CheckBox x:Name="SkillVoltageBurstCheckBox" Content="3-電" VerticalAlignment="Center" Margin="0,0,15,0"/>
-                                <CheckBox x:Name="SkillDeckResetCheckBox" Content="5-洗牌/DR" VerticalAlignment="Center" Margin="0,0,15,0"/>
+                                <CheckBox x:Name="SkillDeckResetCheckBox" Content="5-洗牌" VerticalAlignment="Center" Margin="0,0,15,0"/>
                                 <CheckBox x:Name="SkillScoreGainPlusCheckBox" Content="7-分加成" VerticalAlignment="Center" Margin="0,0,15,0"/>
                                 <CheckBox x:Name="SkillVoltagePlusCheckBox" Content="8-電加成" VerticalAlignment="Center"/>
                             </StackPanel>

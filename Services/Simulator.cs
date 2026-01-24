@@ -128,17 +128,43 @@ namespace DeckMiner.Services
 
             if (CenterCard != null)
             {
+                if (DebugMode)
+                {
+                    Console.WriteLine($"\n[Init] Applying Center Card Attributes for {CenterCard.CardId} ({CenterCard.FullName})");
+                }
                 foreach (var (target, effect) in CenterCard.GetCenterAttribute())
                 {
+                    if (DebugMode)
+                    {
+                        Console.WriteLine($"  Target: {string.Join(",", target)}, Effect: {effect}");
+                    }
                     SkillResolver.ApplyCenterAttribute(Player, effect, target);
                 }
+                if (DebugMode)
+                {
+                    Console.WriteLine($"[Init] Center Attributes applied");
+                    Console.WriteLine($"  Cooldown: {Player.Cooldown}s");
+                    Console.WriteLine($"  AP Rate: {Player.ApRate}");
+                }
             }
-            
+
             if (DebugMode) Console.WriteLine($"[Simulator] Initial afkMental: {afkMental}");
 
             d.AppealCalc(Music.MusicType);
             Player.HpCalc();
             Player.BaseScoreCalc(Chart.AllNoteSize);
+
+            if (DebugMode)
+            {
+                Console.WriteLine($"\n[Init] Deck Info After Center Attributes:");
+                foreach (var card in d.Cards)
+                {
+                    Console.WriteLine($"  Cost: {card.Cost,2} [{card.FullName}]");
+                }
+                Console.WriteLine($"  Appeal: {d.Appeal}");
+                Console.WriteLine($"  Mental: {Player.Mental.MaxHp}");
+                Console.WriteLine($"  Cooldown: {Player.Cooldown}s");
+            }
 
             var chartEvents = ChartEvent;
             var extraEvents = new PriorityQueue<RuntimeEvent, double>();
@@ -368,34 +394,74 @@ namespace DeckMiner.Services
                             {
                                 if (DebugMode && currentEvent.Type == LiveEventType.LiveStart)
                                 {
-                                    Console.WriteLine($"  Condition: {condition}, Effect: {effect}");
+                                    Console.WriteLine($"  條件: {condition}, 效果: {effect}");
                                 }
                                 if (SkillResolver.CheckCenterSkillCondition(Player, condition, currentEvent.Type))
                                 {
                                     if (DebugMode && currentEvent.Type == LiveEventType.LiveStart)
                                     {
-                                        Console.WriteLine($"  -> Condition Met! Applying Effect {effect}");
+                                        Console.WriteLine($"  -> 條件滿足！應用效果 {effect}");
                                     }
                                     SkillResolver.ApplyCenterSkillEffect(Player, effect);
+                                    if (DebugMode && currentEvent.Type == LiveEventType.LiveStart)
+                                    {
+                                        Console.WriteLine($"  當前屬性:");
+                                        Console.WriteLine($"    AP: {Player.Ap:F5}  Combo: {Player.Combo}  AP Gain Rate: {Player.ApRate:F2}x  Mental: {Player.Mental.CurrentHp:F0} / {Player.Mental.MaxHp:F0} ({Player.Mental.CurrentHp / (double)Player.Mental.MaxHp * 100:F2}%)");
+                                        Console.WriteLine($"    Score: {Player.Score:F0}  Voltage: {Player.Voltage.GetPoints()} Pt (Lv.{Player.Voltage.Level})");
+                                    }
                                 }
                                 else
                                 {
                                     if (DebugMode && currentEvent.Type == LiveEventType.LiveStart)
                                     {
-                                        Console.WriteLine($"  -> Condition Not Met.");
+                                        Console.WriteLine($"  -> 條件不滿足。");
                                     }
                                 }
                             }
                         }
-                        // 檢查朋友的隊長技能（新增）
+                        // 檢查朋友的隊長技能（僅當好友卡與歌曲中心角色相同時才應用）
                         if (d.FriendCard != null)
                         {
-                            foreach (var (condition, effect) in d.FriendCard.GetCenterSkill())
+                            // 好友卡必須是歌曲中心角色才能應用中心技能
+                            int friendCharId = int.Parse(d.FriendCard.CardId.Substring(0, 4));
+                            if (friendCharId == Music.CenterCharacterId)
                             {
-                                if (SkillResolver.CheckCenterSkillCondition(Player, condition, currentEvent.Type))
+                                if (DebugMode && currentEvent.Type == LiveEventType.LiveStart)
                                 {
-                                    SkillResolver.ApplyCenterSkillEffect(Player, effect);
+                                    Console.WriteLine($"[LiveStart] Checking Friend Card Center Skill for Card {d.FriendCard.CardId}");
                                 }
+                                foreach (var (condition, effect) in d.FriendCard.GetCenterSkill())
+                                {
+                                    if (DebugMode && currentEvent.Type == LiveEventType.LiveStart)
+                                    {
+                                        Console.WriteLine($"  條件: {condition}, 效果: {effect}");
+                                    }
+                                    if (SkillResolver.CheckCenterSkillCondition(Player, condition, currentEvent.Type))
+                                    {
+                                        if (DebugMode && currentEvent.Type == LiveEventType.LiveStart)
+                                        {
+                                            Console.WriteLine($"  -> 條件滿足！應用好友卡中心技能效果 {effect}");
+                                        }
+                                        SkillResolver.ApplyCenterSkillEffect(Player, effect);
+                                        if (DebugMode && currentEvent.Type == LiveEventType.LiveStart)
+                                        {
+                                            Console.WriteLine($"  當前屬性:");
+                                            Console.WriteLine($"    AP: {Player.Ap:F5}  Combo: {Player.Combo}  AP Gain Rate: {Player.ApRate:F2}x  Mental: {Player.Mental.CurrentHp:F0} / {Player.Mental.MaxHp:F0} ({Player.Mental.CurrentHp / (double)Player.Mental.MaxHp * 100:F2}%)");
+                                            Console.WriteLine($"    Score: {Player.Score:F0}  Voltage: {Player.Voltage.GetPoints()} Pt (Lv.{Player.Voltage.Level})");
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (DebugMode && currentEvent.Type == LiveEventType.LiveStart)
+                                        {
+                                            Console.WriteLine($"  -> 條件不滿足。");
+                                        }
+                                    }
+                                }
+                            }
+                            else if (DebugMode && currentEvent.Type == LiveEventType.LiveStart)
+                            {
+                                Console.WriteLine($"[LiveStart] Friend Card {d.FriendCard.CardId} character ({friendCharId}) does not match center character ({Music.CenterCharacterId}), center skill skipped");
                             }
                         }
                         break;

@@ -24,12 +24,15 @@ namespace DeckMiner.Services
             return effectType switch
             {
                 CenterAttributeEffectType.SmileRateChange => AttributeType.Smile,
+                CenterAttributeEffectType.SmileValueChange => AttributeType.Smile,
                 CenterAttributeEffectType.PureRateChange => AttributeType.Pure,
+                CenterAttributeEffectType.PureValueChange => AttributeType.Pure,
                 CenterAttributeEffectType.CoolRateChange => AttributeType.Cool,
+                CenterAttributeEffectType.CoolValueChange => AttributeType.Cool,
                 CenterAttributeEffectType.MentalRateChange => AttributeType.Mental,
+                CenterAttributeEffectType.MentalValueChange => AttributeType.Mental,
                 CenterAttributeEffectType.ConsumeAPChange => AttributeType.Cost,
                 _ => AttributeType.None,
-                // _ => throw new ArgumentOutOfRangeException(nameof(effectType), $"未预期的效果类型: {effectType}"),
             };
         }
 
@@ -188,12 +191,12 @@ namespace DeckMiner.Services
                     break;
 
                 case CenterAttributeEffectType.APGainRateChange:
-                    doubleChange = valueData / 10000.0 * changeSign;
+                    doubleChange = valueData / 100.0 * changeSign;
                     playerAttrs.ApGainRate += doubleChange;
                     break;
                 
                 case CenterAttributeEffectType.VoltageGainRateChange:
-                    doubleChange = valueData / 10000.0 * changeSign;  // 暫時改回 10000 測試
+                    doubleChange = valueData / 100.0 * changeSign;
                     playerAttrs.VoltageGainRate += doubleChange;
                     break;
 
@@ -283,7 +286,7 @@ namespace DeckMiner.Services
                     double currentRate = playerAttrs.Mental.Rate;
                     if (op == SkillComparisonOperator.ABOVE_OR_EQUAL) result = currentRate >= requiredRate;
                     else if (op == SkillComparisonOperator.BELOW_OR_EQUAL) result = currentRate <= requiredRate;
-                    logMsg = $"条件: HP {OpToString(op)} {value/100.0:P2} (当前: {currentRate:P2}) -> {(result ? "满足" : "不满足")}";
+                    logMsg = $"条件: HP {OpToString(op)} {requiredRate:F2}% (当前: {currentRate:F2}%) -> {(result ? "满足" : "不满足")}";
                     break;
                 case SkillConditionType.UsedAllSkillCount:
                     int allCount = playerAttrs.Deck.UsedAllSkillCalc(); // 假设此方法已实现
@@ -419,13 +422,13 @@ namespace DeckMiner.Services
                         if (playerAttrs.NextVoltageGainRate.Count != 0)
                         {
                             var bonus = playerAttrs.NextVoltageGainRate.First();
-                            voltageRate += bonus / 100.0; // Fix: Bonus is in percentage points (e.g. 54.45), need to divide by 100
+                            voltageRate += bonus;
                             playerAttrs.NextVoltageGainRate.RemoveAt(0);
                             // if (Simulator.DebugMode) Console.WriteLine($"[VoltagePointChange] Applied Bonus: {bonus}, New Rate: {voltageRate}");
                         }
                     }
                     else voltageRate *= changeFactor;
-                    int voltageResult = (int)Ceiling(valueData * voltageRate);
+                    int voltageResult = (int)Ceiling(valueData * voltageRate / 100.0);
                     // if (Simulator.DebugMode) Console.WriteLine($"[VoltagePointChange] Base: {valueData}, Rate: {voltageRate}, Result: {voltageResult}");
                     playerAttrs.Voltage.AddPoints(voltageResult);
                     if (Simulator.DebugMode) Console.WriteLine($"  应用效果: Voltage Pt 增加 {voltageResult} 点");
@@ -700,10 +703,17 @@ namespace DeckMiner.Services
             switch (effectType)
             {
                 case CenterSkillEffectType.APChange:
+                    double beforeAP = playerAttrs.Ap;
                     double apAmount = valueData * changeFactor / 10000.0;
                     playerAttrs.ApAddSkill(apAmount);
+                    if (Simulator.DebugMode)
+                    {
+                        Console.WriteLine($"    應用效果: AP {(changeFactor > 0 ? "增加" : "減少")} {Math.Abs(apAmount):F5} 點");
+                        Console.WriteLine($"    AP: {beforeAP:F5} → {playerAttrs.Ap:F5}");
+                    }
                     break;
                 case CenterSkillEffectType.ScoreGain:
+                    double beforeScore = playerAttrs.Score;
                     double scoreRate = 100.0;
                     // 假设 next_score_gain_rate 是 List<double>
                     if (playerAttrs.NextScoreGainRate.Count != 0)
@@ -713,8 +723,15 @@ namespace DeckMiner.Services
                     }
                     double scoreResult = valueData * scoreRate / 1000000.0;
                     playerAttrs.ScoreAdd(scoreResult); // 假设 ScoreAdd 方法已实现
+                    if (Simulator.DebugMode)
+                    {
+                        Console.WriteLine($"    應用效果: Score 增加 {scoreResult:F0} 點 (基礎值: {valueData}, 倍率: {scoreRate / 100.0:F2}x)");
+                        Console.WriteLine($"    Score: {beforeScore:F0} → {playerAttrs.Score:F0}");
+                    }
                     break;
                 case CenterSkillEffectType.VoltagePointChange:
+                    int beforeVoltagePt = playerAttrs.Voltage.GetPoints();
+                    int beforeVoltageLevel = playerAttrs.Voltage.Level;
                     double voltageRate = playerAttrs.VoltageGainRate;
                     if (changeFactor == 1)
                     {
@@ -727,10 +744,21 @@ namespace DeckMiner.Services
                     else voltageRate *= changeFactor;
                     int voltageResult = (int)Ceiling(valueData * voltageRate / 100.0);
                     playerAttrs.Voltage.AddPoints(voltageResult);
+                    if (Simulator.DebugMode)
+                    {
+                        Console.WriteLine($"    應用效果: VoltagePt {(changeFactor > 0 ? "+" : "")}{voltageResult} 點 (基礎值: {valueData}, 倍率: {voltageRate / 100.0:F2}x)");
+                        Console.WriteLine($"    Voltage: {beforeVoltagePt} Pt → {playerAttrs.Voltage.GetPoints()} Pt (Lv.{beforeVoltageLevel} → Lv.{playerAttrs.Voltage.Level})");
+                    }
                     break;
                 case CenterSkillEffectType.MentalRateChange:
+                    double beforeHp = playerAttrs.Mental.CurrentHp;
                     double hpPercent = valueData / 100.0;
                     playerAttrs.Mental.SkillAdd(hpPercent * changeFactor);
+                    if (Simulator.DebugMode)
+                    {
+                        Console.WriteLine($"    應用效果: Mental {(changeFactor > 0 ? "回復" : "減少")} {Math.Abs(hpPercent):F2}%");
+                        Console.WriteLine($"    Mental: {beforeHp:F0} → {playerAttrs.Mental.CurrentHp:F0} / {playerAttrs.Mental.MaxHp:F0} ({playerAttrs.Mental.CurrentHp / (double)playerAttrs.Mental.MaxHp * 100:F2}%)");
+                    }
                     break;
                 default:
                     break;
