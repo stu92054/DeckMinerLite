@@ -164,7 +164,7 @@ namespace DeckMiner.Config
         /// 技能類型定義：
         /// - 2: ScoreGain（分卡）
         /// - 3: VoltagePointChange（電）
-        /// - 5: DeckReset（洗牌/DR）
+        /// - 5: DeckReset（洗牌）
         /// - 7: NextAPGainRateChange（分加成）
         /// - 8: NextVoltageGainRateChange（電加成）
         /// </summary>
