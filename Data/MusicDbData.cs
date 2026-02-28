@@ -105,9 +105,11 @@ namespace DeckMiner.Data
             // 3. ToList()：转换为 List<int>
             try
             {
+                // 0 代表無成員 (如 solo 曲的 SingerCharacterId="0")，需過濾掉
                 return idString
                     .Split(',')
                     .Select(s => int.Parse(s.Trim()))
+                    .Where(id => id != 0)
                     .ToList();
             }
             catch (FormatException ex)
