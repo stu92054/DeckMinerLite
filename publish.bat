@@ -6,9 +6,9 @@ echo DeckMinerLite Build Script
 echo ========================================
 echo.
 
-set VERSION=1.4.7
-set WIN_PACKAGE_NAME=DeckMinerLite-v1.4.7-win-x64
-set LINUX_PACKAGE_NAME=DeckMinerLite-v1.4.7-linux-x64
+set VERSION=1.4.8
+set WIN_PACKAGE_NAME=DeckMinerLite-v1.4.8-win-x64
+set LINUX_PACKAGE_NAME=DeckMinerLite-v1.4.8-linux-x64
 set WIN_PUBLISH_DIR=..\publish\win-x64
 set LINUX_PUBLISH_DIR=..\publish\linux-x64
 set WIN_PACKAGE_DIR=..\publish\%WIN_PACKAGE_NAME%
