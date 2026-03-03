@@ -97,7 +97,7 @@ namespace DeckMiner.Services
 
     public class SimulationBuffer
     {
-        private readonly ConcurrentDictionary<string, SimulationResult> _results = new();
+        private ConcurrentDictionary<string, SimulationResult> _results = new();
         private readonly object _flushLock = new();
 
         private readonly int _batchSize;
@@ -109,6 +109,7 @@ namespace DeckMiner.Services
         private readonly string _tier;
         private readonly DeckMiner.Config.YamlConfigManager _yamlConfig;
         private readonly double _bonusSfl;
+        private readonly bool _forceRecalc;
 
         public SimulationBuffer(
             string musicId,
@@ -117,7 +118,8 @@ namespace DeckMiner.Services
             DeckMiner.Config.YamlConfigManager yamlConfig = null,
             double bonusSfl = 6.6,
             string tempDir = null,
-            string logDir = null)
+            string logDir = null,
+            bool forceRecalc = false)
         {
             _musicId = musicId;
             _tier = tier;
@@ -127,6 +129,7 @@ namespace DeckMiner.Services
 
             _tempDir = tempDir ?? Path.Combine(AppContext.BaseDirectory, "temp");
             _logDir = logDir ?? "log";
+            _forceRecalc = forceRecalc;
 
             Directory.CreateDirectory(_tempDir);
         }
@@ -208,7 +211,16 @@ namespace DeckMiner.Services
         /// </summary>
         private void FlushPartialResults()
         {
-            if (_results.Count == 0) return;
+            // 原子地將 _results 替換為新的空字典
+            // 這確保「取快照」與「清除」之間不會有任何結果被遺漏：
+            //   - Exchange 之前加入的結果 → 存入 toFlush（會被寫入 temp 檔）
+            //   - Exchange 之後加入的結果 → 存入新的 _results（等下次 flush）
+            // 原本的 Values.ToList() + Clear() 方式存在 race condition：
+            //   其他執行緒在 ToList() 之後、Clear() 之前加入的結果會被靜默丟棄
+            var toFlush = Interlocked.Exchange(ref _results, new ConcurrentDictionary<string, SimulationResult>());
+            Interlocked.Exchange(ref _counter, 0);
+
+            if (toFlush.IsEmpty) return;
 
             int batchId = Interlocked.Increment(ref _batchNo);
 
@@ -217,10 +229,7 @@ namespace DeckMiner.Services
                 $"temp_{_musicId}_{_tier}_{batchId:D3}.json"
             );
 
-            SaveSimulationResults(_results.Values.ToList(), path, calcPt: false);
-
-            _results.Clear();
-            Interlocked.Exchange(ref _counter, 0);
+            SaveSimulationResults(toFlush.Values.ToList(), path, calcPt: false);
         }
 
         /// <summary>
@@ -243,9 +252,9 @@ namespace DeckMiner.Services
                 $"simulation_results_{_musicId}_{_tier}.json"
             );
 
-            // 1. 尝试载入原有 Log
+            // 1. 尝试载入原有 Log（forceRecalc=true 時跳過，強制覆蓋所有舊結果）
             Directory.CreateDirectory(Path.GetDirectoryName(finalPath)!);
-            if (File.Exists(finalPath))
+            if (!_forceRecalc && File.Exists(finalPath))
             {
                 try
                 {
@@ -261,6 +270,10 @@ namespace DeckMiner.Services
                     Console.WriteLine($"读取已有结果失败，将直接覆盖旧文件: {ex.Message}");
                     // 不 throw，避免影响本次合并
                 }
+            }
+            else if (_forceRecalc)
+            {
+                Console.WriteLine("[ForceRecalc] 強制重算模式：忽略舊有結果，全部重新計算");
             }
 
             string[] files = Directory.GetFiles(_tempDir, $"temp_{_musicId}_{_tier}_*.json");

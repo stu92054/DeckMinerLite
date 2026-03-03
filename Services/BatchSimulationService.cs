@@ -28,7 +28,8 @@ namespace DeckMiner.Services
             YamlConfigManager yamlConfig,
             Action<string> onLog = null,
             Action<int, int, string> onProgress = null,
-            CancellationToken cancellationToken = default)
+            CancellationToken cancellationToken = default,
+            int maxDegreeOfParallelism = -1)
         {
             // 預設日誌輸出到 Console
             onLog ??= Console.WriteLine;
@@ -170,7 +171,8 @@ namespace DeckMiner.Services
                             $"simulation_results_{MusicId}_{Tier}.json"
                         );
 
-                    DeckGenerator deckgen = new DeckGenerator(cardPool, mustcards, centerChar, availableCenter, logPath, lgpMode);
+                    bool forceRecalc = yamlConfig?.Config?.ForceRecalc ?? false;
+                    DeckGenerator deckgen = new DeckGenerator(cardPool, mustcards, centerChar, availableCenter, logPath, lgpMode, forceRecalc);
                     sw.Stop();
                     onLog($"  卡組數量: {deckgen.TotalDecks}");
                     onLog($"  計算用時: {sw.ElapsedTicks / (decimal)Stopwatch.Frequency:F2}s");
@@ -242,7 +244,8 @@ namespace DeckMiner.Services
                         yamlConfig: yamlConfig,
                         bonusSfl: bonusSfl,
                         tempDir: tempDir,
-                        logDir: logDir
+                        logDir: logDir,
+                        forceRecalc: forceRecalc
                     );
 
                     // 預先過濾 DR 卡 (全域過濾)
@@ -294,86 +297,98 @@ namespace DeckMiner.Services
                     }
 
                     sw2.Start();
-                    Parallel.ForEach(Tqdm.Wrap(workSource, total: totalWorkItems, printsPerSecond: 5), (item, state) =>
+                    var parallelOptions = new ParallelOptions
                     {
-                        // 檢查取消
-                        if (cancellationToken.IsCancellationRequested)
+                        MaxDegreeOfParallelism = maxDegreeOfParallelism > 0 ? maxDegreeOfParallelism : -1
+                    };
+                    if (maxDegreeOfParallelism == 1)
+                        onLog?.Invoke("[INFO] 單執行緒模式 (MaxDegreeOfParallelism=1)");
+                    try
+                    {
+                        Parallel.ForEach(Tqdm.Wrap(workSource, total: totalWorkItems, printsPerSecond: 5), parallelOptions, (item, state) =>
                         {
-                            state.Stop();
-                            return;
-                        }
-
-                        if (state.ShouldExitCurrentIteration || fatalError != null) return;
-
-                        var card_id_list = item.deck;
-                        var center_card = item.center;
-                        var friendCardId = item.friendCard;
-
-                        // 使用 YAML 配置的卡牌練度（如果有）
-                        List<CardDeckInfo> deckInfo;
-                        if (yamlConfig != null && yamlConfig.IsYamlMode)
-                        {
-                            deckInfo = card_id_list.Select(id => new CardDeckInfo(
-                                id,
-                                yamlConfig.GetCardLevels(id)
-                            )).ToList();
-                        }
-                        else
-                        {
-                            deckInfo = CardConfig.ConvertDeckToSimulatorFormat(card_id_list.ToList());
-                        }
-
-                        Deck deckToSimulate = new Deck(deckInfo);
-                        if (friendCardId.HasValue)
-                        {
-                            deckToSimulate.FriendCard = Card.GetInstance(friendCardId.Value);
-                        }
-
-                        long newScore = -1;
-                        try
-                        {
-                            newScore = sim2.Run(deckToSimulate, (int)center_card);
-                        }
-                        catch (Exception ex)
-                        {
-                            if (Interlocked.CompareExchange(ref fatalError, ex, null) == null)
+                            // 檢查取消
+                            if (cancellationToken.IsCancellationRequested)
                             {
-                                errorContextInfo = $"卡組: ({string.Join(", ", card_id_list)})\nC位: {center_card}\n朋友卡: {friendCardId}";
                                 state.Stop();
+                                return;
                             }
-                            return;
-                        }
 
-                        buffer.AddResult(card_id_list, center_card, newScore, friendCardId);
+                            if (state.ShouldExitCurrentIteration || fatalError != null) return;
 
-                        if (newScore > bestScore)
-                        {
-                            lock (lockObject)
+                            var card_id_list = item.deck;
+                            var center_card = item.center;
+                            var friendCardId = item.friendCard;
+
+                            // 使用 YAML 配置的卡牌練度（如果有）
+                            List<CardDeckInfo> deckInfo;
+                            if (yamlConfig != null && yamlConfig.IsYamlMode)
                             {
-                                if (newScore > bestScore)
+                                deckInfo = card_id_list.Select(id => new CardDeckInfo(
+                                    id,
+                                    yamlConfig.GetCardLevels(id)
+                                )).ToList();
+                            }
+                            else
+                            {
+                                deckInfo = CardConfig.ConvertDeckToSimulatorFormat(card_id_list.ToList());
+                            }
+
+                            Deck deckToSimulate = new Deck(deckInfo);
+                            if (friendCardId.HasValue)
+                            {
+                                deckToSimulate.FriendCard = Card.GetInstance(friendCardId.Value);
+                            }
+
+                            long newScore = -1;
+                            try
+                            {
+                                newScore = sim2.Run(deckToSimulate, (int)center_card);
+                            }
+                            catch (Exception ex)
+                            {
+                                if (Interlocked.CompareExchange(ref fatalError, ex, null) == null)
                                 {
-                                    bestScore = newScore;
-                                    bestDeck = card_id_list;
-                                    bestCenter = center_card;
-                                    bestFriendCard = friendCardId;
-                                    onLog($"NEW HI-SCORE! Score: {bestScore:N0}");
-                                    onLog($"  Cards: ({string.Join(", ", card_id_list)})");
-                                    onLog($"  Center: {center_card}");
-                                    if (friendCardId.HasValue)
+                                    errorContextInfo = $"卡組: ({string.Join(", ", card_id_list)})\nC位: {center_card}\n朋友卡: {friendCardId}";
+                                    state.Stop();
+                                }
+                                return;
+                            }
+
+                            buffer.AddResult(card_id_list, center_card, newScore, friendCardId);
+
+                            if (newScore > bestScore)
+                            {
+                                lock (lockObject)
+                                {
+                                    if (newScore > bestScore)
                                     {
-                                        onLog($"  Friend: {friendCardId}");
+                                        bestScore = newScore;
+                                        bestDeck = card_id_list;
+                                        bestCenter = center_card;
+                                        bestFriendCard = friendCardId;
+                                        onLog($"NEW HI-SCORE! Score: {bestScore:N0}");
+                                        onLog($"  Cards: ({string.Join(", ", card_id_list)})");
+                                        onLog($"  Center: {center_card}");
+                                        if (friendCardId.HasValue)
+                                        {
+                                            onLog($"  Friend: {friendCardId}");
+                                        }
                                     }
                                 }
                             }
-                        }
-                    });
-                    sw2.Stop();
+                        });
+                    }
+                    finally
+                    {
+                        // 無論模擬是否異常中斷，都確保已累積的結果被寫入磁碟
+                        sw2.Stop();
+                        buffer.FlushFinal();
+                        buffer.MergeTempFiles();
+                    }
 
                     // 檢查是否被取消
                     cancellationToken.ThrowIfCancellationRequested();
-
-                    buffer.FlushFinal();
-                    buffer.MergeTempFiles();
 
                     if (fatalError != null)
                     {

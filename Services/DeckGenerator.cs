@@ -230,7 +230,8 @@ namespace DeckMiner.Services
             int? center_char = null,
             HashSet<int> center_card = null,
             string logPath = null,
-            bool lgpMode = true)
+            bool lgpMode = true,
+            bool forceRecalc = false)
         {
             this.cardpool = cardpool;
             this.mustcards = mustcards;
@@ -238,15 +239,18 @@ namespace DeckMiner.Services
             this.centerCard = center_card;
             this.lgpMode = lgpMode;
 
-            try
+            if (!forceRecalc)
             {
-                var simulatedResult = SimulationBuffer.LoadResultsFromJson(logPath);
-                foreach (var result in simulatedResult)
+                try
                 {
-                    simulated.Add(SimulationBuffer.MakeKey(result.DeckCardIds));
+                    var simulatedResult = SimulationBuffer.LoadResultsFromJson(logPath);
+                    foreach (var result in simulatedResult)
+                    {
+                        simulated.Add(SimulationBuffer.MakeKey(result.DeckCardIds));
+                    }
                 }
+                catch (FileNotFoundException){}
             }
-            catch (FileNotFoundException){}
             TagGenerator.BuildDBTag();
 
             foreach (int cid in cardpool)
