@@ -368,10 +368,10 @@
 
                         <TextBlock TextWrapping="Wrap" Margin="0,10">
                             <Run Text="Version: " FontWeight="Bold"/>
-                            <Run Text="1.4.8 (GUI Edition)"/>
+                            <Run x:Name="AppVersionRun"/>
                             <LineBreak/>
                             <Run Text="GameData: " FontWeight="Bold"/>
-                            <Run Text="260220"/>
+                            <Run x:Name="GameDataVersionRun"/>
                         </TextBlock>
 
                         <TextBlock TextWrapping="Wrap" Margin="0,10">

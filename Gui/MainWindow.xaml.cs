@@ -4,6 +4,7 @@ using Microsoft.Win32;
 using System;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Diagnostics;
@@ -35,6 +36,14 @@ public partial class MainWindow : Window
 
     private void MainWindow_Loaded(object sender, RoutedEventArgs e)
     {
+        // App 版本：從 Assembly 讀取（來源 = .csproj）
+        var version = Assembly.GetEntryAssembly()?.GetName().Version;
+        if (version != null)
+            AppVersionRun.Text = $"{version.Major}.{version.Minor}.{version.Build} (GUI Edition)";
+
+        // GameData 版本：從資料檔案修改日期偵測
+        GameDataVersionRun.Text = DataManager.GetGameDataVersion();
+
         AppendLog("[INFO] GUI initialized");
         AppendLog("[HINT] Load a YAML configuration file or create a new one to begin");
     }

@@ -104,7 +104,9 @@ class Program
             // 某些環境 (如 Git Bash) 不支援設定編碼，忽略錯誤
         }
 
-        Console.WriteLine("--- SukuShow Deck Miner Lite ---");
+        var asmVer = System.Reflection.Assembly.GetEntryAssembly()?.GetName().Version;
+        var gdVer = DataManager.GetGameDataVersion();
+        Console.WriteLine($"--- SukuShow Deck Miner Lite v{asmVer?.Major}.{asmVer?.Minor}.{asmVer?.Build} (GameData: {gdVer}) ---");
 
 #if WINDOWS
         // Windows version: Launch GUI if no args

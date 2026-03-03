@@ -10,11 +10,8 @@
     <Nullable>disable</Nullable>
     <OptimizationPreference>Speed</OptimizationPreference>
 
-    <!-- Version Information -->
-    <Version>1.4.8</Version>
-    <AssemblyVersion>1.4.8.0</AssemblyVersion>
-    <FileVersion>1.4.8.0</FileVersion>
-    <InformationalVersion>1.4.8</InformationalVersion>
+    <!-- Version Information (single source of truth - MSBuild auto-derives AssemblyVersion/FileVersion) -->
+    <Version>1.4.9</Version>
   </PropertyGroup>
 
   <!-- Windows 版本啟用 WPF (Phase 2: GUI 實作) -->

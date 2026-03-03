@@ -150,5 +150,40 @@ namespace DeckMiner.Services
             return _musicDb;
         }
         // ... 未来所有新的数据库都只需添加 Get 方法和在 JsonContext 中标记类型
+
+        // ----------------------------------------------------
+        // 版本偵測
+        // ----------------------------------------------------
+
+        /// <summary>
+        /// 讀取 GameData/*.json 中最新修改日期，格式化為 YYMMDD 作為遊戲資料版本。
+        /// </summary>
+        public static string GetGameDataVersion()
+        {
+            try
+            {
+                var dataDir = "GameData";
+                if (!Directory.Exists(dataDir))
+                    return "unknown";
+
+                var jsonFiles = Directory.GetFiles(dataDir, "*.json");
+                if (jsonFiles.Length == 0)
+                    return "unknown";
+
+                var latestWrite = DateTime.MinValue;
+                foreach (var file in jsonFiles)
+                {
+                    var writeTime = File.GetLastWriteTime(file);
+                    if (writeTime > latestWrite)
+                        latestWrite = writeTime;
+                }
+
+                return latestWrite.ToString("yyMMdd");
+            }
+            catch
+            {
+                return "unknown";
+            }
+        }
     }
 }
