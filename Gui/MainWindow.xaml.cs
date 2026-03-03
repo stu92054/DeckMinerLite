@@ -548,6 +548,13 @@ optimizer:
         }
     }
 
+    private void FastForwardCheckBox_Changed(object sender, RoutedEventArgs e)
+    {
+        Simulator.FastForwardMode = FastForwardCheckBox.IsChecked == true;
+        if (LogTextBox == null) return;
+        AppendLog($"[INFO] Fast-Forward Mode: {Simulator.FastForwardMode}");
+    }
+
     private void OpenOutputFolderButton_Click(object sender, RoutedEventArgs e)
     {
         try

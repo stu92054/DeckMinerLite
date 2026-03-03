@@ -12,8 +12,8 @@ namespace DeckMiner.Models
         public double Ap { get; set; } = 0.0;
         public double Cooldown { get; set; } = 5.0;
         public double ApRate { get; private set; } = 1.0;
-        public int Combo { get; private set; } = 0;
-        public long Score { get; private set; } = 0;
+        public int Combo { get; internal set; } = 0;
+        public long Score { get; internal set; } = 0;
 
         // 嵌套对象
         public Mental Mental { get; private set; } = new Mental();
@@ -35,9 +35,9 @@ namespace DeckMiner.Models
         private double _halfApPlus;
         private double _fullApPlus;
         private int _prevVo = -1;
-        private int _prevNoteScore = 0;
+        internal int _prevNoteScore = 0;
         private double _prevApRate = 0.0;
-        private double _prevAp = 0.0;
+        internal double _prevAp = 0.0;
 
         public void SetDeck(Deck deck)
         {

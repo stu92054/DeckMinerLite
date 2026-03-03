@@ -150,6 +150,13 @@ class Program
         CardDataManager.Initialize(cardDb);
         SkillDataManager.Initialize(skillDb, centerAttrDb, centerSkillDb);
 
+        // === Fast-Forward Mode ===
+        if (args.Contains("--fast-forward"))
+        {
+            Simulator.FastForwardMode = true;
+            Console.WriteLine("[INFO] Fast-Forward Mode: enabled");
+        }
+
         // === Debug Mode ===
         if (args.Contains("--debug"))
         {
@@ -395,13 +402,16 @@ class Program
         // 步骤 3: 使用 BatchSimulationService 執行批次模擬
         // ------------------------------------------------------------------
         Console.WriteLine("\n開始批次模擬...");
+        int simMaxDegree = args.Contains("--single-thread") ? 1 : -1;
+        if (simMaxDegree == 1) Console.WriteLine("[INFO] 單執行緒模式已啟用 (--single-thread)");
         try
         {
             BatchSimulationService.RunBatchSimulation(
                 yamlConfig,
                 onLog: Console.WriteLine,
                 onProgress: null,  // CLI 已有 Tqdm 進度條，不需額外進度回呼
-                cancellationToken: default
+                cancellationToken: default,
+                maxDegreeOfParallelism: simMaxDegree
             );
         }
         catch (Exception ex)

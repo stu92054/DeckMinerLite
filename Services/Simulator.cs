@@ -70,6 +70,7 @@ namespace DeckMiner.Services
     public class Simulator
     {
         public static bool DebugMode = false;
+        public static bool FastForwardMode = false;
 
         // 花火吟延遲 MISS 時間 (單位：秒)
         // 參考：src/core/Simulator_core.py:33-39
@@ -245,6 +246,63 @@ namespace DeckMiner.Services
                 double nextExtraTime = (extraEvents.Count > 0)
                     ? extraEvents.Peek().Time // Peek() 获取优先级 (Time)
                     : double.MaxValue;
+                // === Fast-Forward 快轉優化 ===
+                // 條件：啟用快轉 && 下一事件來自 chart && 是 Note 類型 &&
+                //       Combo >= 50 && 無背水卡 && 有待打卡 && 無法發動技能
+                if (FastForwardMode && nextChartTime <= nextExtraTime &&
+                    chartEvents[i_event].Type >= LiveEventType.Single &&
+                    chartEvents[i_event].Type <= LiveEventType.Trace &&
+                    Player.Combo >= 50 && afkMental == 0 && cardNow != null &&
+                    (!Player.CDAvailable || Player.Ap < cardNow.Cost))
+                {
+                    // 終點 1: CD 轉好時刻
+                    double nextCDTime = Player.CDAvailable
+                        ? double.MaxValue
+                        : nextExtraTime;
+
+                    // 終點 2: AP 足夠時刻 (修正 off-by-one: 使用 notesNeeded - 1)
+                    double nextAPTime = double.MaxValue;
+                    if (Player.CDAvailable && Player.Ap < cardNow.Cost && Player._prevAp > 0)
+                    {
+                        double apDeficit = cardNow.Cost - Player.Ap;
+                        int notesNeeded = (int)Math.Ceiling(apDeficit / Player._prevAp);
+                        int targetIndex = i_event + notesNeeded - 1;
+                        if (targetIndex >= 0 && targetIndex < chartEvents.Length)
+                            nextAPTime = chartEvents[targetIndex].Time;
+                    }
+
+                    double safeHorizon = Math.Min(nextCDTime, nextAPTime);
+
+                    if (safeHorizon > nextChartTime)
+                    {
+                        // 先正常處理第一個 Note 以刷新快取值
+                        // (處理 Voltage 變化後 _prevNoteScore 的過期問題)
+                        Player.ComboAdd("PERFECT+");
+                        i_event++;
+
+                        double cachedApGain = Player._prevAp;
+                        int cachedNoteScore = Player._prevNoteScore;
+
+                        int ffCount = 1;
+                        while (i_event < chartEvents.Length)
+                        {
+                            ref readonly var ev = ref chartEvents[i_event];
+                            if (ev.Time >= safeHorizon) break;
+                            if (ev.Type > LiveEventType.Trace) break;
+
+                            Player.Combo++;
+                            Player.Ap += cachedApGain;
+                            Player.Score += cachedNoteScore;
+                            i_event++;
+                            ffCount++;
+                        }
+                        if (DebugMode && ffCount > 0)
+                            Console.WriteLine($"[FastForward] Skipped {ffCount} notes, AP: {Player.Ap:F2}, Combo: {Player.Combo}");
+                        continue;
+                    }
+                }
+                // === End Fast-Forward ===
+
                 if (nextChartTime <= nextExtraTime)
                 {
                     // 1. 选择 Chart Event
