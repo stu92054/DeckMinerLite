@@ -322,7 +322,7 @@ class Program
                         // 設定好友卡
                         if (friendCardId.HasValue)
                         {
-                            deck.FriendCard = Card.GetInstance(friendCardId.Value);
+                            deck.FriendCard = Card.GetFriendInstance(friendCardId.Value);
                             Console.WriteLine($"  Friend Card Applied: {friendCardId.Value} ({deck.FriendCard.FullName})");
                         }
 
@@ -660,7 +660,7 @@ class Program
                 Deck deckToSimulate = new Deck(deckInfo);
                 if (friendCardId.HasValue)
                 {
-                    deckToSimulate.FriendCard = Card.GetInstance(friendCardId.Value);
+                    deckToSimulate.FriendCard = Card.GetFriendInstance(friendCardId.Value);
                 }
 
                 long newScore = -1;

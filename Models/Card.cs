@@ -29,6 +29,7 @@ namespace DeckMiner.Models
     public partial class Card : ICloneable
     {
         private static readonly ConcurrentDictionary<int, Card> CardCache = new();
+        private static readonly ConcurrentDictionary<int, Card> FriendCardCache = new();
 
         // ----------------- 属性 -----------------
         public string CardId { get; private set; }
@@ -147,6 +148,26 @@ namespace DeckMiner.Models
 
         return finalNewCard;
     }
+
+    /// <summary>
+    /// Friend 卡專用工廠方法，使用獨立快取避免與 deck 卡互相汙染。
+    /// Friend 卡一律以預設練度 [140, 14, 14] 建立。
+    /// </summary>
+    public static Card GetFriendInstance(int seriesId)
+    {
+        if (FriendCardCache.TryGetValue(seriesId, out Card cachedCard))
+        {
+            return (Card)cachedCard.Clone();
+        }
+
+        Card instanceToCache = FriendCardCache.GetOrAdd(
+            seriesId,
+            (key) => (Card)new Card(seriesId).Clone()
+        );
+
+        return (Card)instanceToCache.Clone();
+    }
+
         // ----------------- 方法 -----------------
 
         /// <summary>

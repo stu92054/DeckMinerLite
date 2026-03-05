@@ -337,7 +337,7 @@ namespace DeckMiner.Services
                             Deck deckToSimulate = new Deck(deckInfo);
                             if (friendCardId.HasValue)
                             {
-                                deckToSimulate.FriendCard = Card.GetInstance(friendCardId.Value);
+                                deckToSimulate.FriendCard = Card.GetFriendInstance(friendCardId.Value);
                             }
 
                             long newScore = -1;
