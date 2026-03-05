@@ -8,7 +8,7 @@ echo.
 
 REM === Auto-detect App version from .csproj ===
 set VERSION=unknown
-for /f "tokens=2 delims=<>" %%a in ('findstr /r "^    <Version>" DeckMiner.csproj') do set VERSION=%%a
+for /f "tokens=3 delims=<>" %%a in ('findstr /r "<Version>" DeckMiner.csproj') do set VERSION=%%a
 
 REM === Auto-detect GameData version from latest JSON file date ===
 set GAMEDATA_VER=unknown
