@@ -27,7 +27,9 @@ namespace DeckMiner.Data
             { 5, "UR" },
             { 7, "LR" },
             { 8, "DR" },
-            { 9, "BR" }
+            { 9, "BR" },
+            { 94, "MSR" },
+            { 95, "MUR" }
         };
 
         /// <summary>
@@ -35,12 +37,14 @@ namespace DeckMiner.Data
         /// </summary>
         public static readonly Dictionary<int, int> DefaultCardLevels = new()
         {
-            { 3, 80 },   // R
-            { 4, 100 },  // SR
-            { 5, 120 },  // UR
-            { 7, 140 },  // LR
-            { 8, 140 },  // DR
-            { 9, 120 }   // BR
+            { 3, 80 },    // R
+            { 4, 100 },   // SR
+            { 5, 120 },   // UR
+            { 7, 140 },   // LR
+            { 8, 140 },   // DR
+            { 9, 120 },   // BR
+            { 94, 100 },  // MSR
+            { 95, 120 }   // MUR
         };
 
         /// <summary>

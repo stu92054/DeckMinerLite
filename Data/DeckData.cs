@@ -14,7 +14,9 @@ namespace DeckMiner.Data
         UR = 5,
         LR = 7,
         DR = 8,
-        BR = 9
+        BR = 9,
+        MSR = 94,
+        MUR = 95
     }
 
     /// <summary>
@@ -30,34 +32,40 @@ namespace DeckMiner.Data
         // 状态值成长曲线 (等级, 基础值百分比)
         public static readonly Dictionary<Rarity, List<StatusCurvePoint>> STATUS_CURVES = new Dictionary<Rarity, List<StatusCurvePoint>>
         {
-            { Rarity.R, new List<StatusCurvePoint> { new(1, 1), new(30, 50), new(40, 70), new(60, 100), new(70, 110), new(80, 120) } },
-            { Rarity.SR, new List<StatusCurvePoint> { new(1, 1), new(40, 50), new(60, 70), new(80, 100), new(90, 110), new(100, 120) } },
-            { Rarity.UR, new List<StatusCurvePoint> { new(1, 1), new(60, 50), new(80, 70), new(100, 100), new(110, 110), new(120, 120) } },
-            { Rarity.LR, new List<StatusCurvePoint> { new(1, 1), new(100, 70), new(120, 100), new(130, 110), new(140, 120) } },
-            { Rarity.DR, new List<StatusCurvePoint> { new(1, 1), new(100, 70), new(120, 100), new(130, 110), new(140, 120) } },
-            { Rarity.BR, new List<StatusCurvePoint> { new(1, 1), new(80, 70), new(100, 100), new(110, 110), new(120, 120) } },
+            { Rarity.R,   new List<StatusCurvePoint> { new(1, 1), new(30, 50), new(40, 70), new(60, 100), new(70, 110), new(80, 120) } },
+            { Rarity.SR,  new List<StatusCurvePoint> { new(1, 1), new(40, 50), new(60, 70), new(80, 100), new(90, 110), new(100, 120) } },
+            { Rarity.UR,  new List<StatusCurvePoint> { new(1, 1), new(60, 50), new(80, 70), new(100, 100), new(110, 110), new(120, 120) } },
+            { Rarity.LR,  new List<StatusCurvePoint> { new(1, 1), new(100, 70), new(120, 100), new(130, 110), new(140, 120) } },
+            { Rarity.DR,  new List<StatusCurvePoint> { new(1, 1), new(100, 70), new(120, 100), new(130, 110), new(140, 120) } },
+            { Rarity.BR,  new List<StatusCurvePoint> { new(1, 1), new(80, 70), new(100, 100), new(110, 110), new(120, 120) } },
+            { Rarity.MSR, new List<StatusCurvePoint> { new(1, 1), new(40, 50), new(60, 70), new(80, 100), new(90, 110), new(100, 120) } },
+            { Rarity.MUR, new List<StatusCurvePoint> { new(1, 1), new(60, 50), new(80, 70), new(100, 100), new(110, 110), new(120, 120) } },
         };
 
         // HP 成长曲线
         public static readonly Dictionary<Rarity, List<StatusCurvePoint>> HP_CURVES = new Dictionary<Rarity, List<StatusCurvePoint>>
         {
-            { Rarity.R, new List<StatusCurvePoint> { new(1, 20), new(30, 50), new(40, 70), new(60, 100) } },
-            { Rarity.SR, new List<StatusCurvePoint> { new(1, 20), new(40, 50), new(60, 70), new(80, 100) } },
-            { Rarity.UR, new List<StatusCurvePoint> { new(1, 20), new(60, 50), new(80, 70), new(100, 100) } },
-            { Rarity.LR, new List<StatusCurvePoint> { new(1, 20), new(100, 70), new(120, 100) } },
-            { Rarity.DR, new List<StatusCurvePoint> { new(1, 20), new(100, 70), new(120, 100) } },
-            { Rarity.BR, new List<StatusCurvePoint> { new(1, 20), new(80, 70), new(100, 100) } },
+            { Rarity.R,   new List<StatusCurvePoint> { new(1, 20), new(30, 50), new(40, 70), new(60, 100) } },
+            { Rarity.SR,  new List<StatusCurvePoint> { new(1, 20), new(40, 50), new(60, 70), new(80, 100) } },
+            { Rarity.UR,  new List<StatusCurvePoint> { new(1, 20), new(60, 50), new(80, 70), new(100, 100) } },
+            { Rarity.LR,  new List<StatusCurvePoint> { new(1, 20), new(100, 70), new(120, 100) } },
+            { Rarity.DR,  new List<StatusCurvePoint> { new(1, 20), new(100, 70), new(120, 100) } },
+            { Rarity.BR,  new List<StatusCurvePoint> { new(1, 20), new(80, 70), new(100, 100) } },
+            { Rarity.MSR, new List<StatusCurvePoint> { new(1, 20), new(40, 50), new(60, 70), new(80, 100) } },
+            { Rarity.MUR, new List<StatusCurvePoint> { new(1, 20), new(60, 50), new(80, 70), new(100, 100) } },
         };
 
         // 进化等级 (等级, 进化阶段)
         public static readonly Dictionary<Rarity, List<StatusCurvePoint>> EVOLUTION = new Dictionary<Rarity, List<StatusCurvePoint>>
         {
-            { Rarity.R, new List<StatusCurvePoint> { new(40, 0), new(60, 2), new(70, 3), new(80, 4) } },
-            { Rarity.SR, new List<StatusCurvePoint> { new(60, 0), new(80, 2), new(90, 3), new(100, 4) } },
-            { Rarity.UR, new List<StatusCurvePoint> { new(80, 0), new(100, 2), new(110, 3), new(120, 4) } },
-            { Rarity.LR, new List<StatusCurvePoint> { new(100, 0), new(120, 2), new(130, 3), new(140, 4) } },
-            { Rarity.DR, new List<StatusCurvePoint> { new(100, 0), new(120, 2), new(130, 3), new(140, 4) } },
-            { Rarity.BR, new List<StatusCurvePoint> { new(80, 0), new(100, 2), new(110, 3), new(120, 4) } },
+            { Rarity.R,   new List<StatusCurvePoint> { new(40, 0), new(60, 2), new(70, 3), new(80, 4) } },
+            { Rarity.SR,  new List<StatusCurvePoint> { new(60, 0), new(80, 2), new(90, 3), new(100, 4) } },
+            { Rarity.UR,  new List<StatusCurvePoint> { new(80, 0), new(100, 2), new(110, 3), new(120, 4) } },
+            { Rarity.LR,  new List<StatusCurvePoint> { new(100, 0), new(120, 2), new(130, 3), new(140, 4) } },
+            { Rarity.DR,  new List<StatusCurvePoint> { new(100, 0), new(120, 2), new(130, 3), new(140, 4) } },
+            { Rarity.BR,  new List<StatusCurvePoint> { new(80, 0), new(100, 2), new(110, 3), new(120, 4) } },
+            { Rarity.MSR, new List<StatusCurvePoint> { new(60, 0), new(80, 2), new(90, 3), new(100, 4) } },
+            { Rarity.MUR, new List<StatusCurvePoint> { new(80, 0), new(100, 2), new(110, 3), new(120, 4) } },
         };
 
         // ----------------------------------------------------
