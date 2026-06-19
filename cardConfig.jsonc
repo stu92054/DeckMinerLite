@@ -10,11 +10,11 @@
   "DefaultSkillLevel": 14,
   "DefaultCenterSkillLevel": 14,
   "CardCache": {
-    "1021701": [140, 11, 11]
   },
 
   "DeathNote": {
     "1041513": 10,
-    "1041901": 25
+    "1041901": 25,
+    "1041902": 10
   }
 }

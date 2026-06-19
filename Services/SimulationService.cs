@@ -269,10 +269,11 @@ namespace DeckMiner.Services
             OnLogOutput("[INFO] Starting multi-song optimizer");
             OnLogOutput($"[DEBUG] Config path: {configPath}");
 
-            // 優先使用打包的 exe，否則回退到 Python 腳本
+            // 搜尋優化器：exe > 同目錄 .py > 上層目錄 .py（開發環境）
             string baseDir = AppContext.BaseDirectory;
             string optimizerExe = Path.Combine(baseDir, "multi_optimizer_2.exe");
-            string optimizerPy = Path.Combine(Path.GetFullPath(Path.Combine(baseDir, "..")), "multi_optimizer_2.py");
+            string optimizerPyLocal = Path.Combine(baseDir, "multi_optimizer_2.py");
+            string optimizerPyDev = Path.Combine(Path.GetFullPath(Path.Combine(baseDir, "..")), "multi_optimizer_2.py");
 
             string fileName;
             string arguments;
@@ -289,13 +290,23 @@ namespace DeckMiner.Services
                 OnLogOutput($"[DEBUG] Command: {fileName} {arguments}");
                 OnLogOutput($"[DEBUG] Working directory: {workingDir}");
             }
-            else if (File.Exists(optimizerPy))
+            else if (File.Exists(optimizerPyLocal))
             {
-                // 回退到 Python 腳本（開發環境）
+                // 同目錄下的 Python 腳本（發布包附帶）
+                OnLogOutput("[INFO] Using Python script: multi_optimizer_2.py (bundled)");
+                fileName = "python";
+                arguments = $"\"{optimizerPyLocal}\" --config \"{configPath}\"";
+                workingDir = baseDir;
+                OnLogOutput($"[DEBUG] Command: {fileName} {arguments}");
+                OnLogOutput($"[DEBUG] Working directory: {workingDir}");
+            }
+            else if (File.Exists(optimizerPyDev))
+            {
+                // 上層目錄的 Python 腳本（開發環境）
                 OnLogOutput("[INFO] Using Python script: multi_optimizer_2.py (development mode)");
                 fileName = "python";
-                arguments = $"\"{optimizerPy}\" --config \"{configPath}\"";
-                workingDir = Path.GetDirectoryName(optimizerPy);
+                arguments = $"\"{optimizerPyDev}\" --config \"{configPath}\"";
+                workingDir = Path.GetDirectoryName(optimizerPyDev)!;
                 OnLogOutput($"[DEBUG] Command: {fileName} {arguments}");
                 OnLogOutput($"[DEBUG] Working directory: {workingDir}");
             }
@@ -303,7 +314,8 @@ namespace DeckMiner.Services
             {
                 OnLogOutput($"[FAIL] Optimizer not found!");
                 OnLogOutput($"[FAIL] Checked: {optimizerExe}");
-                OnLogOutput($"[FAIL] Checked: {optimizerPy}");
+                OnLogOutput($"[FAIL] Checked: {optimizerPyLocal}");
+                OnLogOutput($"[FAIL] Checked: {optimizerPyDev}");
                 return false;
             }
 

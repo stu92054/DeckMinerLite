@@ -238,6 +238,21 @@
                             </StackPanel>
                         </GroupBox>
 
+                        <!-- Experimental Options -->
+                        <GroupBox Header="實驗選項 (Experimental)" Margin="0,0,0,10">
+                            <StackPanel Margin="10">
+                                <CheckBox x:Name="FastForwardCheckBox"
+                                          Content="啟用 Note 快轉優化 (Fast-Forward)"
+                                          IsChecked="False"
+                                          Checked="FastForwardCheckBox_Changed"
+                                          Unchecked="FastForwardCheckBox_Changed"/>
+                                <TextBlock Text="  跳過無法發動技能的 Note，批量累加分數以提升模擬速度"
+                                           Margin="20,2,0,0"
+                                           FontSize="11"
+                                           Foreground="Gray"/>
+                            </StackPanel>
+                        </GroupBox>
+
                         <!-- Simulation Control -->
                         <GroupBox Header="模擬控制">
                             <StackPanel Margin="10">
@@ -353,10 +368,10 @@
 
                         <TextBlock TextWrapping="Wrap" Margin="0,10">
                             <Run Text="Version: " FontWeight="Bold"/>
-                            <Run Text="1.4.6 (GUI Edition)"/>
+                            <Run x:Name="AppVersionRun"/>
                             <LineBreak/>
                             <Run Text="GameData: " FontWeight="Bold"/>
-                            <Run Text="250122"/>
+                            <Run x:Name="GameDataVersionRun"/>
                         </TextBlock>
 
                         <TextBlock TextWrapping="Wrap" Margin="0,10">

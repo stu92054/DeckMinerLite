@@ -6,9 +6,20 @@ echo DeckMinerLite Build Script
 echo ========================================
 echo.
 
-set VERSION=1.4.6
-set WIN_PACKAGE_NAME=DeckMinerLite-v1.4.6-win-x64
-set LINUX_PACKAGE_NAME=DeckMinerLite-v1.4.6-linux-x64
+REM === Auto-detect App version from .csproj ===
+set VERSION=unknown
+for /f "tokens=3 delims=<>" %%a in ('findstr /r "<Version>" DeckMiner.csproj') do set VERSION=%%a
+
+REM === Auto-detect GameData version from latest JSON file date ===
+set GAMEDATA_VER=unknown
+for /f %%v in ('powershell -NoProfile -Command "(Get-ChildItem GameData\*.json | Sort-Object LastWriteTime -Descending | Select-Object -First 1).LastWriteTime.ToString('yyMMdd')"') do set GAMEDATA_VER=%%v
+
+echo App Version: %VERSION%
+echo GameData Version: %GAMEDATA_VER%
+echo.
+
+set WIN_PACKAGE_NAME=DeckMinerLite-v%VERSION%-win-x64
+set LINUX_PACKAGE_NAME=DeckMinerLite-v%VERSION%-linux-x64
 set WIN_PUBLISH_DIR=..\publish\win-x64
 set LINUX_PUBLISH_DIR=..\publish\linux-x64
 set WIN_PACKAGE_DIR=..\publish\%WIN_PACKAGE_NAME%
@@ -71,7 +82,7 @@ copy "..\config\member-example.yaml" "%WIN_PACKAGE_DIR%\config\"
 copy "..\config\member-test.yaml" "%WIN_PACKAGE_DIR%\config\"
 
 echo.
-echo [5.1/8] Packaging Python optimizer with PyInstaller...
+echo [5.1/8] Packaging Python optimizer...
 echo [INFO] Checking if multi_optimizer_2.exe already exists...
 if exist "..\dist\multi_optimizer_2.exe" (
     echo [INFO] Found pre-built multi_optimizer_2.exe, copying...
@@ -80,10 +91,10 @@ if exist "..\dist\multi_optimizer_2.exe" (
     echo [WARN] multi_optimizer_2.exe not found!
     echo [HINT] Please run: cd .. ^&^& pyinstaller --onefile multi_optimizer_2.py
     echo [HINT] Then re-run this publish script.
-    echo.
-    echo [SKIP] Continuing without Python optimizer...
-    echo [NOTE] GUI will still work but multi-song optimization will be unavailable
 )
+
+echo [INFO] Copying pure Python optimizer as fallback...
+copy "..\multi_optimizer_2.py" "%WIN_PACKAGE_DIR%\"
 echo Done
 
 echo.
@@ -200,7 +211,7 @@ echo - GitHub: https://github.com/stu92054/SukuShow-Deck-Miner
 echo - Documentation: docs/ directory
 echo.
 echo ========================================
-echo DeckMinerLite v1.4.6 - SukuShow Deck Calculator
+echo DeckMinerLite v%VERSION% (GameData: %GAMEDATA_VER%^) - SukuShow Deck Calculator
 echo ========================================
 )
 exit /b 0
@@ -263,7 +274,7 @@ echo - GitHub: https://github.com/stu92054/SukuShow-Deck-Miner
 echo - Documentation: docs/ directory
 echo.
 echo ========================================
-echo DeckMinerLite v1.4.6 - SukuShow Deck Calculator
+echo DeckMinerLite v%VERSION% (GameData: %GAMEDATA_VER%^) - SukuShow Deck Calculator
 echo ========================================
 )
 exit /b 0

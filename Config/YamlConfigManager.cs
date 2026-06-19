@@ -211,7 +211,7 @@ namespace DeckMiner.Config
 
             // 歌唱人数补正表
             var singingCorrection = _config.SeasonMode == "sukushow"
-                ? new Dictionary<int, double> { {2, 2.75}, {8, 1.00}, {9, 0.90} }
+                ? new Dictionary<int, double> { {1, 3.88}, {2, 2.75}, {4, 1.73}, {8, 1.00}, {9, 0.90} }
                 : new Dictionary<int, double> { {2, 2.33}, {8, 1.00} };
 
             // 计算基础 Fan Level 加成

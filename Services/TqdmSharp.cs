@@ -241,7 +241,7 @@ namespace TqdmSharp {
                 // Count what percentage of the bar we are printing. 
                 // Keep both a double and an int so we can calculate the relative remainder. 
                 double fills = (double)current / _total * _width;
-                int ifills = (int)fills;
+                int ifills = Math.Clamp((int)fills, 0, _width);
 
                 // Store the beginning of the line, so we can move back there for the next print
                 int curCursorTop = 0;
@@ -379,7 +379,7 @@ namespace TqdmSharp {
         }
 
         private static IEnumerable<T> InternalWrap<T>(IEnumerable<T> enumerable, long total, ProgressBar bar) {
-            int count = 0;
+            long count = 0;
             foreach (var item in enumerable) {
                 bar.Progress(count, total);
                 count++;

@@ -78,6 +78,13 @@ namespace DeckMiner.Config
         public Dictionary<int, List<int>> CardLevels { get; set; } = new();
 
         /// <summary>
+        /// 強制重新計算所有卡組（忽略歷史記錄，重新模擬所有卡組）
+        /// 當程式碼有重大更新或懷疑歷史分數有誤時使用
+        /// </summary>
+        [YamlMember(Alias = "force_recalc")]
+        public bool ForceRecalc { get; set; } = false;
+
+        /// <summary>
         /// 批次大小
         /// </summary>
         [YamlMember(Alias = "batch_size")]

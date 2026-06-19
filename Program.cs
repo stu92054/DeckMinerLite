@@ -104,7 +104,9 @@ class Program
             // 某些環境 (如 Git Bash) 不支援設定編碼，忽略錯誤
         }
 
-        Console.WriteLine("--- SukuShow Deck Miner Lite ---");
+        var asmVer = System.Reflection.Assembly.GetEntryAssembly()?.GetName().Version;
+        var gdVer = DataManager.GetGameDataVersion();
+        Console.WriteLine($"--- SukuShow Deck Miner Lite v{asmVer?.Major}.{asmVer?.Minor}.{asmVer?.Build} (GameData: {gdVer}) ---");
 
 #if WINDOWS
         // Windows version: Launch GUI if no args
@@ -149,6 +151,13 @@ class Program
 
         CardDataManager.Initialize(cardDb);
         SkillDataManager.Initialize(skillDb, centerAttrDb, centerSkillDb);
+
+        // === Fast-Forward Mode ===
+        if (args.Contains("--fast-forward"))
+        {
+            Simulator.FastForwardMode = true;
+            Console.WriteLine("[INFO] Fast-Forward Mode: enabled");
+        }
 
         // === Debug Mode ===
         if (args.Contains("--debug"))
@@ -313,7 +322,7 @@ class Program
                         // 設定好友卡
                         if (friendCardId.HasValue)
                         {
-                            deck.FriendCard = Card.GetInstance(friendCardId.Value);
+                            deck.FriendCard = Card.GetFriendInstance(friendCardId.Value);
                             Console.WriteLine($"  Friend Card Applied: {friendCardId.Value} ({deck.FriendCard.FullName})");
                         }
 
@@ -395,13 +404,16 @@ class Program
         // 步骤 3: 使用 BatchSimulationService 執行批次模擬
         // ------------------------------------------------------------------
         Console.WriteLine("\n開始批次模擬...");
+        int simMaxDegree = args.Contains("--single-thread") ? 1 : -1;
+        if (simMaxDegree == 1) Console.WriteLine("[INFO] 單執行緒模式已啟用 (--single-thread)");
         try
         {
             BatchSimulationService.RunBatchSimulation(
                 yamlConfig,
                 onLog: Console.WriteLine,
                 onProgress: null,  // CLI 已有 Tqdm 進度條，不需額外進度回呼
-                cancellationToken: default
+                cancellationToken: default,
+                maxDegreeOfParallelism: simMaxDegree
             );
         }
         catch (Exception ex)
@@ -648,7 +660,7 @@ class Program
                 Deck deckToSimulate = new Deck(deckInfo);
                 if (friendCardId.HasValue)
                 {
-                    deckToSimulate.FriendCard = Card.GetInstance(friendCardId.Value);
+                    deckToSimulate.FriendCard = Card.GetFriendInstance(friendCardId.Value);
                 }
 
                 long newScore = -1;
